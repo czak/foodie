@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_09_170444) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_09_171712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.decimal "calories", precision: 5, scale: 1, null: false
+    t.decimal "protein", precision: 5, scale: 1, null: false
+    t.decimal "fat", precision: 5, scale: 1, null: false
+    t.decimal "carbs", precision: 5, scale: 1, null: false
+    t.string "portion_type"
+    t.integer "portion_size"
+    t.bigint "next_version_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["next_version_id"], name: "index_products_on_next_version_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -31,5 +47,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_170444) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "products", "products", column: "next_version_id"
+  add_foreign_key "products", "users"
   add_foreign_key "sessions", "users"
 end
