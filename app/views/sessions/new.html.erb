@@ -1,10 +1,10 @@
 <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.text_field :username, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your username", value: params[:username] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
+<%= form_with url: session_path, class: "w-full p-4 flex flex-col gap-4 bg-slate-200" do |form| %>
+  <%= form.text_field :username, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your username", value: params[:username], class: "bg-white p-2" %><br>
+  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "bg-white p-2" %><br>
+  <%= form.submit "Sign in", class: "text-slate-100 bg-slate-600 p-2" %>
 <% end %>
 
-<pre><%= ENV['GIT_REF'] %></pre>
+<pre><%= ENV["GIT_REF"] %></pre>
