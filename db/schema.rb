@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_11_153312) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_11_210739) do
+  create_table "products", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.integer "calories", null: false
+    t.decimal "protein", precision: 5, scale: 2, null: false
+    t.decimal "fat", precision: 5, scale: 2, null: false
+    t.decimal "carbs", precision: 5, scale: 2, null: false
+    t.string "portion_type"
+    t.integer "portion_size"
+    t.integer "next_version_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["next_version_id"], name: "index_products_on_next_version_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -28,5 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_11_153312) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "products", "products", column: "next_version_id"
+  add_foreign_key "products", "users"
   add_foreign_key "sessions", "users"
 end
