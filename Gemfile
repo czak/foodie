@@ -43,4 +43,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Live reload when assets change in development
+  gem "hotwire-livereload", "~> 2.0"
 end
