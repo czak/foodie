@@ -1,4 +1,4 @@
-<div class="cursor-pointer px-3 py-2 bg-white flex flex-col rounded-sm border border-gray-300 hover:bg-gray-50">
+<%= link_to edit_product_path(product), class: "cursor-pointer px-3 py-2 bg-white flex flex-col rounded-sm border border-gray-300 hover:bg-gray-50" do %>
   <div class="flex justify-between items-baseline">
     <h3 class="text-lg font-semibold text-gray-700 mr-2">
       <%= product.name %>
@@ -16,4 +16,4 @@
     </div>
     <button class="text-red-500 hover:underline">Remove</button>
   </div>
-</div>
+<% end %>
