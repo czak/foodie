@@ -1,19 +1,21 @@
-<%= link_to edit_product_path(product), class: "cursor-pointer px-3 py-2 bg-white flex flex-col rounded-sm border border-gray-300 hover:bg-gray-50" do %>
-  <div class="flex justify-between items-baseline">
-    <h3 class="text-lg font-semibold text-gray-700 mr-2">
-      <%= product.name %>
-      <% if product.portion_type %>
-        <small class="font-normal text-gray-500">(<%= product.portion_size %>g <%= product.portion_type %>)</small>
-      <% end %>
-    </h3>
-    <h4 class="flex-none text-xl font-bold text-gray-800"><%= product.calories %> <small class="font-normal text-gray-500">kcal</small></h4>
-  </div>
-  <div class="flex justify-between items-baseline-last text-gray-600">
-    <div class="flex gap-x-2">
-      <span>P: <%= product.protein %>g</span>
-      <span>F: <%= product.fat %>g</span>
-      <span>C: <%= product.carbs %>g</span>
+<%= turbo_frame_tag product do %>
+  <%= link_to edit_product_path(product), class: "cursor-pointer px-3 py-2 bg-white flex flex-col rounded-sm border border-gray-300 hover:bg-gray-50" do %>
+    <div class="flex justify-between items-baseline">
+      <h3 class="text-lg font-semibold text-gray-700 mr-2">
+        <%= product.name %>
+        <% if product.portion_type %>
+          <small class="font-normal text-gray-500">(<%= product.portion_size %>g <%= product.portion_type %>)</small>
+        <% end %>
+      </h3>
+      <h4 class="flex-none text-xl font-bold text-gray-800"><%= product.calories %> <small class="font-normal text-gray-500">kcal</small></h4>
     </div>
-    <button class="text-red-500 hover:underline">Remove</button>
-  </div>
+    <div class="flex justify-between items-baseline-last text-gray-600">
+      <div class="flex gap-x-2">
+        <span>P: <%= product.protein %>g</span>
+        <span>F: <%= product.fat %>g</span>
+        <span>C: <%= product.carbs %>g</span>
+      </div>
+      <button class="text-red-500 hover:underline">Remove</button>
+    </div>
+  <% end %>
 <% end %>
