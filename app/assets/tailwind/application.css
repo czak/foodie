@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+.material-icon {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  /* font-size: 24px; */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+@theme {
+  --font-sans: "Space Grotesk";
+}
+
+@layer base {
+  input, select {
+    @apply px-2 py-1 z-10;
+  }
+}
+
+@utility input-addon {
+  @apply flex items-center px-2 border border-gray-300 border-l-0 rounded-r-sm bg-gray-100 text-gray-600;
+}
