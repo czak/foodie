@@ -5,6 +5,20 @@ class ProductsController < ApplicationController
     @products = Current.user.products.order(:name)
   end
 
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Current.user.products.build(product_params)
+
+    if @product.save
+      redirect_to products_path, notice: "Product created"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def edit
   end
 
