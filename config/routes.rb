@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "products#index"
+  root "dashboard#show"
 
   resource :session
 
