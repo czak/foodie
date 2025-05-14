@@ -1,0 +1,41 @@
+<div class="p-4 bg-white rounded-sm border border-gray-300">
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <div>
+      <label for="food-name" class="block text-sm font-medium text-gray-700">Food Name</label>
+      <input type="text" name="food-name" id="food-name" value="Mixed Green Salad" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-sm sm:text-sm bg-white" />
+    </div>
+    <div>
+      <label for="serving-quantity" class="block text-sm font-medium text-gray-700">Serving Size</label>
+      <div class="mt-1 flex gap-x-0">
+        <input type="text" name="serving-quantity" id="serving-quantity" value="1" class="block w-full px-3 py-2 border border-gray-300 rounded-l-sm sm:text-sm bg-white" />
+        <select id="serving-unit" name="serving-unit" class="block px-3 py-2 border border-gray-300 rounded-r-sm bg-white sm:text-sm">
+          <option value="bowl" selected>bowl</option>
+          <option value="g">g</option>
+          <option value="servings">servings</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-4 gap-4 mb-4">
+    <div>
+      <label for="calories" class="block text-sm font-medium text-gray-700">Calories</label>
+      <input type="number" name="calories" id="calories" value="105" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-sm sm:text-sm bg-white" />
+    </div>
+    <div>
+      <label for="protein" class="block text-sm font-medium text-gray-700">Protein (g)</label>
+      <input type="number" name="protein" id="protein" value="5" step="0.1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-sm sm:text-sm bg-white" />
+    </div>
+    <div>
+      <label for="fat" class="block text-sm font-medium text-gray-700">Fat (g)</label>
+      <input type="number" name="fat" id="fat" value="8" step="0.1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-sm sm:text-sm bg-white" />
+    </div>
+    <div>
+      <label for="carbs" class="block text-sm font-medium text-gray-700">Carbs (g)</label>
+      <input type="number" name="carbs" id="carbs" value="10" step="0.1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-sm sm:text-sm bg-white" />
+    </div>
+  </div>
+  <div class="flex space-x-2">
+    <button class="px-3 py-1 text-xs font-medium text-white bg-lime-600 hover:bg-lime-700 rounded-sm">Add</button>
+    <button class="px-3 py-1 text-xs font-medium bg-gray-200 hover:bg-gray-300 rounded-sm">Cancel</button>
+  </div>
+</div>
