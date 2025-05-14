@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:15.13
+    volumes:
+      - postgres:/var/lib/postgres/data
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_HOST_AUTH_METHOD
+    ports:
+      - 5432:5432
+    
+volumes:
+  postgres:
