@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resource :session
 
   resources :products
+  resources :recipes
+  resources :statistics
+  resources :settings
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

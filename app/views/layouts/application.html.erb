@@ -3,9 +3,9 @@
     <div class="flex flex-col gap-2 items-center">
       <%= nav_link_to "home", root_path, "dashboard" %>
       <%= nav_link_to "shelves", products_path, "products" %>
-      <%= nav_link_to "chef_hat", "#", "recipes" %>
-      <%= nav_link_to "monitoring", "#", "statistics" %>
-      <%= nav_link_to "settings", "#", "settings" %>
+      <%= nav_link_to "chef_hat", recipes_path, "recipes" %>
+      <%= nav_link_to "monitoring", statistics_path, "statistics" %>
+      <%= nav_link_to "settings", settings_path, "settings" %>
     </div>
 
     <div class="flex flex-col gap-2 items-center">
