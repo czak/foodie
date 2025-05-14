@@ -3,6 +3,10 @@ class ProductsController < ApplicationController
 
   def index
     @products = Current.user.products.order(:name)
+
+    if params[:q].present?
+      @products = @products.where('name ILIKE ?', "#{params[:q]}%")
+    end
   end
 
   def new

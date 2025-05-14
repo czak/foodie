@@ -4,9 +4,9 @@
 </div>
 
 <section class="flex flex-col p-4 gap-4 overflow-auto">
-  <div class="flex items-stretch gap-4">
-    <input type="search" name="product-search" placeholder="Search products..." class="min-w-10 flex-1 px-3 py-2 border border-gray-300 rounded-sm bg-white" />
-  </div>
+  <%= form_with method: :get do |f| %>
+    <%= f.text_field :q, value: params[:q], placeholder: "Search products", class: "w-full px-3 py-2 border border-gray-300 rounded-sm bg-white", autocomplete: "off" %>
+  <% end %>
 
   <div class="hidden" data-page-target="form">
     <%= render "form", product: Product.new %>
