@@ -1,6 +1,7 @@
 <div class="grid place-items-center h-screen p-2 mx-auto">
   <%= form_with url: session_path, class: "max-w-100 p-4 flex flex-col gap-y-4 border border-gray-300 rounded-sm bg-white" do |form| %>
     <%= tag.div(flash[:alert], class: "bg-red-50 p-2 text-red-800 text-center") if flash[:alert] %>
+    <%= tag.div(flash[:notice], class: "bg-sky-50 p-2 text-sky-800 text-center") if flash[:notice] %>
 
     <%= form.text_field :username, autofocus: true, autocomplete: "username", placeholder: "Enter your username", value: params[:username], class: "w-full border border-gray-300 rounded-sm bg-white" %>
     <%= form.password_field :password, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "w-full border border-gray-300 rounded-sm bg-white" %>
