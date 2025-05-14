@@ -1,33 +1,8 @@
 <div class="flex items-stretch">
   <a href="#" class="flex-none flex items-center hover:bg-gray-100 rounded-sm"><span class="material-icon">chevron_left</span></a>
-  <a href="#" class="py-2 flex-1 bg-white hover:bg-gray-100 flex flex-col items-center justify-center rounded-sm">
-    <span class="text-xs">Mon</span>
-    <span class="text-lg font-semibold">12</span>
-  </a>
-  <a href="#" class="py-2 flex-1 bg-white hover:bg-gray-100 flex flex-col items-center justify-center rounded-sm">
-    <span class="text-xs">Tue</span>
-    <span class="text-lg font-semibold">13</span>
-  </a>
-  <a href="#" class="py-2 flex-1 bg-white hover:bg-gray-100 flex flex-col items-center justify-center rounded-sm">
-    <span class="text-xs">Wed</span>
-    <span class="text-lg font-semibold">14</span>
-  </a>
-  <a href="#" class="py-2 flex-1 text-white bg-lime-600 flex flex-col items-center justify-center rounded-sm">
-    <span class="text-xs">Thu</span>
-    <span class="text-lg font-semibold">15</span>
-  </a>
-  <a href="#" class="py-2 flex-1 bg-white hover:bg-gray-100 flex flex-col items-center justify-center rounded-sm">
-    <span class="text-xs">Fri</span>
-    <span class="text-lg font-semibold">16</span>
-  </a>
-  <a href="#" class="py-2 flex-1 bg-white hover:bg-gray-100 flex flex-col items-center justify-center rounded-sm">
-    <span class="text-xs">Sat</span>
-    <span class="text-lg font-semibold">17</span>
-  </a>
-  <a href="#" class="py-2 flex-1 bg-white hover:bg-gray-100 flex flex-col items-center justify-center rounded-sm">
-    <span class="text-xs">Sun</span>
-    <span class="text-lg font-semibold">18</span>
-  </a>
+  <% Date.today.beginning_of_week.upto(Date.today.end_of_week) do |date| %>
+    <%= weekday_link date %>
+  <% end %>
   <a href="#" class="flex-none flex items-center hover:bg-gray-100 rounded-sm"><span class="material-icon">chevron_right</span></a>
 </div>
 
