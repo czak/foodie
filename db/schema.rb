@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_14_201822) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_14_202730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "meals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.string "name"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "date"], name: "index_meals_on_user_id_and_date"
+    t.index ["user_id"], name: "index_meals_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -51,6 +62,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_201822) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "meals", "users"
   add_foreign_key "products", "products", column: "next_version_id"
   add_foreign_key "products", "users"
   add_foreign_key "sessions", "users"
