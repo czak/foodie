@@ -3,10 +3,10 @@
 <section class="flex flex-col p-4 gap-4 overflow-auto">
   <div class="flex items-stretch gap-4">
     <input type="search" name="product-search" placeholder="Search products..." class="min-w-10 flex-1 px-3 py-2 border border-gray-300 rounded-sm bg-white" />
-    <%= link_to "Add product", new_product_path, class: "flex-none px-3 py-2 font-medium text-white bg-lime-600 hover:bg-lime-700 rounded-sm" %>
+    <%= link_to "Add product", new_product_path, class: "flex-none px-3 py-2 font-medium text-white bg-lime-600 hover:bg-lime-700 rounded-sm", data: { turbo_stream: true } %>
   </div>
 
-  <%= render "form", product: Product.new %>
+  <div id="new_product"></div>
 
   <%= render @products %>
 </section>
