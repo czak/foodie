@@ -1,12 +1,14 @@
-<h1 class="p-4 text-xl font-bold bg-gray-200 sticky top-0 z-100">Pantry</h1>
+<div class="flex items-center px-4 py-2 bg-gray-200 sticky top-0 z-100 gap-4">
+  <h1 class="flex-1 text-xl font-bold">Pantry</h1>
+  <%= link_to "Add product", new_product_path, class: "px-3 py-2 font-medium text-sm text-white bg-lime-600 hover:bg-lime-700 rounded-sm", data: { action: "page#showForm" } %>
+</div>
 
-<section class="flex flex-col p-4 gap-4 overflow-auto" data-controller="form">
+<section class="flex flex-col p-4 gap-4 overflow-auto">
   <div class="flex items-stretch gap-4">
     <input type="search" name="product-search" placeholder="Search products..." class="min-w-10 flex-1 px-3 py-2 border border-gray-300 rounded-sm bg-white" />
-    <%= link_to "Add product", new_product_path, class: "flex-none px-3 py-2 font-medium text-white bg-lime-600 hover:bg-lime-700 rounded-sm", data: { action: "form#show" }  %>
   </div>
 
-  <div class="hidden" data-form-target="form">
+  <div class="hidden" data-page-target="form">
     <%= render "form", product: Product.new %>
   </div>
 
