@@ -1,7 +1,5 @@
 <h1 class="p-4 text-xl font-bold bg-gray-200 sticky top-0 z-100">New product</h1>
 
 <section class="flex flex-col p-4 gap-4 overflow-auto">
-  <%= turbo_frame_tag "new_product" do %>
-    <%= render "form", product: @product %>
-  <% end %>
+  <%= render "form", product: @product %>
 </section>

@@ -1,12 +1,14 @@
 <h1 class="p-4 text-xl font-bold bg-gray-200 sticky top-0 z-100">Pantry</h1>
 
-<section class="flex flex-col p-4 gap-4 overflow-auto">
+<section class="flex flex-col p-4 gap-4 overflow-auto" data-controller="form">
   <div class="flex items-stretch gap-4">
     <input type="search" name="product-search" placeholder="Search products..." class="min-w-10 flex-1 px-3 py-2 border border-gray-300 rounded-sm bg-white" />
-    <%= link_to "Add product", new_product_path, class: "flex-none px-3 py-2 font-medium text-white bg-lime-600 hover:bg-lime-700 rounded-sm", data: { turbo_frame: "new_product" } %>
+    <%= link_to "Add product", new_product_path, class: "flex-none px-3 py-2 font-medium text-white bg-lime-600 hover:bg-lime-700 rounded-sm", data: { action: "form#show" }  %>
   </div>
 
-  <%= turbo_frame_tag "new_product" %>
+  <div class="hidden" data-form-target="form">
+    <%= render "form", product: Product.new %>
+  </div>
 
   <%= render @products %>
 </section>
