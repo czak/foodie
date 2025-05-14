@@ -4,8 +4,11 @@
 </div>
 
 <section class="flex flex-col p-4 gap-4 overflow-auto">
-  <%= form_with method: :get do |f| %>
-    <%= f.text_field :q, value: params[:q], placeholder: "Search products", class: "w-full px-3 py-2 border border-gray-300 rounded-sm bg-white", autocomplete: "off" %>
+  <%= form_with method: :get, class: "flex items-stretch bg-white border border-gray-300 rounded-sm" do |f| %>
+    <%= f.text_field :q, value: params[:q], placeholder: "Search products", class: "w-full px-3 py-2", autocomplete: "off" %>
+    <div class="flex items-center">
+      <%= link_to "close", products_path, title: "Reset search", class: "material-icon text-gray-400 px-2 py-1" %>
+    </div>
   <% end %>
 
   <div class="hidden" data-page-target="form">
