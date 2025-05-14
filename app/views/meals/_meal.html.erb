@@ -1,0 +1,19 @@
+<div class="cursor-pointer p-2 bg-white hover:bg-gray-50 rounded-sm border border-gray-300">
+  <div class="flex justify-between items-center">
+    <div>
+      <h1 class="text-base font-semibold"><%= meal.name %></h1>
+    </div>
+    <div class="flex items-center">
+      <div class="text-sm mr-2">
+        <span class="font-bold"><%= meal.total_calories %></span>
+        <span class="text-gray-500 font-light">kcal</span>
+      </div>
+      <span class="material-icon">chevron_right</span>
+    </div>
+  </div>
+  <footer class="text-gray-500 text-xs">
+    <span>P: <%= meal.total_protein %>g</span>
+    <span>F: <%= meal.total_fat %>g</span>
+    <span>C: <%= meal.total_carbs %>g</span>
+  </footer>
+</div>
