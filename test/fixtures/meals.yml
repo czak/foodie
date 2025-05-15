@@ -1,0 +1,19 @@
+joe_monday_breakfast:
+  user: joe
+  date: 2025-05-11
+  name: Joe's Monday Breakfast
+
+joe_monday_lunch:
+  user: joe
+  date: 2025-05-11
+  name: Joe's Monday Lunch
+
+joe_tuesday_breakfast:
+  user: joe
+  date: 2025-05-12
+  name: Joe's Tuesday Breakfast
+
+sue_monday_breakfast:
+  user: sue
+  date: 2025-05-11
+  name: Sue's Monday Breakfast

@@ -1,0 +1,9 @@
+egg:
+  user: joe
+  name: Egg
+  calories: 143
+  protein: 12.6
+  fat: 9.5
+  carbs: 0
+  portion_type: unit
+  portion_size: 60

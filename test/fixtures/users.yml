@@ -1,0 +1,15 @@
+joe:
+  username: joe
+  password_digest: <%= BCrypt::Password.create('password') %>
+  target_calories: 2500
+  target_protein: 140
+  target_fat: 75
+  target_carbs: 320
+
+sue:
+  username: sue
+  password_digest: <%= BCrypt::Password.create('password') %>
+  target_calories: 1800
+  target_protein: 100
+  target_fat: 60
+  target_carbs: 200
