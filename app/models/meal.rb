@@ -1,6 +1,8 @@
 class Meal < ApplicationRecord
   belongs_to :user
 
+  validates :name, presence: true
+
   def total_calories
     605
   end

@@ -30,9 +30,13 @@
 
 /* Added by Rails helpers on invalid fields */
 .field_with_errors {
-  @apply w-full z-10;
+  @apply w-full flex z-10;
 
   input, select {
     @apply border-orange-800 bg-red-50;
   }
+}
+
+@utility foodie-border {
+  @apply border border-gray-300 rounded-sm;
 }
