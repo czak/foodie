@@ -18,6 +18,9 @@ kube/console:
 kube/dbconsole:
 	kubectl exec -it --container foodie ${POD} -- bin/rails dbconsole --include-password
 
+kube/shell:
+	kubectl exec -it --container foodie ${POD} -- bash
+
 kube/deploy:
 	kubectl patch deployment foodie \
 		-p '{"spec": {"template": {"metadata": {"annotations": {"app.git.ref": "${SHA}"}}}}}'
