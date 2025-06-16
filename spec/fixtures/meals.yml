@@ -2,18 +2,22 @@ joe_monday_breakfast:
   user: joe
   date: 2025-05-11
   name: Joe's Monday Breakfast
+  position: 1
 
 joe_monday_lunch:
   user: joe
   date: 2025-05-11
   name: Joe's Monday Lunch
+  position: 2
 
 joe_tuesday_breakfast:
   user: joe
   date: 2025-05-12
   name: Joe's Tuesday Breakfast
+  position: 1
 
 sue_monday_breakfast:
   user: sue
   date: 2025-05-11
   name: Sue's Monday Breakfast
+  position: 1
