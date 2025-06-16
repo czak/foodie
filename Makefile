@@ -10,13 +10,13 @@ docker/push:
 	docker push ${IMAGE_NAME}:${SHA}
 
 kube/logs:
-	kubectl logs -f ${POD}
+	kubectl logs -f --container foodie ${POD}
 
 kube/console:
-	kubectl exec -it ${POD} -- bin/rails console
+	kubectl exec -it --container foodie ${POD} -- bin/rails console
 
 kube/dbconsole:
-	kubectl exec -it ${POD} -- bin/rails dbconsole
+	kubectl exec -it --container foodie ${POD} -- bin/rails dbconsole --include-password
 
 kube/deploy:
 	kubectl patch deployment foodie \
