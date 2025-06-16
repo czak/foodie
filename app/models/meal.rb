@@ -1,5 +1,6 @@
 class Meal < ApplicationRecord
   belongs_to :user
+  has_many :ingredients, class_name: "MealIngredient"
 
   validates :name, presence: true
 

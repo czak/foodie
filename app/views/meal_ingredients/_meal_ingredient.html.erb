@@ -1,0 +1,19 @@
+<div class="flex bg-white rounded-sm border border-gray-300 hover:bg-gray-50 items-stretch">
+  <a class="flex-1 px-3 py-2 flex flex-col" href="#">
+    <div class="flex justify-between items-baseline">
+      <h3 class="text-lg font-semibold text-gray-700 mr-2">
+        <%= meal_ingredient.name %>
+        <small class="font-normal text-gray-500"><%= meal_ingredient.quantity %> <%= meal_ingredient.quantity_type %></small>
+      </h3>
+      <h4 class="flex-none text-xl font-bold text-gray-800"><%= meal_ingredient.calories %> <small class="font-normal text-gray-500">kcal</small></h4>
+    </div>
+    <div class="flex justify-between items-baseline-last text-gray-600">
+      <div class="flex gap-x-2">
+        <span>P: <%= meal_ingredient.protein %>g</span>
+        <span>F: <%= meal_ingredient.fat %>g</span>
+        <span>C: <%= meal_ingredient.carbs %>g</span>
+      </div>
+    </div>
+  </a>
+  <button class="h-full px-2 material-icon text-xl text-orange-600 cursor-pointer rounded-r-sm hover:bg-red-600 hover:text-white" type="submit">delete</button>
+</div>

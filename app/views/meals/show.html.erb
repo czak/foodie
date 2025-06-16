@@ -11,7 +11,7 @@
     </header>
 
     <div class="p-4 flex flex-col gap-4">
-      <p>Ingredients go here.</p>
+      <%= render @meal.ingredients.includes(:item) %>
     </div>
   </section>
 </div>
