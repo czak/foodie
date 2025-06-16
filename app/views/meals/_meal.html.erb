@@ -1,8 +1,8 @@
-<a href="#" class="py-2 pl-2 grid grid-cols-[1fr_auto_auto] gap-x-2 bg-white hover:bg-gray-50 rounded-sm border border-gray-300">
+<%= link_to meal_url(meal, date: @date), class: "py-2 pl-2 grid grid-cols-[1fr_auto_auto] gap-x-2 bg-white hover:bg-gray-50 rounded-sm border border-gray-300" do %>
   <h1 class="text-base font-semibold"><%= meal.name %></h1>
   <div><strong><%= meal.total_calories %></strong> <small>kcal</small></div>
   <div class="row-span-2 place-self-center material-icon text-xl">chevron_right</div>
   <div class="text-xs col-span-2 text-gray-600">
     <%= meal.total_protein %> / <%= meal.total_fat %> / <%= meal.total_carbs %>
   </div>
-</a>
+<% end %>

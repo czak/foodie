@@ -3,11 +3,15 @@
 
   <section class="flex min-h-0 flex-col flex-auto overflow-y-auto">
     <header class="bg-gray-200 p-4">
-      <h1 class="text-xl font-bold">Meals for <%= l(@date, format: :short) %></h1>
+      <h1 class="text-xl font-bold">
+        <%= @meal.name %>
+        for
+        <%= l(@date, format: :short) %>
+      </h1>
     </header>
 
     <div class="p-4 flex flex-col gap-4">
-      <p>Select a meal from the list or create a new one.</p>
+      <p>Ingredients go here.</p>
     </div>
   </section>
 </div>

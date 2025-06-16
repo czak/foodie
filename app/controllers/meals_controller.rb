@@ -1,8 +1,9 @@
 class MealsController < ApplicationController
   before_action :set_date
+  before_action :set_meals, only: [:index, :show]
 
-  def index
-    @meals = Current.user.meals.where(date: @date)
+  def show
+    @meal = @meals.find(params[:id])
   end
 
   def new
@@ -26,6 +27,10 @@ class MealsController < ApplicationController
     @date = Date.iso8601(params.expect(:date))
   rescue
     redirect_to root_path
+  end
+
+  def set_meals
+    @meals = Current.user.meals.where(date: @date)
   end
 
   def meal_params
