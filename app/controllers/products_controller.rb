@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @products = Current.user.products.order(:name)
 
     if params[:q].present?
-      @products = @products.where('name ILIKE ?', "#{params[:q]}%")
+      @products = @products.where("name ILIKE ?", "#{params[:q]}%")
     end
   end
 
@@ -46,6 +46,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.expect(product: [ :name, :calories, :protein, :fat, :carbs, :portion_type, :portion_size ])
+    params.expect(product: [:name, :calories, :protein, :fat, :carbs, :portion_type, :portion_size])
   end
 end

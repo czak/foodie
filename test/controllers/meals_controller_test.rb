@@ -36,9 +36,9 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
 
   test "creates a new meal" do
     sign_in_as users(:joe)
-    assert_difference 'Meal.count', 1 do
+    assert_difference "Meal.count", 1 do
       post meals_url(date: "2025-05-15", params: { meal: { name: "Dinner" } })
     end
-    assert_redirected_to meals_url('2025-05-15')
+    assert_redirected_to meals_url("2025-05-15")
   end
 end

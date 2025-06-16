@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   validates :portion_size, numericality: { only_integer: true, allow_nil: true }
   validates :portion_size, presence: true, if: :portion_type?
 
-  normalizes :portion_type, with: -> portion_type { portion_type.presence }
+  normalizes :portion_type, with: ->(portion_type) { portion_type.presence }
 
   before_save -> { self.portion_size = nil }, if: -> { portion_type.blank? }
 end
