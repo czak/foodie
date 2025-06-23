@@ -1,3 +1,79 @@
 :root {
-  background-color: #242424;
+  --color-text: #ffffff;
+  --color-text-secondary: #8f8f8f;
+  --color-bg: #1f1f1f;
+  --color-bg-secondary: #181818;
+  --color-accent: #0078d4;
+  --color-border: #2b2b2b;
+}
+
+body {
+  font-size: 14px;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.pane {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+}
+
+.tab-bar {
+  background-color: var(--color-bg-secondary);
+  display: flex;
+  height: 35px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background-color: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-accent);
+  user-select: none;
+}
+
+.pane textarea {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: var(--color-bg);
+  color: var(--color-text-secondary);
+  font-family:
+    "CaskaydiaMono Nerd Font", "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 15px;
+}
+
+.separator {
+  width: 4px;
+  background-color: var(--color-border);
+  cursor: ew-resize;
+  flex-shrink: 0;
+}
+
+.separator:hover {
+  background-color: var(--color-accent);
+}
+
+.nutrition-stats {
+  padding: 16px;
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
 }
