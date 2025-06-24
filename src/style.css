@@ -81,10 +81,15 @@ body {
   padding: 16px;
   background-color: var(--color-bg-secondary);
   border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.progress {
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 12px 16px;
-  align-items: center;
 }
 
 .progress-name {
@@ -141,4 +146,59 @@ body {
   font-weight: 500;
   color: var(--color-text);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.breakdown-labels {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+}
+
+.breakdown-label {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dot.protein {
+  background-color: var(--color-protein);
+}
+
+.dot.fat {
+  background-color: var(--color-fat);
+}
+
+.dot.carbs {
+  background-color: var(--color-carbs);
+}
+
+.macro-breakdown {
+  height: 20px;
+  border-radius: var(--radius);
+  display: flex;
+  overflow: hidden;
+}
+
+.macro-segment {
+  height: 100%;
+}
+
+.macro-segment.protein {
+  background-color: var(--color-protein);
+}
+
+.macro-segment.fat {
+  background-color: var(--color-fat);
+}
+
+.macro-segment.carbs {
+  background-color: var(--color-carbs);
 }
