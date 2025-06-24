@@ -25,7 +25,7 @@ function update() {
   console.log("=== Update Complete ===");
 }
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
+getElement<HTMLDivElement>("#app").innerHTML = `
   <div class="pane">
     <div class="tab-bar">
       <span class="tab">Config.foml</span>
