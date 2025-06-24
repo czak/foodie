@@ -3,7 +3,7 @@ import "./style.css";
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="pane">
     <div class="tab-bar">
-      <span class="tab">Config</span>
+      <span class="tab">Config.foml</span>
     </div>
 
     <textarea placeholder="Your configuration" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
@@ -13,7 +13,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 
   <div class="pane">
     <div class="tab-bar">
-      <span class="tab">Today</span>
+      <span class="tab">Today.foml</span>
     </div>
 
     <textarea placeholder="Your day" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
