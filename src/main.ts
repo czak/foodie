@@ -1,10 +1,10 @@
 import "./style.css";
 
-import { parseConfig, parseToday } from "./parser";
-import { calculateTotals, calculateProgress } from "./calculator";
-import { getElement, updateStatsPane } from "./dom";
+import { parseConfig, parseToday } from "~/parser";
+import { calculateTotals, calculateProgress } from "~/calculator";
+import { getElement, updateStatsPane } from "~/dom";
 
-import { progressGauge } from "./components/progressGauge";
+import { progressGauge } from "~/components/progressGauge";
 
 function update() {
   console.log("=== Update Triggered ===");
