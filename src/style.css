@@ -132,10 +132,9 @@ body {
 }
 
 .kcal-percentage {
-  position: absolute;
-  bottom: 5%;
   font-size: 16px;
   font-weight: 600;
+  fill: var(--color-text);
 }
 
 .progress-subtitle {
