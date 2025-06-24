@@ -6,6 +6,7 @@
   --color-bg-secondary: #3c3836;
   --color-accent: #fabd2f;
   --color-border: #665c54;
+  --color-kcal: #689d6a;
   --color-protein: #83a598;
   --color-fat: #d3869b;
   --color-carbs: #d79921;
@@ -128,7 +129,7 @@ body {
 }
 
 .kcal-circle-fill {
-  stroke: var(--color-accent);
+  stroke: var(--color-kcal);
 }
 
 .kcal-percentage {
