@@ -80,8 +80,7 @@ body {
   resize: none;
   background-color: var(--color-bg);
   color: var(--color-text-secondary);
-  font-family:
-    "CaskaydiaMono Nerd Font", "Consolas", "Monaco", "Courier New", monospace;
+  font-family: "CaskaydiaMono Nerd Font", "Consolas", "Monaco", "Courier New", monospace;
   font-size: 15px;
 }
 

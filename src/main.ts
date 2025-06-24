@@ -1,5 +1,27 @@
 import "./style.css";
+
+import { parseConfig, parseToday } from "./parser";
+import { calculateTotals, calculateProgress } from "./calculator";
+import { getElement, updateStatsPane } from "./dom";
+
 import { progressGauge } from "./components/progressGauge";
+
+function update() {
+  console.log("=== Update Triggered ===");
+
+  const configText = getElement<HTMLTextAreaElement>("#config-textarea").value;
+  const todayText = getElement<HTMLTextAreaElement>("#today-textarea").value;
+
+  const configData = parseConfig(configText);
+  const todayData = parseToday(todayText);
+
+  const totals = calculateTotals(configData, todayData);
+  const progress = calculateProgress(totals, configData.targets);
+
+  updateStatsPane(totals, progress, configData.targets);
+
+  console.log("=== Update Complete ===");
+}
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="pane">
@@ -7,7 +29,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
       <span class="tab">Config.foml</span>
     </div>
 
-    <textarea placeholder="Your configuration" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+    <textarea id="config-textarea" placeholder="Your configuration" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
   </div>
 
   <div class="separator"></div>
@@ -26,7 +48,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
       </button>
     </div>
 
-    <textarea placeholder="Your day" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+    <textarea id="today-textarea" placeholder="Your day" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
 
     <div class="nutrition-stats">
       <div class="kcal-display">
@@ -70,3 +92,11 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     </div>
   </div>
 `;
+
+const configTextarea = getElement("#config-textarea");
+const todayTextarea = getElement("#today-textarea");
+
+configTextarea.addEventListener("input", update);
+todayTextarea.addEventListener("input", update);
+
+update();
