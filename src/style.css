@@ -5,6 +5,11 @@
   --color-bg-secondary: #3c3836;
   --color-accent: #fabd2f;
   --color-border: #665c54;
+  --color-protein: #8be9fd;
+  --color-fat: #bd93f9;
+  --color-carbs: #ffb86c;
+
+  --radius: 4px;
 }
 
 body {
@@ -76,4 +81,52 @@ body {
   padding: 16px;
   background-color: var(--color-bg-secondary);
   border-top: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 12px 16px;
+  align-items: center;
+}
+
+.progress-name {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  justify-self: start;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: var(--color-bg);
+  border-radius: var(--radius);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: var(--radius);
+}
+
+.progress-fill.protein {
+  background-color: var(--color-protein);
+}
+
+.progress-fill.fat {
+  background-color: var(--color-fat);
+}
+
+.progress-fill.carbs {
+  background-color: var(--color-carbs);
+}
+
+.progress-label {
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
