@@ -1,3 +1,4 @@
+/* ===== CSS Variables ===== */
 :root {
   --color-text: #ebdbb2;
   --color-text-secondary: #a89984;
@@ -12,6 +13,7 @@
   --radius: 4px;
 }
 
+/* ===== Base Styles ===== */
 body {
   font-size: 14px;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -20,6 +22,7 @@ body {
   background-color: var(--color-bg);
 }
 
+/* ===== Layout ===== */
 #app {
   width: 100vw;
   height: 100vh;
@@ -77,6 +80,7 @@ body {
   background-color: var(--color-accent);
 }
 
+/* ===== Nutrition Stats Panel ===== */
 .nutrition-stats {
   padding: 16px;
   background-color: var(--color-bg-secondary);
@@ -86,6 +90,61 @@ body {
   gap: 16px;
 }
 
+/* Kcal Counter and Circle Progress */
+.kcal-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+
+.kcal-counter {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.kcal-unit {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-left: 4px;
+}
+
+.kcal-progress {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kcal-circle {
+  width: 120px;
+  height: 60px;
+}
+
+.kcal-circle-bg {
+  stroke: var(--color-bg);
+}
+
+.kcal-circle-fill {
+  stroke: var(--color-accent);
+}
+
+.kcal-percentage {
+  position: absolute;
+  bottom: 5%;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.progress-subtitle {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+/* Macro Progress Bars */
 .progress {
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -148,6 +207,7 @@ body {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 
+/* Macro Breakdown Labels and Segments */
 .breakdown-labels {
   display: flex;
   justify-content: space-around;

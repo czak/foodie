@@ -19,6 +19,17 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <textarea placeholder="Your day" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
 
     <div class="nutrition-stats">
+      <div class="kcal-display">
+        <div class="kcal-counter">1654<span class="kcal-unit">kcal</span></div>
+        <div class="kcal-progress">
+          <svg class="kcal-circle" viewBox="0 0 100 50">
+            <path class="kcal-circle-bg" d="M 10 50 A 40 40 0 0 1 90 50" stroke-width="12" fill="none"/>
+            <path class="kcal-circle-fill" d="M 10 50 A 40 40 0 0 1 90 50" stroke-width="12" fill="none" stroke-dasharray="126" stroke-dashoffset="25"/>
+          </svg>
+          <div class="kcal-percentage">80%</div>
+        </div>
+      </div>
+
       <div class="progress">
         <span class="progress-name">Protein</span>
         <div class="progress-bar">
