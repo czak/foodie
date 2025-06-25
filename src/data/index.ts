@@ -32,13 +32,11 @@ avocado * 50
 Protein smoothie * 1
 `;
 
-// localStorage utility functions
-function getStoredData(key: string, fallback: string): string {
+function loadData(key: string): string | null {
   try {
-    const stored = localStorage.getItem(key);
-    return stored !== null ? stored : fallback;
+    return localStorage.getItem(key);
   } catch {
-    return fallback;
+    return null;
   }
 }
 
@@ -46,10 +44,10 @@ export function saveData(key: string, data: string): void {
   try {
     localStorage.setItem(key, data);
   } catch {
-    // Silently fail if localStorage is not available
+    // We ain't got no localStorage
   }
 }
 
 // Export initial data that checks localStorage first
-export const initialConfig = getStoredData("foodie-config", defaultConfig);
-export const initialToday = getStoredData("foodie-today", defaultToday);
+export const initialConfig = loadData("foodie-config") || defaultConfig;
+export const initialToday = loadData("foodie-today") || defaultToday;
