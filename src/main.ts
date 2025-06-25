@@ -4,24 +4,9 @@ import { parseConfig, parseToday } from "~/parser";
 import { calculateTotals } from "~/calculator";
 import { getElement, updateStatsPane } from "~/dom";
 import { initialConfig, initialToday, saveData } from "~/data";
+import { debounce } from "~/utils";
 
 import { sun, moon } from "~/icons";
-
-function update() {
-  console.log("=== Update Triggered ===");
-
-  const configText = getElement<HTMLTextAreaElement>("#config-textarea").value;
-  const todayText = getElement<HTMLTextAreaElement>("#today-textarea").value;
-
-  const configData = parseConfig(configText);
-  const todayData = parseToday(todayText);
-
-  const totals = calculateTotals(configData, todayData);
-
-  updateStatsPane(totals, configData.targets);
-
-  console.log("=== Update Complete ===");
-}
 
 getElement<HTMLDivElement>("#app").innerHTML = `
   <div class="pane">
@@ -97,6 +82,18 @@ const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
 
 configTextarea.value = initialConfig;
 todayTextarea.value = initialToday;
+
+const update = debounce(() => {
+  const configText = configTextarea.value;
+  const todayText = configTextarea.value;
+
+  const configData = parseConfig(configText);
+  const todayData = parseToday(todayText);
+
+  const totals = calculateTotals(configData, todayData);
+
+  updateStatsPane(totals, configData.targets);
+}, 300);
 
 configTextarea.addEventListener("input", () => {
   saveData("foodie-config", configTextarea.value);
