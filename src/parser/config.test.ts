@@ -57,9 +57,9 @@ chicken breast = 165, 31, 3.6, 0`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
-        apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
-        avocado: { calories: 160, protein: 2, fat: 14.7, carbs: 8 },
-        "chicken breast": { calories: 165, protein: 31, fat: 3.6, carbs: 0 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        avocado: { kcal: 160, protein: 2, fat: 14.7, carbs: 8 },
+        "chicken breast": { kcal: 165, protein: 31, fat: 3.6, carbs: 0 },
       },
       recipes: {},
     });
@@ -80,8 +80,8 @@ apple * 120`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
-        "greek yogurt": { calories: 97, protein: 10, fat: 5, carbs: 3.6 },
-        apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        "greek yogurt": { kcal: 97, protein: 10, fat: 5, carbs: 3.6 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
       },
       recipes: {
         "Yogurt with apple": [
@@ -108,7 +108,7 @@ apple = 52, 0.3, 0.2, 0.2`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 1500, protein: 0, fat: 0, carbs: 0 },
       products: {
-        apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
       },
       recipes: {
         "Quick snack": [{ item: "apple", quantity: 100 }],
@@ -130,8 +130,8 @@ avocado = 160, 2, 14.7, 8`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 1850, protein: 150, fat: 0, carbs: 0 },
       products: {
-        apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
-        avocado: { calories: 160, protein: 2, fat: 14.7, carbs: 8 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        avocado: { kcal: 160, protein: 2, fat: 14.7, carbs: 8 },
       },
       recipes: {},
     });
@@ -156,7 +156,7 @@ apple = 100, 1, 1, 1`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
-        apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
       },
       recipes: {},
     });
@@ -171,7 +171,7 @@ test product * 75.5`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
-        "test product": { calories: 52.5, protein: 0.3, fat: 0.2, carbs: 0.15 },
+        "test product": { kcal: 52.5, protein: 0.3, fat: 0.2, carbs: 0.15 },
       },
       recipes: {
         "Test recipe": [{ item: "test product", quantity: 75.5 }],
@@ -214,7 +214,7 @@ orange * 75`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
-        apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
       },
       recipes: {
         "Test recipe": [
@@ -237,8 +237,8 @@ orange * 75`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
-        "  apple  ": { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
-        " banana bread ": { calories: 89, protein: 2.6, fat: 0.4, carbs: 17 },
+        "  apple  ": { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        " banana bread ": { kcal: 89, protein: 2.6, fat: 0.4, carbs: 17 },
       },
       recipes: {
         " Fruit Mix ": [

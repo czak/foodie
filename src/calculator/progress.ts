@@ -1,8 +1,10 @@
-export function calculateProgress(_totals: any, _targets: any) {
+import type { NutritionValues } from "~/types";
+
+export function calculateProgress(totals: NutritionValues, targets: NutritionValues) {
   return {
-    kcal: 89,
-    protein: 45,
-    fat: 6,
-    carbs: 10,
+    kcal: (totals.kcal / targets.kcal) * 100,
+    protein: (totals.protein / targets.protein) * 100,
+    fat: (totals.fat / targets.fat) * 100,
+    carbs: (totals.carbs / targets.carbs) * 100,
   };
 }

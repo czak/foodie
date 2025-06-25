@@ -7,9 +7,9 @@ describe("calculateTotals", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
-        "greek yogurt": { calories: 100, protein: 10, fat: 0, carbs: 6 },
-        "chicken breast": { calories: 165, protein: 31, fat: 3.6, carbs: 0 },
-        rice: { calories: 130, protein: 2.7, fat: 0.3, carbs: 28 },
+        "greek yogurt": { kcal: 100, protein: 10, fat: 0, carbs: 6 },
+        "chicken breast": { kcal: 165, protein: 31, fat: 3.6, carbs: 0 },
+        rice: { kcal: 130, protein: 2.7, fat: 0.3, carbs: 28 },
       },
       recipes: {
         "protein bowl": [
@@ -56,7 +56,7 @@ describe("calculateTotals", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
-        "greek yogurt": { calories: 100, protein: 10, fat: 0, carbs: 6 },
+        "greek yogurt": { kcal: 100, protein: 10, fat: 0, carbs: 6 },
       },
       recipes: {},
     };
@@ -82,7 +82,7 @@ describe("calculateTotals", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
-        "greek yogurt": { calories: 100, protein: 10, fat: 0, carbs: 6 },
+        "greek yogurt": { kcal: 100, protein: 10, fat: 0, carbs: 6 },
       },
       recipes: {},
     };
@@ -104,7 +104,7 @@ describe("calculateTotals", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
-        "greek yogurt": { calories: 100, protein: 10, fat: 0, carbs: 6 },
+        "greek yogurt": { kcal: 100, protein: 10, fat: 0, carbs: 6 },
       },
       recipes: {},
     };
@@ -126,7 +126,7 @@ describe("calculateTotals", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
-        "chicken breast": { calories: 165, protein: 31, fat: 3.6, carbs: 0 },
+        "chicken breast": { kcal: 165, protein: 31, fat: 3.6, carbs: 0 },
       },
       recipes: {
         "mixed bowl": [
@@ -154,8 +154,8 @@ describe("calculateTotals", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
-        "chicken breast": { calories: 165, protein: 31, fat: 3.6, carbs: 0 },
-        rice: { calories: 130, protein: 2.7, fat: 0.3, carbs: 28 },
+        "chicken breast": { kcal: 165, protein: 31, fat: 3.6, carbs: 0 },
+        rice: { kcal: 130, protein: 2.7, fat: 0.3, carbs: 28 },
       },
       recipes: {
         "protein bowl": [
@@ -183,7 +183,7 @@ describe("calculateTotals", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
-        "greek yogurt": { calories: 100, protein: 10, fat: 0, carbs: 6 },
+        "greek yogurt": { kcal: 100, protein: 10, fat: 0, carbs: 6 },
       },
       recipes: {},
     };

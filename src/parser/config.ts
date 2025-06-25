@@ -5,7 +5,7 @@ const CONFIG_PATTERNS = {
   targetValue: /^(?<key>kcal|protein|fat|carbs) = (?<value>\d+)$/d,
 
   productsHeader: /^\[products\]$/d,
-  productDefinition: /^(?<productName>.+?) = (?<calories>\d+(?:\.\d+)?), (?<protein>\d+(?:\.\d+)?), (?<fat>\d+(?:\.\d+)?), (?<carbs>\d+(?:\.\d+)?)$/d,
+  productDefinition: /^(?<productName>.+?) = (?<kcal>\d+(?:\.\d+)?), (?<protein>\d+(?:\.\d+)?), (?<fat>\d+(?:\.\d+)?), (?<carbs>\d+(?:\.\d+)?)$/d,
 
   recipeHeader: /^\[recipes\.(?<recipeName>.+)\]$/d,
   recipeItem: /^(?<itemName>.+?) \* (?<quantity>\d+(?:\.\d+)?)$/d,
@@ -60,10 +60,10 @@ function tryParseProductDefinition(line: string, config: ConfigData, state: Pars
 
   const match = CONFIG_PATTERNS.productDefinition.exec(line);
   if (match) {
-    const { productName, calories, protein, fat, carbs } = match.groups!;
+    const { productName, kcal, protein, fat, carbs } = match.groups!;
     if (!config.products[productName]) {
       config.products[productName] = {
-        calories: parseFloat(calories),
+        kcal: parseFloat(kcal),
         protein: parseFloat(protein),
         fat: parseFloat(fat),
         carbs: parseFloat(carbs),

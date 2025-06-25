@@ -1,6 +1,13 @@
+export interface NutritionValues {
+  kcal: number;
+  protein: number;
+  fat: number;
+  carbs: number;
+}
+
 export interface ConfigData {
-  targets: { kcal: number; protein: number; fat: number; carbs: number };
-  products: Record<string, { calories: number; protein: number; fat: number; carbs: number }>;
+  targets: NutritionValues;
+  products: Record<string, NutritionValues>;
   recipes: Record<string, { item: string; quantity: number }[]>;
 }
 

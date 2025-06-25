@@ -1,7 +1,7 @@
-import type { ConfigData, TodayData } from "~/types";
+import type { ConfigData, TodayData, NutritionValues } from "~/types";
 
-export function calculateTotals(configData: ConfigData, todayData: TodayData) {
-  let totals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+export function calculateTotals(configData: ConfigData, todayData: TodayData): NutritionValues {
+  let totals: NutritionValues = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
 
   for (const meal of Object.values(todayData.meals)) {
     for (const item of meal) {
@@ -16,7 +16,7 @@ export function calculateTotals(configData: ConfigData, todayData: TodayData) {
   return totals;
 }
 
-function calculateItemTotals(item: { item: string; quantity: number }, configData: ConfigData) {
+function calculateItemTotals(item: { item: string; quantity: number }, configData: ConfigData): NutritionValues {
   // Check if it's a recipe
   if (configData.recipes[item.item]) {
     let recipeTotals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
@@ -40,7 +40,7 @@ function calculateItemTotals(item: { item: string; quantity: number }, configDat
   if (product) {
     const multiplier = item.quantity / 100; // assuming product values are per 100g
     return {
-      kcal: product.calories * multiplier,
+      kcal: product.kcal * multiplier,
       protein: product.protein * multiplier,
       fat: product.fat * multiplier,
       carbs: product.carbs * multiplier,
