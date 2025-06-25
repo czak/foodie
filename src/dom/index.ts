@@ -9,6 +9,13 @@ export function getElement<T extends Element>(selector: string): T {
   return element;
 }
 
+function updateMacroProgress(macro: string, current: number, target: number) {
+  const percent = target > 0 ? (current / target) * 100 : 0;
+
+  getElement<HTMLDivElement>(`#${macro}-fill`).style.width = `${Math.min(percent, 100)}%`;
+  getElement<HTMLDivElement>(`#${macro}-label`).textContent = `${Math.round(current)} / ${Math.round(target)}g`;
+}
+
 export function updateStatsPane(totals: NutritionValues, targets: NutritionValues) {
   getElement<HTMLSpanElement>("#kcal-total").textContent = Math.round(totals.kcal).toString();
 
@@ -20,4 +27,8 @@ export function updateStatsPane(totals: NutritionValues, targets: NutritionValue
 
   getElement<SVGPathElement>("#kcal-circle-fill").style.strokeDashoffset = offset.toString();
   getElement<SVGTextElement>("#kcal-percentage").textContent = `${Math.round(progress.kcal)}%`;
+
+  updateMacroProgress("protein", totals.protein, targets.protein);
+  updateMacroProgress("fat", totals.fat, targets.fat);
+  updateMacroProgress("carbs", totals.carbs, targets.carbs);
 }
