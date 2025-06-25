@@ -2,7 +2,7 @@ import type { TodayData } from "~/types";
 
 const TODAY_PATTERNS = {
   mealHeader: /^\[(?<mealName>.+)\]$/d,
-  mealItem: /^(?<itemName>[^*]+?) \* (?<quantity>\d+(?:\.\d+)?)$/d,
+  mealIngredient: /^(?<ingredientName>[^*]+?) \* (?<quantity>\d+(?:\.\d+)?)$/d,
 };
 
 interface ParseState {
@@ -13,7 +13,7 @@ interface ParseState {
 function parseLine(line: string, data: TodayData, state: ParseState): void {
   if (!line) return;
 
-  tryParseMealHeader(line, data, state) || tryParseMealItem(line, data, state);
+  tryParseMealHeader(line, data, state) || tryParseMealIngredient(line, data, state);
 }
 
 function tryParseMealHeader(line: string, data: TodayData, state: ParseState): boolean {
@@ -29,14 +29,14 @@ function tryParseMealHeader(line: string, data: TodayData, state: ParseState): b
   return false;
 }
 
-function tryParseMealItem(line: string, data: TodayData, state: ParseState): boolean {
+function tryParseMealIngredient(line: string, data: TodayData, state: ParseState): boolean {
   if (state.current !== "MEAL" || !state.currentMealName) return false;
 
-  const match = TODAY_PATTERNS.mealItem.exec(line);
+  const match = TODAY_PATTERNS.mealIngredient.exec(line);
   if (match) {
-    const { itemName, quantity } = match.groups!;
+    const { ingredientName, quantity } = match.groups!;
     data.meals[state.currentMealName].push({
-      name: itemName,
+      name: ingredientName,
       quantity: parseFloat(quantity),
     });
     return true;
