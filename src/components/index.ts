@@ -1,1 +1,0 @@
-export { progressGauge } from "./progressGauge";
