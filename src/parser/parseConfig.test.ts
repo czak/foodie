@@ -165,4 +165,95 @@ test product * 75.5`;
       },
     });
   });
+
+  it("handles invalid numeric values in products", () => {
+    const text = `[products]
+apple = abc, 0.3, 0.2, 0.2
+banana = 89, def, 0.4, 23
+orange = 47, 0.9, 0.1, ghi`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
+      products: {},
+      recipes: {},
+    });
+  });
+
+  it("handles malformed product definitions", () => {
+    const text = `[products]
+apple = 52, 0.3, 0.2
+banana = 89
+orange = 47, 0.9, 0.1, 11, 5`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
+      products: {},
+      recipes: {},
+    });
+  });
+
+  it("does not validate product presence in recipes", () => {
+    const text = `[products]
+apple = 52, 0.3, 0.2, 0.2
+
+[recipes.Test recipe]
+apple * 100
+banana * 50
+orange * 75`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
+      products: {
+        apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+      },
+      recipes: {
+        "Test recipe": [
+          { item: "apple", quantity: 100 },
+          { item: "banana", quantity: 50 },
+          { item: "orange", quantity: 75 },
+        ],
+      },
+    });
+  });
+
+  it("does not trim whitespace in product and recipe names", () => {
+    const text = `[products]
+  apple   = 52, 0.3, 0.2, 0.2
+ banana bread  = 89, 2.6, 0.4, 17
+
+[recipes. Fruit Mix ]
+  apple   * 100
+ banana bread  * 25`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
+      products: {
+        "  apple  ": { calories: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        " banana bread ": { calories: 89, protein: 2.6, fat: 0.4, carbs: 17 },
+      },
+      recipes: {
+        " Fruit Mix ": [
+          { item: "  apple  ", quantity: 100 },
+          { item: " banana bread ", quantity: 25 },
+        ],
+      },
+    });
+  });
+
+  it("ignores lines with negative values", () => {
+    const text = `[targets]
+kcal = -1500
+protein = 120
+
+[products]
+apple = -52, 0.3, -0.2, 0.2
+banana = 89, -2.6, 0.4, 17
+
+[recipes.Test recipe]
+apple * -100
+banana * 50`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 120, fat: 0, carbs: 0 },
+      products: {},
+      recipes: {
+        "Test recipe": [{ item: "banana", quantity: 50 }],
+      },
+    });
+  });
 });
