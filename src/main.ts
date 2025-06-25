@@ -5,6 +5,7 @@ import { calculateTotals } from "~/calculator";
 import { getElement, updateStatsPane } from "~/dom";
 import { initialConfig, initialToday, saveData } from "~/data";
 import { debounce } from "~/utils";
+import { initResizer } from "~/ui";
 
 const configTextarea = getElement<HTMLTextAreaElement>("#config-textarea");
 const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
@@ -36,3 +37,4 @@ todayTextarea.addEventListener("input", () => {
 });
 
 update();
+initResizer();

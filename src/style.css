@@ -42,6 +42,10 @@ body {
   background-color: var(--color-bg);
 }
 
+body.resizing {
+  user-select: none;
+}
+
 /* ===== Layout ===== */
 #app {
   width: 100vw;
