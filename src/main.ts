@@ -3,9 +3,9 @@ import "./style.css";
 import { parseConfig, parseToday } from "~/parser";
 import { calculateTotals, calculateProgress } from "~/calculator";
 import { getElement, updateStatsPane } from "~/dom";
+import { initialConfig, initialToday, saveData } from "~/data";
 
 import { sun, moon } from "~/icons";
-import { initialConfig, initialToday } from "~/data";
 
 function update() {
   console.log("=== Update Triggered ===");
@@ -99,7 +99,13 @@ const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
 configTextarea.value = initialConfig;
 todayTextarea.value = initialToday;
 
-configTextarea.addEventListener("input", update);
-todayTextarea.addEventListener("input", update);
+configTextarea.addEventListener("input", () => {
+  saveData("foodie-config", configTextarea.value);
+  update();
+});
+todayTextarea.addEventListener("input", () => {
+  saveData("foodie-today", todayTextarea.value);
+  update();
+});
 
 update();

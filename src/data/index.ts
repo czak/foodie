@@ -1,4 +1,4 @@
-export const initialConfig = `[targets]
+const defaultConfig = `[targets]
 kcal = 1850
 protein = 150
 fat = 85
@@ -21,7 +21,7 @@ apple * 120
 protein powder * 30
 `;
 
-export const initialToday = `[breakfast]
+const defaultToday = `[breakfast]
 Yogurt with apple * 1.5
 
 [lunch]
@@ -31,3 +31,25 @@ avocado * 50
 [dinner]
 Protein smoothie * 1
 `;
+
+// localStorage utility functions
+function getStoredData(key: string, fallback: string): string {
+  try {
+    const stored = localStorage.getItem(key);
+    return stored !== null ? stored : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+export function saveData(key: string, data: string): void {
+  try {
+    localStorage.setItem(key, data);
+  } catch {
+    // Silently fail if localStorage is not available
+  }
+}
+
+// Export initial data that checks localStorage first
+export const initialConfig = getStoredData("foodie-config", defaultConfig);
+export const initialToday = getStoredData("foodie-today", defaultToday);
