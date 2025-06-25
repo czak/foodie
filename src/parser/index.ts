@@ -15,6 +15,16 @@ const CONFIG_PATTERNS = {
   targetFat: /^fat = (?<value>\d+)$/d,
   // carbs = 250
   targetCarbs: /^carbs = (?<value>\d+)$/d,
+
+  // [products]
+  productsHeader: /^\[products\]$/d,
+  // apple = 52, 0.3, 0.2, 0.2
+  productDefinition: /^(?<productName>.+?) = (?<calories>\d+(?:\.\d+)?), (?<protein>\d+(?:\.\d+)?), (?<fat>\d+(?:\.\d+)?), (?<carbs>\d+(?:\.\d+)?)$/d,
+
+  // [recipes.Yogurt with apple]
+  recipeHeader: /^\[recipes\.(?<recipeName>.+)\]$/d,
+  // greek yogurt * 150
+  recipeItem: /^(?<itemName>.+?) \* (?<quantity>\d+(?:\.\d+)?)$/d,
 };
 
 export function parseConfig(text: string): ConfigData {
@@ -25,6 +35,7 @@ export function parseConfig(text: string): ConfigData {
   };
 
   let state: "INITIAL" | "TARGETS" | "PRODUCTS" | "RECIPE" = "INITIAL";
+  let currentRecipeName = "";
 
   for (const line of text.split("\n")) {
     for (const [patternName, pattern] of Object.entries(CONFIG_PATTERNS)) {
@@ -52,6 +63,38 @@ export function parseConfig(text: string): ConfigData {
           case "targetCarbs":
             if (state === "TARGETS") {
               config.targets.carbs = parseInt(match.groups!.value);
+            }
+            break;
+          case "productsHeader":
+            state = "PRODUCTS";
+            break;
+          case "productDefinition":
+            if (state === "PRODUCTS") {
+              const { productName, calories, protein, fat, carbs } = match.groups!;
+              if (!config.products[productName]) {
+                config.products[productName] = {
+                  calories: parseFloat(calories),
+                  protein: parseFloat(protein),
+                  fat: parseFloat(fat),
+                  carbs: parseFloat(carbs),
+                };
+              }
+            }
+            break;
+          case "recipeHeader":
+            state = "RECIPE";
+            currentRecipeName = match.groups!.recipeName;
+            if (!config.recipes[currentRecipeName]) {
+              config.recipes[currentRecipeName] = [];
+            }
+            break;
+          case "recipeItem":
+            if (state === "RECIPE" && currentRecipeName) {
+              const { itemName, quantity } = match.groups!;
+              config.recipes[currentRecipeName].push({
+                item: itemName,
+                quantity: parseFloat(quantity),
+              });
             }
             break;
         }
