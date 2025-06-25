@@ -1,4 +1,3 @@
-import { calculateProgress } from "~/calculator";
 import type { NutritionValues } from "~/types";
 
 export function getElement<T extends Element>(selector: string): T {
@@ -9,24 +8,26 @@ export function getElement<T extends Element>(selector: string): T {
   return element;
 }
 
-function updateMacroProgress(macro: string, current: number, target: number) {
-  const percent = target > 0 ? (current / target) * 100 : 0;
+function updateKcalProgress(current: number, target: number) {
+  // Half circumference of radius 40: PI * 40 ~= 126
+  const circumference = 126;
+  const progress = target > 0 ? (current / target) * 100 : 0;
+  const offset = circumference - (Math.min(progress, 100) / 100) * circumference;
 
-  getElement<HTMLDivElement>(`#${macro}-fill`).style.width = `${Math.min(percent, 100)}%`;
+  getElement<HTMLSpanElement>("#kcal-total").textContent = Math.round(current).toString();
+  getElement<SVGPathElement>("#kcal-circle-fill").style.strokeDashoffset = offset.toString();
+  getElement<SVGTextElement>("#kcal-percentage").textContent = `${Math.round(progress)}%`;
+}
+
+function updateMacroProgress(macro: string, current: number, target: number) {
+  const progress = target > 0 ? (current / target) * 100 : 0;
+
+  getElement<HTMLDivElement>(`#${macro}-fill`).style.width = `${Math.min(progress, 100)}%`;
   getElement<HTMLDivElement>(`#${macro}-label`).textContent = `${Math.round(current)} / ${Math.round(target)}g`;
 }
 
 export function updateStatsPane(totals: NutritionValues, targets: NutritionValues) {
-  getElement<HTMLSpanElement>("#kcal-total").textContent = Math.round(totals.kcal).toString();
-
-  const progress = calculateProgress(totals, targets);
-
-  // Half circumference of radius 40: PI * 40 ~= 126
-  const circumference = 126;
-  const offset = circumference - (Math.min(progress.kcal, 100) / 100) * circumference;
-
-  getElement<SVGPathElement>("#kcal-circle-fill").style.strokeDashoffset = offset.toString();
-  getElement<SVGTextElement>("#kcal-percentage").textContent = `${Math.round(progress.kcal)}%`;
+  updateKcalProgress(totals.kcal, targets.kcal);
 
   updateMacroProgress("protein", totals.protein, targets.protein);
   updateMacroProgress("fat", totals.fat, targets.fat);
