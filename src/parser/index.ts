@@ -8,13 +8,10 @@ const CONFIG_PATTERNS = {
   // [targets]
   targetsHeader: /^\[targets\]$/d,
   // kcal = 1850
-  targetKcal: /^kcal = (?<value>\d+)$/d,
   // protein = 150
-  targetProtein: /^protein = (?<value>\d+)$/d,
   // fat = 85
-  targetFat: /^fat = (?<value>\d+)$/d,
   // carbs = 250
-  targetCarbs: /^carbs = (?<value>\d+)$/d,
+  targetValue: /^(?<key>kcal|protein|fat|carbs) = (?<value>\d+)$/d,
 
   // [products]
   productsHeader: /^\[products\]$/d,
@@ -45,24 +42,10 @@ export function parseConfig(text: string): ConfigData {
           case "targetsHeader":
             state = "TARGETS";
             break;
-          case "targetKcal":
+          case "targetValue":
             if (state === "TARGETS") {
-              config.targets.kcal = parseInt(match.groups!.value);
-            }
-            break;
-          case "targetProtein":
-            if (state === "TARGETS") {
-              config.targets.protein = parseInt(match.groups!.value);
-            }
-            break;
-          case "targetFat":
-            if (state === "TARGETS") {
-              config.targets.fat = parseInt(match.groups!.value);
-            }
-            break;
-          case "targetCarbs":
-            if (state === "TARGETS") {
-              config.targets.carbs = parseInt(match.groups!.value);
+              const { key, value } = match.groups!;
+              config.targets[key as keyof typeof config.targets] = parseInt(value);
             }
             break;
           case "productsHeader":

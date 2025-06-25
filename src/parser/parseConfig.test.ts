@@ -36,6 +36,19 @@ protein = 120`;
     });
   });
 
+  it("ignores target values with extra spaces", () => {
+    const text = `[targets]
+kcal = 1850
+protein  = 1900
+fat = 85
+carbs = 250`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 1850, protein: 0, fat: 85, carbs: 250 },
+      products: {},
+      recipes: {},
+    });
+  });
+
   it("parses products section", () => {
     const text = `[products]
 apple = 52, 0.3, 0.2, 0.2
