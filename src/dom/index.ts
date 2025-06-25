@@ -1,3 +1,4 @@
+import { calculateProgress } from "~/calculator";
 import type { NutritionValues } from "~/types";
 
 export function getElement<T extends Element>(selector: string): T {
@@ -11,12 +12,7 @@ export function getElement<T extends Element>(selector: string): T {
 export function updateStatsPane(totals: NutritionValues, targets: NutritionValues) {
   getElement<HTMLSpanElement>("#kcal-total").textContent = Math.round(totals.kcal).toString();
 
-  const progress = {
-    kcal: targets.kcal > 0 ? (totals.kcal / targets.kcal) * 100 : 0,
-    protein: targets.protein > 0 ? (totals.protein / targets.protein) * 100 : 0,
-    fat: targets.fat > 0 ? (totals.fat / targets.fat) * 100 : 0,
-    carbs: targets.carbs > 0 ? (totals.carbs / targets.carbs) * 100 : 0,
-  };
+  const progress = calculateProgress(totals, targets);
 
   // Half circumference of radius 40: PI * 40 ~= 126
   const circumference = 126;
