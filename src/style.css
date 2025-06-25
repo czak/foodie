@@ -8,8 +8,8 @@
   --color-border: #403a36;
   --color-kcal: #85b695;
   --color-protein: #a3a9ce;
-  --color-fat: #cf9bc2;
-  --color-carbs: #ebc06d;
+  --color-fat: #ebc06d;
+  --color-carbs: #d47766;
   --color-text-shadow: rgba(0, 0, 0, 1);
 
   --radius: 4px;
@@ -23,11 +23,11 @@
     --color-bg-secondary: #e9e1db;
     --color-accent: #a06d00;
     --color-border: #d9d3ce;
-    --color-kcal: #3a684a;
-    --color-protein: #465aa4;
-    --color-fat: #904180;
-    --color-carbs: #a06d00;
-    --color-text-shadow: rgba(255, 255, 255, 0.8);
+    --color-kcal: #6e9b72;
+    --color-protein: #7892bd;
+    --color-fat: #e49b5d;
+    --color-carbs: #bc5c00;
+    --color-text-shadow: rgba(255, 255, 255, 1);
   }
 }
 
