@@ -1,44 +1,44 @@
-import type { ConfigData, TodayData, NutritionValues } from "~/types";
+import type { ConfigData, TodayData, NutritionValues, Ingredient } from "~/types";
 
 export function calculateTotals(configData: ConfigData, todayData: TodayData): NutritionValues {
   let totals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
 
   for (const meal of Object.values(todayData.meals)) {
-    for (const item of meal) {
-      const itemTotals = calculateItemTotals(item, configData);
-      totals.kcal += itemTotals.kcal;
-      totals.protein += itemTotals.protein;
-      totals.fat += itemTotals.fat;
-      totals.carbs += itemTotals.carbs;
+    for (const ingredient of meal) {
+      const ingredientTotals = calculateIngredientTotals(ingredient, configData);
+      totals.kcal += ingredientTotals.kcal;
+      totals.protein += ingredientTotals.protein;
+      totals.fat += ingredientTotals.fat;
+      totals.carbs += ingredientTotals.carbs;
     }
   }
 
   return totals;
 }
 
-function calculateItemTotals(item: { item: string; quantity: number }, configData: ConfigData): NutritionValues {
+function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigData): NutritionValues {
   // Check if it's a recipe
-  if (configData.recipes[item.item]) {
+  if (configData.recipes[ingredient.item]) {
     let recipeTotals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
-    for (const recipeItem of configData.recipes[item.item]) {
-      const recipeItemTotals = calculateItemTotals(recipeItem, configData);
-      recipeTotals.kcal += recipeItemTotals.kcal;
-      recipeTotals.protein += recipeItemTotals.protein;
-      recipeTotals.fat += recipeItemTotals.fat;
-      recipeTotals.carbs += recipeItemTotals.carbs;
+    for (const recipeIngredient of configData.recipes[ingredient.item]) {
+      const recipeIngredientTotals = calculateIngredientTotals(recipeIngredient, configData);
+      recipeTotals.kcal += recipeIngredientTotals.kcal;
+      recipeTotals.protein += recipeIngredientTotals.protein;
+      recipeTotals.fat += recipeIngredientTotals.fat;
+      recipeTotals.carbs += recipeIngredientTotals.carbs;
     }
     return {
-      kcal: recipeTotals.kcal * item.quantity,
-      protein: recipeTotals.protein * item.quantity,
-      fat: recipeTotals.fat * item.quantity,
-      carbs: recipeTotals.carbs * item.quantity,
+      kcal: recipeTotals.kcal * ingredient.quantity,
+      protein: recipeTotals.protein * ingredient.quantity,
+      fat: recipeTotals.fat * ingredient.quantity,
+      carbs: recipeTotals.carbs * ingredient.quantity,
     };
   }
 
   // Check if it's a product
-  const product = configData.products[item.item];
+  const product = configData.products[ingredient.item];
   if (product) {
-    const multiplier = item.quantity / 100; // assuming product values are per 100g
+    const multiplier = ingredient.quantity / 100; // assuming product values are per 100g
     return {
       kcal: product.kcal * multiplier,
       protein: product.protein * multiplier,
@@ -47,6 +47,6 @@ function calculateItemTotals(item: { item: string; quantity: number }, configDat
     };
   }
 
-  // Unknown item
+  // Unknown ingredient
   return { kcal: 0, protein: 0, fat: 0, carbs: 0 };
 }

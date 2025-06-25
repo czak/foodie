@@ -5,12 +5,17 @@ export interface NutritionValues {
   carbs: number;
 }
 
+export interface Ingredient {
+  item: string;
+  quantity: number;
+}
+
 export interface ConfigData {
   targets: NutritionValues;
   products: Record<string, NutritionValues>;
-  recipes: Record<string, { item: string; quantity: number }[]>;
+  recipes: Record<string, Ingredient[]>;
 }
 
 export interface TodayData {
-  meals: Record<string, { item: string; quantity: number }[]>;
+  meals: Record<string, Ingredient[]>;
 }
