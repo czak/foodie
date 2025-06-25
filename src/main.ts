@@ -6,6 +6,7 @@ import { getElement, updateStatsPane } from "~/dom";
 
 import { progressGauge } from "~/components";
 import { sun, moon } from "~/icons";
+import { initialConfig, initialToday } from "~/data";
 
 function update() {
   console.log("=== Update Triggered ===");
@@ -89,8 +90,11 @@ getElement<HTMLDivElement>("#app").innerHTML = `
   </div>
 `;
 
-const configTextarea = getElement("#config-textarea");
-const todayTextarea = getElement("#today-textarea");
+const configTextarea = getElement<HTMLTextAreaElement>("#config-textarea");
+const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
+
+configTextarea.value = initialConfig;
+todayTextarea.value = initialToday;
 
 configTextarea.addEventListener("input", update);
 todayTextarea.addEventListener("input", update);
