@@ -6,8 +6,6 @@ import { getElement, updateStatsPane } from "~/dom";
 import { initialConfig, initialToday, saveData } from "~/data";
 import { debounce } from "~/utils";
 
-import { sun, moon } from "~/icons";
-
 getElement<HTMLDivElement>("#app").innerHTML = `
   <div class="pane">
     <div class="tab-bar">
@@ -23,8 +21,13 @@ getElement<HTMLDivElement>("#app").innerHTML = `
     <div class="tab-bar">
       <span class="tab">Today.foml</span>
       <button class="theme-toggle" title="Toggle theme">
-        ${sun}
-        ${moon}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1v2M8 13v2M15 8h-2M3 8H1M12.95 3.05L11.54 4.46M4.46 11.54L3.05 12.95M12.95 12.95L11.54 11.54M4.46 4.46L3.05 3.05" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: none;">
+          <path d="M6 0.5C3.5 1.5 2 4 2 7c0 3.5 2.5 6.5 6 6.5 3 0 5.5-1.5 6.5-4C13 10.5 11.5 11 9.5 11 6.5 11 4 8.5 4 5.5 4 3.5 4.5 2 6 0.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
       </button>
     </div>
 
