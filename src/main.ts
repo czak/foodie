@@ -48,7 +48,7 @@ getElement<HTMLDivElement>("#app").innerHTML = `
 
     <div class="nutrition-stats">
       <div class="kcal-display">
-        <div class="kcal-counter">1654<span class="kcal-unit">kcal</span></div>
+        <div class="kcal-counter"><span id="kcal-total">1654</span><span class="kcal-unit">kcal</span></div>
         <div class="kcal-progress">
           ${progressGauge(80)}
         </div>
