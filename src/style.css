@@ -10,7 +10,8 @@
   --color-protein: #a3a9ce;
   --color-fat: #ebc06d;
   --color-carbs: #d47766;
-  --color-text-shadow: rgba(0, 0, 0, 1);
+  --color-label: #ffffff;
+  --color-label-shadow: #000000;
 
   --radius: 4px;
 }
@@ -27,7 +28,8 @@
     --color-protein: #7892bd;
     --color-fat: #e49b5d;
     --color-carbs: #bc5c00;
-    --color-text-shadow: rgba(255, 255, 255, 1);
+    --color-label: #ffffff;
+    --color-label-shadow: #000000;
   }
 }
 
@@ -199,18 +201,6 @@ body {
   justify-content: center;
 }
 
-.progress-bar.protein {
-  background-color: var(--color-protein-bg);
-}
-
-.progress-bar.fat {
-  background-color: var(--color-fat-bg);
-}
-
-.progress-bar.carbs {
-  background-color: var(--color-carbs-bg);
-}
-
 .progress-fill {
   position: absolute;
   left: 0;
@@ -235,8 +225,10 @@ body {
   z-index: 1;
   font-size: 12px;
   font-weight: 500;
-  color: var(--color-text);
-  text-shadow: 1px 1px 1px var(--color-text-shadow);
+  color: var(--color-label);
+  text-shadow:
+    0px 0px 2px var(--color-label-shadow),
+    1px 1px 1px var(--color-label-shadow);
 }
 
 /* Macro Breakdown Labels and Segments */
