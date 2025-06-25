@@ -1,3 +1,5 @@
+import type { ConfigData } from "~/types";
+
 const CONFIG_PATTERNS = {
   targetsHeader: /^\[targets\]$/d,
   targetValue: /^(?<key>kcal|protein|fat|carbs) = (?<value>\d+)$/d,
@@ -8,12 +10,6 @@ const CONFIG_PATTERNS = {
   recipeHeader: /^\[recipes\.(?<recipeName>.+)\]$/d,
   recipeItem: /^(?<itemName>.+?) \* (?<quantity>\d+(?:\.\d+)?)$/d,
 };
-
-interface ConfigData {
-  targets: { kcal: number; protein: number; fat: number; carbs: number };
-  products: Record<string, { calories: number; protein: number; fat: number; carbs: number }>;
-  recipes: Record<string, { item: string; quantity: number }[]>;
-}
 
 interface ParseState {
   current: "INITIAL" | "TARGETS" | "PRODUCTS" | "RECIPE";

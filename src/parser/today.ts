@@ -1,11 +1,9 @@
+import type { TodayData } from "~/types";
+
 const TODAY_PATTERNS = {
   mealHeader: /^\[(?<mealName>.+)\]$/d,
   mealItem: /^(?<itemName>[^*]+?) \* (?<quantity>\d+(?:\.\d+)?)$/d,
 };
-
-interface TodayData {
-  meals: Record<string, { item: string; quantity: number }[]>;
-}
 
 interface ParseState {
   current: "INITIAL" | "MEAL";

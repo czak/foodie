@@ -1,4 +1,6 @@
-export function calculateTotals(_configData: any, _todayData: any) {
+import type { ConfigData, TodayData } from "~/types";
+
+export function calculateTotals(_configData: ConfigData, _todayData: TodayData) {
   return {
     kcal: 1654,
     protein: 67.5,
