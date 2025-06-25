@@ -15,8 +15,8 @@ function updateKcalProgress(current: number, target: number) {
   const offset = circumference - (Math.min(progress, 100) / 100) * circumference;
 
   getElement<HTMLSpanElement>("#kcal-total").textContent = Math.round(current).toString();
-  getElement<SVGPathElement>("#kcal-circle-fill").style.strokeDashoffset = offset.toString();
-  getElement<SVGTextElement>("#kcal-percentage").textContent = `${Math.round(progress)}%`;
+  getElement<SVGPathElement>("#kcal-fill").style.strokeDashoffset = offset.toString();
+  getElement<SVGTextElement>("#kcal-label").textContent = `${Math.round(progress)}%`;
 }
 
 function updateMacroProgress(macro: string, current: number, target: number) {
