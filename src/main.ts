@@ -4,9 +4,8 @@ import { parseConfig, parseToday } from "~/parser";
 import { calculateTotals, calculateProgress } from "~/calculator";
 import { getElement, updateStatsPane } from "~/dom";
 
-import { progressGauge } from "~/components/progressGauge";
-import sunIcon from "~/icons/sun.svg?raw";
-import moonIcon from "~/icons/moon.svg?raw";
+import { progressGauge } from "~/components";
+import { sun, moon } from "~/icons";
 
 function update() {
   console.log("=== Update Triggered ===");
@@ -40,8 +39,8 @@ getElement<HTMLDivElement>("#app").innerHTML = `
     <div class="tab-bar">
       <span class="tab">Today.foml</span>
       <button class="theme-toggle" title="Toggle theme">
-        ${sunIcon}
-        ${moonIcon}
+        ${sun}
+        ${moon}
       </button>
     </div>
 

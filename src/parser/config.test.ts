@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import { parseConfig } from "./";
+import { parseConfig } from "./config";
 
 describe("parseConfig", () => {
   it("returns default config given empty input", () => {
