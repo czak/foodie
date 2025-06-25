@@ -1,7 +1,7 @@
 import "./style.css";
 
 import { parseConfig, parseToday } from "~/parser";
-import { calculateTotals, calculateProgress } from "~/calculator";
+import { calculateTotals } from "~/calculator";
 import { getElement, updateStatsPane } from "~/dom";
 import { initialConfig, initialToday, saveData } from "~/data";
 
@@ -17,9 +17,8 @@ function update() {
   const todayData = parseToday(todayText);
 
   const totals = calculateTotals(configData, todayData);
-  const progress = calculateProgress(totals, configData.targets);
 
-  updateStatsPane(totals, progress, configData.targets);
+  updateStatsPane(totals, configData.targets);
 
   console.log("=== Update Complete ===");
 }
