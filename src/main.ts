@@ -12,7 +12,7 @@ const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
 configTextarea.value = initialConfig;
 todayTextarea.value = initialToday;
 
-const update = debounce(() => {
+const update = () => {
   const configText = configTextarea.value;
   const todayText = configTextarea.value;
 
@@ -22,15 +22,17 @@ const update = debounce(() => {
   const totals = calculateTotals(configData, todayData);
 
   updateStatsPane(totals, configData.targets);
-}, 300);
+};
+
+const debouncedUpdate = debounce(update, 300);
 
 configTextarea.addEventListener("input", () => {
   saveData("foodie-config", configTextarea.value);
-  update();
+  debouncedUpdate();
 });
 todayTextarea.addEventListener("input", () => {
   saveData("foodie-today", todayTextarea.value);
-  update();
+  debouncedUpdate();
 });
 
 update();
