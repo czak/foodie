@@ -14,7 +14,7 @@ todayTextarea.value = initialToday;
 
 const update = () => {
   const configText = configTextarea.value;
-  const todayText = configTextarea.value;
+  const todayText = todayTextarea.value;
 
   const configData = parseConfig(configText);
   const todayData = parseToday(todayText);
