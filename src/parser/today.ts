@@ -36,7 +36,7 @@ function tryParseMealItem(line: string, data: TodayData, state: ParseState): boo
   if (match) {
     const { itemName, quantity } = match.groups!;
     data.meals[state.currentMealName].push({
-      item: itemName,
+      name: itemName,
       quantity: parseFloat(quantity),
     });
     return true;

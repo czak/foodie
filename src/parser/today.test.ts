@@ -17,8 +17,8 @@ apple * 80`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { item: "greek yogurt", quantity: 150 },
-          { item: "apple", quantity: 80 },
+          { name: "greek yogurt", quantity: 150 },
+          { name: "apple", quantity: 80 },
         ],
       },
     });
@@ -39,16 +39,16 @@ broccoli * 150`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { item: "greek yogurt", quantity: 150 },
-          { item: "apple", quantity: 80 },
+          { name: "greek yogurt", quantity: 150 },
+          { name: "apple", quantity: 80 },
         ],
         Lunch: [
-          { item: "chicken breast", quantity: 200 },
-          { item: "rice", quantity: 100 },
+          { name: "chicken breast", quantity: 200 },
+          { name: "rice", quantity: 100 },
         ],
         Dinner: [
-          { item: "salmon", quantity: 180 },
-          { item: "broccoli", quantity: 150 },
+          { name: "salmon", quantity: 180 },
+          { name: "broccoli", quantity: 150 },
         ],
       },
     });
@@ -61,8 +61,8 @@ protein powder * 30.25`;
     expect(parseToday(text)).toEqual({
       meals: {
         Snack: [
-          { item: "almonds", quantity: 25.5 },
-          { item: "protein powder", quantity: 30.25 },
+          { name: "almonds", quantity: 25.5 },
+          { name: "protein powder", quantity: 30.25 },
         ],
       },
     });
@@ -81,10 +81,10 @@ chicken breast * 200`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { item: "greek yogurt", quantity: 150 },
-          { item: "apple", quantity: 80 },
+          { name: "greek yogurt", quantity: 150 },
+          { name: "apple", quantity: 80 },
         ],
-        Lunch: [{ item: "chicken breast", quantity: 200 }],
+        Lunch: [{ name: "chicken breast", quantity: 200 }],
       },
     });
   });
@@ -95,7 +95,7 @@ chicken breast * 200`;
 greek yogurt * 150`;
     expect(parseToday(text)).toEqual({
       meals: {
-        Breakfast: [{ item: "greek yogurt", quantity: 150 }],
+        Breakfast: [{ name: "greek yogurt", quantity: 150 }],
       },
     });
   });
@@ -110,7 +110,7 @@ chicken breast * 200
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [],
-        Lunch: [{ item: "chicken breast", quantity: 200 }],
+        Lunch: [{ name: "chicken breast", quantity: 200 }],
         Dinner: [],
       },
     });
@@ -123,8 +123,8 @@ chicken breast * 200
     expect(parseToday(text)).toEqual({
       meals: {
         " Morning Snack ": [
-          { item: "  greek yogurt  ", quantity: 150 },
-          { item: " protein powder ", quantity: 30 },
+          { name: "  greek yogurt  ", quantity: 150 },
+          { name: " protein powder ", quantity: 30 },
         ],
       },
     });
@@ -140,8 +140,8 @@ protein powder * 25`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { item: "greek yogurt", quantity: 150 },
-          { item: "protein powder", quantity: 25 },
+          { name: "greek yogurt", quantity: 150 },
+          { name: "protein powder", quantity: 25 },
         ],
       },
     });
@@ -155,8 +155,8 @@ banana * 100`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { item: "greek yogurt", quantity: 150 },
-          { item: "banana", quantity: 100 },
+          { name: "greek yogurt", quantity: 150 },
+          { name: "banana", quantity: 100 },
         ],
       },
     });
@@ -173,9 +173,9 @@ greek yogurt * 150
 chicken breast * 200`;
     expect(parseToday(text)).toEqual({
       meals: {
-        Dinner: [{ item: "salmon", quantity: 180 }],
-        Breakfast: [{ item: "greek yogurt", quantity: 150 }],
-        Lunch: [{ item: "chicken breast", quantity: 200 }],
+        Dinner: [{ name: "salmon", quantity: 180 }],
+        Breakfast: [{ name: "greek yogurt", quantity: 150 }],
+        Lunch: [{ name: "chicken breast", quantity: 200 }],
       },
     });
   });
@@ -192,10 +192,10 @@ apple * 80`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { item: "greek yogurt", quantity: 150 },
-          { item: "apple", quantity: 80 },
+          { name: "greek yogurt", quantity: 150 },
+          { name: "apple", quantity: 80 },
         ],
-        Lunch: [{ item: "chicken breast", quantity: 200 }],
+        Lunch: [{ name: "chicken breast", quantity: 200 }],
       },
     });
   });

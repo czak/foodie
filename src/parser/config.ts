@@ -94,7 +94,7 @@ function tryParseRecipeItem(line: string, config: ConfigData, state: ParseState)
   if (match) {
     const { itemName, quantity } = match.groups!;
     config.recipes[state.currentRecipeName].push({
-      item: itemName,
+      name: itemName,
       quantity: parseFloat(quantity),
     });
     return true;

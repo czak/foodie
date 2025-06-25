@@ -6,7 +6,7 @@ export interface NutritionValues {
 }
 
 export interface Ingredient {
-  item: string;
+  name: string;
   quantity: number;
 }
 

@@ -85,12 +85,12 @@ apple * 120`;
       },
       recipes: {
         "Yogurt with apple": [
-          { item: "greek yogurt", quantity: 150 },
-          { item: "apple", quantity: 80 },
+          { name: "greek yogurt", quantity: 150 },
+          { name: "apple", quantity: 80 },
         ],
         "Protein smoothie": [
-          { item: "greek yogurt", quantity: 200 },
-          { item: "apple", quantity: 120 },
+          { name: "greek yogurt", quantity: 200 },
+          { name: "apple", quantity: 120 },
         ],
       },
     });
@@ -111,7 +111,7 @@ apple = 52, 0.3, 0.2, 0.2`;
         apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
       },
       recipes: {
-        "Quick snack": [{ item: "apple", quantity: 100 }],
+        "Quick snack": [{ name: "apple", quantity: 100 }],
       },
     });
   });
@@ -174,7 +174,7 @@ test product * 75.5`;
         "test product": { kcal: 52.5, protein: 0.3, fat: 0.2, carbs: 0.15 },
       },
       recipes: {
-        "Test recipe": [{ item: "test product", quantity: 75.5 }],
+        "Test recipe": [{ name: "test product", quantity: 75.5 }],
       },
     });
   });
@@ -218,9 +218,9 @@ orange * 75`;
       },
       recipes: {
         "Test recipe": [
-          { item: "apple", quantity: 100 },
-          { item: "banana", quantity: 50 },
-          { item: "orange", quantity: 75 },
+          { name: "apple", quantity: 100 },
+          { name: "banana", quantity: 50 },
+          { name: "orange", quantity: 75 },
         ],
       },
     });
@@ -242,8 +242,8 @@ orange * 75`;
       },
       recipes: {
         " Fruit Mix ": [
-          { item: "  apple  ", quantity: 100 },
-          { item: " banana bread ", quantity: 25 },
+          { name: "  apple  ", quantity: 100 },
+          { name: " banana bread ", quantity: 25 },
         ],
       },
     });
@@ -265,7 +265,7 @@ banana * 50`;
       targets: { kcal: 0, protein: 120, fat: 0, carbs: 0 },
       products: {},
       recipes: {
-        "Test recipe": [{ item: "banana", quantity: 50 }],
+        "Test recipe": [{ name: "banana", quantity: 50 }],
       },
     });
   });

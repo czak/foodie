@@ -13,15 +13,15 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "protein bowl": [
-          { item: "chicken breast", quantity: 200 },
-          { item: "rice", quantity: 100 },
+          { name: "chicken breast", quantity: 200 },
+          { name: "rice", quantity: 100 },
         ],
       },
     };
     const todayData = {
       meals: {
-        Breakfast: [{ item: "greek yogurt", quantity: 150 }],
-        Lunch: [{ item: "protein bowl", quantity: 1 }],
+        Breakfast: [{ name: "greek yogurt", quantity: 150 }],
+        Lunch: [{ name: "protein bowl", quantity: 1 }],
       },
     };
 
@@ -63,8 +63,8 @@ describe("calculateTotals", () => {
     const todayData = {
       meals: {
         Breakfast: [
-          { item: "greek yogurt", quantity: 100 },
-          { item: "unknown item", quantity: 200 },
+          { name: "greek yogurt", quantity: 100 },
+          { name: "unknown item", quantity: 200 },
         ],
       },
     };
@@ -88,7 +88,7 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Breakfast: [{ item: "greek yogurt", quantity: 0 }],
+        Breakfast: [{ name: "greek yogurt", quantity: 0 }],
       },
     };
 
@@ -110,7 +110,7 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Breakfast: [{ item: "greek yogurt", quantity: 50.5 }],
+        Breakfast: [{ name: "greek yogurt", quantity: 50.5 }],
       },
     };
 
@@ -130,14 +130,14 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "mixed bowl": [
-          { item: "chicken breast", quantity: 100 },
-          { item: "unknown ingredient", quantity: 200 },
+          { name: "chicken breast", quantity: 100 },
+          { name: "unknown ingredient", quantity: 200 },
         ],
       },
     };
     const todayData = {
       meals: {
-        Lunch: [{ item: "mixed bowl", quantity: 1 }],
+        Lunch: [{ name: "mixed bowl", quantity: 1 }],
       },
     };
 
@@ -159,15 +159,15 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "protein bowl": [
-          { item: "chicken breast", quantity: 100 },
-          { item: "rice", quantity: 100 },
+          { name: "chicken breast", quantity: 100 },
+          { name: "rice", quantity: 100 },
         ],
-        "double meal": [{ item: "protein bowl", quantity: 2 }],
+        "double meal": [{ name: "protein bowl", quantity: 2 }],
       },
     };
     const todayData = {
       meals: {
-        Dinner: [{ item: "double meal", quantity: 1 }],
+        Dinner: [{ name: "double meal", quantity: 1 }],
       },
     };
 
@@ -189,8 +189,8 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Breakfast: [{ item: "greek yogurt", quantity: 100 }],
-        Snack: [{ item: "greek yogurt", quantity: 50 }],
+        Breakfast: [{ name: "greek yogurt", quantity: 100 }],
+        Snack: [{ name: "greek yogurt", quantity: 50 }],
       },
     };
 

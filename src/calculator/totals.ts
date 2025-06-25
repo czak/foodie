@@ -18,9 +18,9 @@ export function calculateTotals(configData: ConfigData, todayData: TodayData): N
 
 function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigData): NutritionValues {
   // Check if it's a recipe
-  if (configData.recipes[ingredient.item]) {
+  if (configData.recipes[ingredient.name]) {
     let recipeTotals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
-    for (const recipeIngredient of configData.recipes[ingredient.item]) {
+    for (const recipeIngredient of configData.recipes[ingredient.name]) {
       const recipeIngredientTotals = calculateIngredientTotals(recipeIngredient, configData);
       recipeTotals.kcal += recipeIngredientTotals.kcal;
       recipeTotals.protein += recipeIngredientTotals.protein;
@@ -36,7 +36,7 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
   }
 
   // Check if it's a product
-  const product = configData.products[ingredient.item];
+  const product = configData.products[ingredient.name];
   if (product) {
     const multiplier = ingredient.quantity / 100; // assuming product values are per 100g
     return {
