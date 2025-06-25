@@ -1,17 +1,34 @@
 /* ===== CSS Variables ===== */
 :root {
-  --color-text: #ebdbb2;
-  --color-text-secondary: #a89984;
-  --color-bg: #282828;
-  --color-bg-secondary: #3c3836;
-  --color-accent: #fabd2f;
-  --color-border: #665c54;
-  --color-kcal: #689d6a;
-  --color-protein: #83a598;
-  --color-fat: #d3869b;
-  --color-carbs: #d79921;
+  --color-text: #ece1d7;
+  --color-text-secondary: #c1a78e;
+  --color-bg: #292522;
+  --color-bg-secondary: #34302c;
+  --color-accent: #ebc06d;
+  --color-border: #403a36;
+  --color-kcal: #85b695;
+  --color-protein: #a3a9ce;
+  --color-fat: #cf9bc2;
+  --color-carbs: #ebc06d;
+  --color-text-shadow: rgba(0, 0, 0, 1);
 
   --radius: 4px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text: #54433a;
+    --color-text-secondary: #7d6658;
+    --color-bg: #f1f1f1;
+    --color-bg-secondary: #e9e1db;
+    --color-accent: #a06d00;
+    --color-border: #d9d3ce;
+    --color-kcal: #3a684a;
+    --color-protein: #465aa4;
+    --color-fat: #904180;
+    --color-carbs: #a06d00;
+    --color-text-shadow: rgba(255, 255, 255, 0.8);
+  }
 }
 
 /* ===== Base Styles ===== */
@@ -219,7 +236,7 @@ body {
   font-size: 12px;
   font-weight: 500;
   color: var(--color-text);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  text-shadow: 1px 1px 1px var(--color-text-shadow);
 }
 
 /* Macro Breakdown Labels and Segments */
