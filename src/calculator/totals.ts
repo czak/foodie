@@ -1,7 +1,7 @@
 import type { ConfigData, TodayData, NutritionValues } from "~/types";
 
 export function calculateTotals(configData: ConfigData, todayData: TodayData): NutritionValues {
-  let totals: NutritionValues = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+  let totals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
 
   for (const meal of Object.values(todayData.meals)) {
     for (const item of meal) {
