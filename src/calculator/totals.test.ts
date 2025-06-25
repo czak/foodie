@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import { calculateTotals } from "./index";
+import { calculateTotals } from "./totals";
 
 describe("calculateTotals", () => {
   it("calculates totals from meals with products and recipes", () => {
