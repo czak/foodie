@@ -2,7 +2,7 @@ import type { TodayData } from "~/types";
 
 const TODAY_PATTERNS = {
   mealHeader: /^\[(?<mealName>.+)\]$/d,
-  mealIngredient: /^(?<ingredientName>[^*]+) \* (?<quantity>\d+(?:\.\d+)?)$/d,
+  mealIngredient: /^(?<ingredientName>[^*]+) \* (?<grams>\d+(?:\.\d+)?)$/d,
 };
 
 interface ParseState {
@@ -34,10 +34,10 @@ function tryParseMealIngredient(line: string, data: TodayData, state: ParseState
 
   const match = TODAY_PATTERNS.mealIngredient.exec(line);
   if (match) {
-    const { ingredientName, quantity } = match.groups!;
+    const { ingredientName, grams } = match.groups!;
     data.meals[state.currentMealName].push({
       name: ingredientName,
-      quantity: parseFloat(quantity),
+      grams: parseFloat(grams),
     });
     return true;
   }

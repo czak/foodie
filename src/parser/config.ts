@@ -8,7 +8,7 @@ const CONFIG_PATTERNS = {
   productDefinition: /^(?<productName>.+) = (?<kcal>\d+(?:\.\d+)?), (?<protein>\d+(?:\.\d+)?), (?<fat>\d+(?:\.\d+)?), (?<carbs>\d+(?:\.\d+)?)$/d,
 
   recipeHeader: /^\[recipes\.(?<recipeName>.+)\]$/d,
-  recipeIngredient: /^(?<ingredientName>.+) \* (?<quantity>\d+(?:\.\d+)?)$/d,
+  recipeIngredient: /^(?<ingredientName>.+) \* (?<grams>\d+(?:\.\d+)?)$/d,
 };
 
 interface ParseState {
@@ -92,10 +92,10 @@ function tryParseRecipeIngredient(line: string, config: ConfigData, state: Parse
 
   const match = CONFIG_PATTERNS.recipeIngredient.exec(line);
   if (match) {
-    const { ingredientName, quantity } = match.groups!;
+    const { ingredientName, grams } = match.groups!;
     config.recipes[state.currentRecipeName].push({
       name: ingredientName,
-      quantity: parseFloat(quantity),
+      grams: parseFloat(grams),
     });
     return true;
   }

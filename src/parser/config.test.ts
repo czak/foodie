@@ -85,12 +85,12 @@ apple * 120`;
       },
       recipes: {
         "Yogurt with apple": [
-          { name: "greek yogurt", quantity: 150 },
-          { name: "apple", quantity: 80 },
+          { name: "greek yogurt", grams: 150 },
+          { name: "apple", grams: 80 },
         ],
         "Protein smoothie": [
-          { name: "greek yogurt", quantity: 200 },
-          { name: "apple", quantity: 120 },
+          { name: "greek yogurt", grams: 200 },
+          { name: "apple", grams: 120 },
         ],
       },
     });
@@ -111,7 +111,7 @@ apple = 52, 0.3, 0.2, 0.2`;
         apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
       },
       recipes: {
-        "Quick snack": [{ name: "apple", quantity: 100 }],
+        "Quick snack": [{ name: "apple", grams: 100 }],
       },
     });
   });
@@ -174,7 +174,7 @@ test product * 75.5`;
         "test product": { kcal: 52.5, protein: 0.3, fat: 0.2, carbs: 0.15 },
       },
       recipes: {
-        "Test recipe": [{ name: "test product", quantity: 75.5 }],
+        "Test recipe": [{ name: "test product", grams: 75.5 }],
       },
     });
   });
@@ -218,9 +218,9 @@ orange * 75`;
       },
       recipes: {
         "Test recipe": [
-          { name: "apple", quantity: 100 },
-          { name: "banana", quantity: 50 },
-          { name: "orange", quantity: 75 },
+          { name: "apple", grams: 100 },
+          { name: "banana", grams: 50 },
+          { name: "orange", grams: 75 },
         ],
       },
     });
@@ -242,8 +242,8 @@ orange * 75`;
       },
       recipes: {
         " Fruit Mix ": [
-          { name: "  apple  ", quantity: 100 },
-          { name: " banana bread ", quantity: 25 },
+          { name: "  apple  ", grams: 100 },
+          { name: " banana bread ", grams: 25 },
         ],
       },
     });
@@ -265,7 +265,7 @@ banana * 50`;
       targets: { kcal: 0, protein: 120, fat: 0, carbs: 0 },
       products: {},
       recipes: {
-        "Test recipe": [{ name: "banana", quantity: 50 }],
+        "Test recipe": [{ name: "banana", grams: 50 }],
       },
     });
   });
