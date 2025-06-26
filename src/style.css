@@ -100,16 +100,48 @@ body.resizing {
   color: var(--color-text);
 }
 
-.pane textarea {
+/* ===== Editor Syntax Highlighting ===== */
+.editor-wrapper {
+  position: relative;
   flex: 1;
+}
+
+.editor-highlight,
+.editor-textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding: 16px;
+  margin: 0;
   border: none;
   outline: none;
   resize: none;
-  background-color: var(--color-bg);
-  color: var(--color-text-secondary);
   font-family: "CaskaydiaMono Nerd Font", "Consolas", "Monaco", "Courier New", monospace;
   font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.editor-highlight {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.editor-textarea {
+  background-color: transparent;
+  color: var(--color-text-secondary); /* TODO: make transparent when highlight layer works */
+  caret-color: var(--color-text);
+  z-index: 2;
+}
+
+.editor-textarea::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.5;
 }
 
 .separator {
