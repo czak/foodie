@@ -26,33 +26,24 @@ function updateMacroProgress(macro: string, current: number, target: number) {
   getElement<HTMLDivElement>(`#${macro}-label`).textContent = `${Math.round(current)} / ${Math.round(target)}g`;
 }
 
-function updateMacroBreakdownSegments(proteinPercent: number, fatPercent: number, carbsPercent: number) {
-  getElement<HTMLDivElement>("#protein-breakdown-segment").style.width = `${proteinPercent}%`;
-  getElement<HTMLDivElement>("#fat-breakdown-segment").style.width = `${fatPercent}%`;
-  getElement<HTMLDivElement>("#carbs-breakdown-segment").style.width = `${carbsPercent}%`;
-
-  getElement<HTMLSpanElement>("#protein-breakdown-text").textContent = `Protein: ${Math.round(proteinPercent)}%`;
-  getElement<HTMLSpanElement>("#fat-breakdown-text").textContent = `Fat: ${Math.round(fatPercent)}%`;
-  getElement<HTMLSpanElement>("#carbs-breakdown-text").textContent = `Carbs: ${Math.round(carbsPercent)}%`;
-}
-
 function updateMacroBreakdown(totals: NutritionValues) {
   const proteinKcal = totals.protein * 4;
   const fatKcal = totals.fat * 9;
   const carbsKcal = totals.carbs * 4;
 
-  const totalMacroKcal = proteinKcal + fatKcal + carbsKcal;
+  const kcal = proteinKcal + fatKcal + carbsKcal;
 
-  if (totalMacroKcal === 0) {
-    updateMacroBreakdownSegments(33, 34, 33);
-    return;
-  }
+  const proteinPercent = kcal > 0 ? (proteinKcal / kcal) * 100 : 0;
+  const fatPercent = kcal > 0 ? (fatKcal / kcal) * 100 : 0;
+  const carbsPercent = kcal > 0 ? (carbsKcal / kcal) * 100 : 0;
 
-  const proteinPercent = (proteinKcal / totalMacroKcal) * 100;
-  const fatPercent = (fatKcal / totalMacroKcal) * 100;
-  const carbsPercent = (carbsKcal / totalMacroKcal) * 100;
+  getElement<HTMLDivElement>("#protein-breakdown-segment").style.flexGrow = `${proteinKcal}`;
+  getElement<HTMLDivElement>("#fat-breakdown-segment").style.flexGrow = `${fatKcal}`;
+  getElement<HTMLDivElement>("#carbs-breakdown-segment").style.flexGrow = `${carbsKcal}`;
 
-  updateMacroBreakdownSegments(proteinPercent, fatPercent, carbsPercent);
+  getElement<HTMLSpanElement>("#protein-breakdown-text").textContent = `Protein: ${Math.round(proteinPercent)}%`;
+  getElement<HTMLSpanElement>("#fat-breakdown-text").textContent = `Fat: ${Math.round(fatPercent)}%`;
+  getElement<HTMLSpanElement>("#carbs-breakdown-text").textContent = `Carbs: ${Math.round(carbsPercent)}%`;
 }
 
 export function updateStatsPane(totals: NutritionValues, targets: NutritionValues) {

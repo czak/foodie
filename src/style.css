@@ -277,7 +277,7 @@ body.resizing {
 }
 
 .macro-segment {
-  height: 100%;
+  flex: 1 1 0;
 }
 
 .macro-segment.protein {
