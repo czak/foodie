@@ -22,14 +22,14 @@ protein powder * 30g
 `;
 
 const defaultToday = `[breakfast]
-Yogurt with apple * 1.5g
+Yogurt with apple * 345g
 
 [lunch]
 chicken breast * 150g
 avocado * 50g
 
 [dinner]
-Protein smoothie * 1g
+Protein smoothie * 350g
 `;
 
 function loadData(key: string): string | null {
