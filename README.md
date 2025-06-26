@@ -42,3 +42,4 @@ I may get to these at some point:
 - [ ] Improve validation (detect invalid recipe or meal ingredients)
 - [ ] Autocomplete ingredients
 - [ ] More color themes (maybe, dunno)
+- [ ] Plan more days, maybe have some log, history etc - I doubt it, let's consider these streeeeetch goals
