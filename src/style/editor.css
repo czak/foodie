@@ -73,14 +73,6 @@
   color: var(--highlight-name);
 }
 
-.highlight-recipeName {
-  color: var(--highlight-name);
-}
-
-.highlight-mealName {
-  color: var(--highlight-name);
-}
-
 .highlight-ingredientName {
   color: var(--highlight-name);
 }

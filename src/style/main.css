@@ -298,6 +298,7 @@ body.resizing {
   height: 20px;
   background-color: var(--color-bg);
   border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .macro-segment {
