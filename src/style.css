@@ -269,10 +269,10 @@ body.resizing {
 }
 
 .macro-breakdown {
-  height: 20px;
-  border-radius: var(--radius);
   display: flex;
-  overflow: hidden;
+  height: 20px;
+  background-color: var(--color-bg);
+  border-radius: var(--radius);
 }
 
 .macro-segment {
