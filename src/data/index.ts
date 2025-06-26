@@ -61,6 +61,5 @@ export function removeData(key: string) {
   }
 }
 
-// Export initial data that checks localStorage first
 export const initialConfig = loadData("foodie-config") || defaultConfig;
 export const initialToday = loadData("foodie-today") || defaultToday;
