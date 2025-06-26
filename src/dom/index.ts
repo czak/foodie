@@ -31,9 +31,9 @@ function updateMacroBreakdownSegments(proteinPercent: number, fatPercent: number
   getElement<HTMLDivElement>("#fat-breakdown-segment").style.width = `${fatPercent}%`;
   getElement<HTMLDivElement>("#carbs-breakdown-segment").style.width = `${carbsPercent}%`;
 
-  getElement<HTMLSpanElement>("#protein-breakdown-label").textContent = `Protein: ${Math.round(proteinPercent)}%`;
-  getElement<HTMLSpanElement>("#fat-breakdown-label").textContent = `Fat: ${Math.round(fatPercent)}%`;
-  getElement<HTMLSpanElement>("#carbs-breakdown-label").textContent = `Carbs: ${Math.round(carbsPercent)}%`;
+  getElement<HTMLSpanElement>("#protein-breakdown-text").textContent = `Protein: ${Math.round(proteinPercent)}%`;
+  getElement<HTMLSpanElement>("#fat-breakdown-text").textContent = `Fat: ${Math.round(fatPercent)}%`;
+  getElement<HTMLSpanElement>("#carbs-breakdown-text").textContent = `Carbs: ${Math.round(carbsPercent)}%`;
 }
 
 function updateMacroBreakdown(totals: NutritionValues) {
