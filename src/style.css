@@ -128,6 +128,19 @@ body.resizing {
   gap: 16px;
 }
 
+/* Nutrient Colors */
+.protein {
+  background-color: var(--color-protein);
+}
+
+.fat {
+  background-color: var(--color-fat);
+}
+
+.carbs {
+  background-color: var(--color-carbs);
+}
+
 /* Kcal Counter and Circle Progress */
 .kcal-display {
   display: flex;
@@ -213,18 +226,6 @@ body.resizing {
   border-radius: var(--radius);
 }
 
-.progress-fill.protein {
-  background-color: var(--color-protein);
-}
-
-.progress-fill.fat {
-  background-color: var(--color-fat);
-}
-
-.progress-fill.carbs {
-  background-color: var(--color-carbs);
-}
-
 .progress-label {
   z-index: 1;
   font-size: 12px;
@@ -256,18 +257,6 @@ body.resizing {
   border-radius: 50%;
 }
 
-.dot.protein {
-  background-color: var(--color-protein);
-}
-
-.dot.fat {
-  background-color: var(--color-fat);
-}
-
-.dot.carbs {
-  background-color: var(--color-carbs);
-}
-
 .macro-breakdown {
   display: flex;
   height: 20px;
@@ -277,16 +266,4 @@ body.resizing {
 
 .macro-segment {
   flex: 1 1 0;
-}
-
-.macro-segment.protein {
-  background-color: var(--color-protein);
-}
-
-.macro-segment.fat {
-  background-color: var(--color-fat);
-}
-
-.macro-segment.carbs {
-  background-color: var(--color-carbs);
 }
