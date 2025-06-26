@@ -9,45 +9,44 @@ function escapeHtml(s: string) {
 }
 
 export function highlightLine(line: string, patterns: Record<string, RegExp>): string {
-  for (const patternName in patterns) {
-    const regex = patterns[patternName];
+  for (const [patternName, regex] of Object.entries(patterns)) {
     const match = regex.exec(line);
 
-    // Check if the regex matched the entire line (from start to end)
-    if (match && match.index === 0 && match[0].length === line.length) {
-      let resultHtml = "";
-      let lastIndex = 0;
+    if (!match) continue;
 
-      // Collect named capture group indices
-      const groupIndices: { name: string; start: number; end: number }[] = [];
-      if (match.indices && match.indices.groups) {
-        for (const groupName in match.indices.groups) {
-          const [start, end] = match.indices.groups[groupName];
-          groupIndices.push({ name: groupName, start, end });
-        }
+    let html = "";
+    let lastIndex = 0;
+    const groups: { name: string; start: number; end: number }[] = [];
+
+    // Collect named capture group indices
+    if (match.indices && match.indices.groups) {
+      for (const groupName in match.indices.groups) {
+        const [start, end] = match.indices.groups[groupName];
+        groups.push({ name: groupName, start, end });
       }
-
-      // Sort group indices by their start position to process them in order
-      groupIndices.sort((a, b) => a.start - b.start);
-
-      for (const group of groupIndices) {
-        // Add plain text before the current group
-        if (group.start > lastIndex) {
-          resultHtml += escapeHtml(line.substring(lastIndex, group.start));
-        }
-        // Add the highlighted group
-        resultHtml += `<span class="highlight-${group.name}">${escapeHtml(line.substring(group.start, group.end))}</span>`;
-        lastIndex = group.end;
-      }
-
-      // Add any remaining plain text after the last group
-      if (lastIndex < line.length) {
-        resultHtml += escapeHtml(line.substring(lastIndex, line.length));
-      }
-
-      // Wrap the entire line's content in a div with the pattern's class
-      return `<span class="highlight-${patternName}">${resultHtml}</span>`;
     }
+
+    // Sort groups by start position to process them in order
+    groups.sort((a, b) => a.start - b.start);
+
+    for (const group of groups) {
+      // Plain text before the current group
+      if (group.start > lastIndex) {
+        html += escapeHtml(line.substring(lastIndex, group.start));
+      }
+
+      // Highlighted group
+      html += `<span class="highlight-${group.name}">${escapeHtml(line.substring(group.start, group.end))}</span>`;
+      lastIndex = group.end;
+    }
+
+    // Remaining plain text after the last group
+    if (lastIndex < line.length) {
+      html += escapeHtml(line.substring(lastIndex, line.length));
+    }
+
+    // Wrap the entire line's content in a div with the pattern's class
+    return `<span class="highlight-${patternName}">${html}</span>`;
   }
 
   // If no pattern matched the entire line, return the escaped original line
