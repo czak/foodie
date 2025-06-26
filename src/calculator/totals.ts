@@ -28,17 +28,17 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
       recipeTotals.carbs += recipeIngredientTotals.carbs;
     }
     return {
-      kcal: recipeTotals.kcal * ingredient.quantity,
-      protein: recipeTotals.protein * ingredient.quantity,
-      fat: recipeTotals.fat * ingredient.quantity,
-      carbs: recipeTotals.carbs * ingredient.quantity,
+      kcal: recipeTotals.kcal * ingredient.grams,
+      protein: recipeTotals.protein * ingredient.grams,
+      fat: recipeTotals.fat * ingredient.grams,
+      carbs: recipeTotals.carbs * ingredient.grams,
     };
   }
 
   // Check if it's a product
   const product = configData.products[ingredient.name];
   if (product) {
-    const multiplier = ingredient.quantity / 100; // assuming product values are per 100g
+    const multiplier = ingredient.grams / 100; // assuming product values are per 100g
     return {
       kcal: product.kcal * multiplier,
       protein: product.protein * multiplier,
