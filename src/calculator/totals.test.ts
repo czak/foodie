@@ -150,7 +150,7 @@ describe("calculateTotals", () => {
     });
   });
 
-  it("handles nested recipes", () => {
+  it("ignores recipes that reference other recipes", () => {
     const configData = {
       targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
       products: {
@@ -162,21 +162,22 @@ describe("calculateTotals", () => {
           { name: "chicken breast", grams: 100 },
           { name: "rice", grams: 100 },
         ],
-        "double meal": [{ name: "protein bowl", grams: 2 }],
+        "invalid recipe": [{ name: "protein bowl", grams: 2 }],
       },
     };
     const todayData = {
       meals: {
-        Dinner: [{ name: "double meal", grams: 1 }],
+        Dinner: [{ name: "invalid recipe", grams: 1 }],
       },
     };
 
-    // double meal = 2 * protein bowl = 2 * (100g chicken + 100g rice) = 2 * (295 kcal, 33.7g protein, 3.9g fat, 28g carbs)
-    const result = calculateTotals(configData, todayData);
-    expect(result.kcal).toBe(590);
-    expect(result.protein).toBeCloseTo(67.4);
-    expect(result.fat).toBeCloseTo(7.8);
-    expect(result.carbs).toBe(56);
+    // Recipe with other recipes as ingredients should be ignored (contributes 0)
+    expect(calculateTotals(configData, todayData)).toEqual({
+      kcal: 0,
+      protein: 0,
+      fat: 0,
+      carbs: 0,
+    });
   });
 
   it("sums items across multiple meals", () => {

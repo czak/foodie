@@ -21,11 +21,14 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
   if (configData.recipes[ingredient.name]) {
     let recipeTotals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
     for (const recipeIngredient of configData.recipes[ingredient.name]) {
-      const recipeIngredientTotals = calculateIngredientTotals(recipeIngredient, configData);
-      recipeTotals.kcal += recipeIngredientTotals.kcal;
-      recipeTotals.protein += recipeIngredientTotals.protein;
-      recipeTotals.fat += recipeIngredientTotals.fat;
-      recipeTotals.carbs += recipeIngredientTotals.carbs;
+      const product = configData.products[recipeIngredient.name];
+      if (product) {
+        const multiplier = recipeIngredient.grams / 100;
+        recipeTotals.kcal += product.kcal * multiplier;
+        recipeTotals.protein += product.protein * multiplier;
+        recipeTotals.fat += product.fat * multiplier;
+        recipeTotals.carbs += product.carbs * multiplier;
+      }
     }
     return {
       kcal: recipeTotals.kcal * ingredient.grams,
