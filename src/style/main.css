@@ -25,7 +25,33 @@
   --radius: 4px;
 }
 
-:root.dark {
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-text: #ece1d7;
+    --color-text-secondary: #c1a78e;
+    --color-text-dim: #867462;
+    --color-bg: #292522;
+    --color-bg-secondary: #34302c;
+    --color-accent: #ebc06d;
+    --color-border: #403a36;
+    --color-kcal: #85b695;
+    --color-protein: #a3a9ce;
+    --color-fat: #ebc06d;
+    --color-carbs: #d47766;
+    --color-label: #ffffff;
+    --color-label-shadow: #000000;
+
+    --highlight-header: #a3a9ce;
+    --highlight-assignment: #ece1d7;
+    --highlight-ingredient: #ece1d7;
+    --highlight-key: #ebc06d;
+    --highlight-value: #85b695;
+    --highlight-name: #cf9bc2;
+    --highlight-number: #89b3b6;
+  }
+}
+
+:root[data-theme="dark"] {
   --color-text: #ece1d7;
   --color-text-secondary: #c1a78e;
   --color-text-dim: #867462;

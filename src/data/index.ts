@@ -48,6 +48,14 @@ export function saveData(key: string, data: string): void {
   }
 }
 
+export function removeData(key: string) {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    // We still ain't got no localStorage
+  }
+}
+
 // Export initial data that checks localStorage first
 export const initialConfig = loadData("foodie-config") || defaultConfig;
 export const initialToday = loadData("foodie-today") || defaultToday;
