@@ -1,14 +1,14 @@
 import { getElement } from "~/dom";
+import { loadData, saveData } from "~/data";
 
 export function initResizer() {
   const separator = getElement<HTMLElement>("#separator");
   const leftPane = getElement<HTMLElement>("#left-pane");
   const rightPane = getElement<HTMLElement>("#right-pane");
 
-  let isResizing = false;
+  let leftFlex = 0.5;
 
   separator.addEventListener("mousedown", (e) => {
-    isResizing = true;
     document.body.style.cursor = "ew-resize";
     document.body.style.userSelect = "none";
 
@@ -16,30 +16,36 @@ export function initResizer() {
     const startLeftWidth = leftPane.offsetWidth;
 
     const onMouseMove = (e: MouseEvent) => {
-      if (!isResizing) return;
-
       const deltaX = e.clientX - startX;
       const newLeftWidth = startLeftWidth + deltaX;
 
       const totalWidth = leftPane.parentElement!.offsetWidth;
       const separatorWidth = separator.offsetWidth;
 
-      const leftFlex = newLeftWidth / (totalWidth - separatorWidth);
-      const rightFlex = 1 - leftFlex;
+      leftFlex = newLeftWidth / (totalWidth - separatorWidth);
 
       leftPane.style.flexGrow = leftFlex.toString();
-      rightPane.style.flexGrow = rightFlex.toString();
+      rightPane.style.flexGrow = (1 - leftFlex).toString();
     };
 
     const onMouseUp = () => {
-      isResizing = false;
       document.body.style.cursor = "";
       document.body.style.userSelect = "";
+
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
+
+      saveData("foodie-separator", leftFlex.toString());
     };
 
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
   });
+
+  const savedPosition = loadData("foodie-separator");
+  if (savedPosition) {
+    leftFlex = parseFloat(savedPosition);
+    leftPane.style.flexGrow = leftFlex.toString();
+    rightPane.style.flexGrow = (1 - leftFlex).toString();
+  }
 }
