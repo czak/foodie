@@ -71,12 +71,12 @@ greek yogurt = 97, 10, 5, 3.6
 apple = 52, 0.3, 0.2, 0.2
 
 [recipes.Yogurt with apple]
-greek yogurt * 150
-apple * 80
+greek yogurt * 150g
+apple * 80g
 
 [recipes.Protein smoothie]
-greek yogurt * 200
-apple * 120`;
+greek yogurt * 200g
+apple * 120g`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
@@ -98,7 +98,7 @@ apple * 120`;
 
   it("handles mixed sections in any order", () => {
     const text = `[recipes.Quick snack]
-apple * 100
+apple * 100g
 
 [targets]
 kcal = 1500
@@ -167,7 +167,7 @@ apple = 100, 1, 1, 1`;
 test product = 52.5, 0.3, 0.2, 0.15
 
 [recipes.Test recipe]
-test product * 75.5`;
+test product * 75.5g`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
@@ -208,9 +208,9 @@ orange = 47, 0.9, 0.1, 11, 5`;
 apple = 52, 0.3, 0.2, 0.2
 
 [recipes.Test recipe]
-apple * 100
-banana * 50
-orange * 75`;
+apple * 100g
+banana * 50g
+orange * 75g`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
@@ -232,8 +232,8 @@ orange * 75`;
  banana bread  = 89, 2.6, 0.4, 17
 
 [recipes. Fruit Mix ]
-  apple   * 100
- banana bread  * 25`;
+  apple   * 100g
+ banana bread  * 25g`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
@@ -259,13 +259,26 @@ apple = -52, 0.3, -0.2, 0.2
 banana = 89, -2.6, 0.4, 17
 
 [recipes.Test recipe]
-apple * -100
-banana * 50`;
+apple * -100g
+banana * 50g`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 120, fat: 0, carbs: 0 },
       products: {},
       recipes: {
         "Test recipe": [{ name: "banana", grams: 50 }],
+      },
+    });
+  });
+
+  it("ignores ingredient lines without g unit", () => {
+    const text = `[recipes.Test recipe]
+banana * 50
+tomato * 40g`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
+      products: {},
+      recipes: {
+        "Test recipe": [{ name: "tomato", grams: 40 }],
       },
     });
   });

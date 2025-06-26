@@ -12,8 +12,8 @@ describe("parseToday", () => {
 
   it("parses a valid meal", () => {
     const text = `[Breakfast]
-greek yogurt * 150
-apple * 80`;
+greek yogurt * 150g
+apple * 80g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
@@ -26,16 +26,16 @@ apple * 80`;
 
   it("parses multiple meals", () => {
     const text = `[Breakfast]
-greek yogurt * 150
-apple * 80
+greek yogurt * 150g
+apple * 80g
 
 [Lunch]
-chicken breast * 200
-rice * 100
+chicken breast * 200g
+rice * 100g
 
 [Dinner]
-salmon * 180
-broccoli * 150`;
+salmon * 180g
+broccoli * 150g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
@@ -56,8 +56,8 @@ broccoli * 150`;
 
   it("handles decimal quantities", () => {
     const text = `[Snack]
-almonds * 25.5
-protein powder * 30.25`;
+almonds * 25.5g
+protein powder * 30.25g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Snack: [
@@ -71,13 +71,13 @@ protein powder * 30.25`;
   it("ignores invalid lines as plain text", () => {
     const text = `# This is a comment
 [Breakfast]
-greek yogurt * 150
+greek yogurt * 150g
 invalid line here
-apple * 80
+apple * 80g
 
 [Lunch]
 bad item line
-chicken breast * 200`;
+chicken breast * 200g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
@@ -90,9 +90,9 @@ chicken breast * 200`;
   });
 
   it("ignores items without meal headers", () => {
-    const text = `orphaned item * 100
+    const text = `orphaned item * 100g
 [Breakfast]
-greek yogurt * 150`;
+greek yogurt * 150g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [{ name: "greek yogurt", grams: 150 }],
@@ -104,7 +104,7 @@ greek yogurt * 150`;
     const text = `[Breakfast]
 
 [Lunch]
-chicken breast * 200
+chicken breast * 200g
 
 [Dinner]`;
     expect(parseToday(text)).toEqual({
@@ -118,8 +118,8 @@ chicken breast * 200
 
   it("does not trim whitespace in meal and item names", () => {
     const text = `[ Morning Snack ]
-  greek yogurt   * 150
- protein powder  * 30`;
+  greek yogurt   * 150g
+ protein powder  * 30g`;
     expect(parseToday(text)).toEqual({
       meals: {
         " Morning Snack ": [
@@ -132,11 +132,11 @@ chicken breast * 200
 
   it("handles malformed item lines", () => {
     const text = `[Breakfast]
-greek yogurt * 150
+greek yogurt * 150g
 apple
 banana * abc
-orange * 80 * 2
-protein powder * 25`;
+orange * 80g * 2g
+protein powder * 25g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
@@ -149,9 +149,9 @@ protein powder * 25`;
 
   it("ignores lines with negative quantities", () => {
     const text = `[Breakfast]
-greek yogurt * 150
-apple * -80
-banana * 100`;
+greek yogurt * 150g
+apple * -80g
+banana * 100g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
@@ -162,15 +162,26 @@ banana * 100`;
     });
   });
 
+  it("ignores lines without the g unit", () => {
+    const text = `[Breakfast]
+greek yogurt * 150g
+banana * 100`;
+    expect(parseToday(text)).toEqual({
+      meals: {
+        Breakfast: [{ name: "greek yogurt", grams: 150 }],
+      },
+    });
+  });
+
   it("handles meals in any order", () => {
     const text = `[Dinner]
-salmon * 180
+salmon * 180g
 
 [Breakfast]
-greek yogurt * 150
+greek yogurt * 150g
 
 [Lunch]
-chicken breast * 200`;
+chicken breast * 200g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Dinner: [{ name: "salmon", grams: 180 }],
@@ -182,13 +193,13 @@ chicken breast * 200`;
 
   it("handles duplicate meal names by appending items", () => {
     const text = `[Breakfast]
-greek yogurt * 150
+greek yogurt * 150g
 
 [Lunch]
-chicken breast * 200
+chicken breast * 200g
 
 [Breakfast]
-apple * 80`;
+apple * 80g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [

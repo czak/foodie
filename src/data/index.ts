@@ -12,24 +12,24 @@ greek yogurt = 97, 10, 5, 3.6
 protein powder = 380, 80, 5, 5
 
 [recipes.Yogurt with apple]
-greek yogurt * 150
-apple * 80
+greek yogurt * 150g
+apple * 80g
 
 [recipes.Protein smoothie]
-greek yogurt * 200
-apple * 120
-protein powder * 30
+greek yogurt * 200g
+apple * 120g
+protein powder * 30g
 `;
 
 const defaultToday = `[breakfast]
-Yogurt with apple * 1.5
+Yogurt with apple * 1.5g
 
 [lunch]
-chicken breast * 150
-avocado * 50
+chicken breast * 150g
+avocado * 50g
 
 [dinner]
-Protein smoothie * 1
+Protein smoothie * 1g
 `;
 
 function loadData(key: string): string | null {
