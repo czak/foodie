@@ -66,7 +66,7 @@ export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<
   textarea.parentElement!.insertBefore(highlightLayer, textarea);
 
   const highlight = () => {
-    highlightLayer.innerHTML = textarea.value
+    highlightLayer.innerHTML = (textarea.value + "\n")
       .split("\n")
       .map((line) => highlightLine(line, patterns))
       .join("\n");
