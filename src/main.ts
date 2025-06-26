@@ -1,5 +1,5 @@
 import "./style/main.css";
-import "./style/syntax.css";
+import "./style/editor.css";
 
 import { parseConfig, parseToday } from "~/parser";
 import { calculateTotals } from "~/calculator";
