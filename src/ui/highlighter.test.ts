@@ -118,4 +118,14 @@ describe("highlightLine", () => {
     const result = highlightLine(line, {});
     expect(result).toBe("any line");
   });
+
+  it("throws an error if a pattern does not use the /d flag", () => {
+    const patterns = {
+      validPattern: /^foo$/d,
+      invalidPattern: /^bar$/,
+    };
+
+    const line = "test";
+    expect(() => highlightLine(line, patterns)).toThrow("Pattern 'invalidPattern' must use the /d flag");
+  });
 });

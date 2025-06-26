@@ -10,9 +10,15 @@ function escapeHtml(s: string) {
 
 export function highlightLine(line: string, patterns: Record<string, RegExp>): string {
   for (const [patternName, regex] of Object.entries(patterns)) {
+    if (!regex.hasIndices) {
+      throw new Error(`Pattern '${patternName}' must use the /d flag`);
+    }
+
     const match = regex.exec(line);
 
-    if (!match) continue;
+    if (!match) {
+      continue;
+    }
 
     let html = "";
     let lastIndex = 0;
