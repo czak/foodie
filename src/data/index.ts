@@ -1,9 +1,12 @@
-const defaultConfig = `[targets]
+const defaultConfig = `# Set your daily goals
+[targets]
 kcal = 1850
 protein = 150
 fat = 85
 carbs = 250
 
+# Keep your foods database
+# Format: kcal, protein, fat, carbs (per 100g)
 [products]
 apple = 52, 0.3, 0.2, 14
 avocado = 160, 2, 15, 8.5
@@ -11,6 +14,7 @@ chicken breast = 165, 31, 3.6, 0
 greek yogurt = 97, 10, 5, 3.6
 protein powder = 380, 80, 5, 5
 
+# Create meal combos
 [recipes.Yogurt with apple]
 greek yogurt * 150g
 apple * 80g
@@ -21,7 +25,8 @@ apple * 120g
 protein powder * 30g
 `;
 
-const defaultToday = `[breakfast]
+const defaultToday = `# Plan your meals by weight
+[breakfast]
 Yogurt with apple * 345g
 
 [lunch]
