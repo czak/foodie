@@ -2,7 +2,7 @@ import type { TodayData } from "~/types";
 
 const TODAY_PATTERNS = {
   mealHeader: /^\[(?<mealName>.+)\]$/d,
-  mealIngredient: /^(?<ingredientName>[^*]+?) \* (?<quantity>\d+(?:\.\d+)?)$/d,
+  mealIngredient: /^(?<ingredientName>[^*]+) \* (?<quantity>\d+(?:\.\d+)?)$/d,
 };
 
 interface ParseState {
