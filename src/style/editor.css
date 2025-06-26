@@ -17,7 +17,7 @@
   resize: none;
   font-family: "CaskaydiaMono Nerd Font", "Consolas", "Monaco", "Courier New", monospace;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.2;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -31,7 +31,7 @@
 
 .editor-textarea {
   background-color: transparent;
-  color: rgb(from var(--color-text-secondary) r g b / 0.5); /* TODO: make transparent when highlight layer works */
+  color: var(--color-text-secondary);
   caret-color: var(--color-text);
   z-index: 2;
 }
