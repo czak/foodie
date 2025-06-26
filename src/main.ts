@@ -1,12 +1,12 @@
 import "./style/main.css";
 import "./style/editor.css";
 
-import { parseConfig, parseToday } from "~/parser";
+import { parseConfig, parseToday, CONFIG_PATTERNS, TODAY_PATTERNS } from "~/parser";
 import { calculateTotals } from "~/calculator";
 import { getElement, updateStatsPane } from "~/dom";
 import { initialConfig, initialToday, saveData } from "~/data";
 import { debounce } from "~/utils";
-import { initResizer } from "~/ui";
+import { initHighlighter, initResizer } from "~/ui";
 
 const configTextarea = getElement<HTMLTextAreaElement>("#config-textarea");
 const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
@@ -38,4 +38,8 @@ todayTextarea.addEventListener("input", () => {
 });
 
 update();
+
 initResizer();
+
+initHighlighter(configTextarea, CONFIG_PATTERNS);
+initHighlighter(todayTextarea, TODAY_PATTERNS);

@@ -1,6 +1,6 @@
 import type { ConfigData } from "~/types";
 
-const CONFIG_PATTERNS = {
+export const CONFIG_PATTERNS = {
   targetsHeader: /^\[targets\]$/d,
   targetValue: /^(?<key>kcal|protein|fat|carbs) = (?<value>\d+)$/d,
 

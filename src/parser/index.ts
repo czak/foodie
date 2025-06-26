@@ -1,2 +1,2 @@
-export { parseConfig } from "./config";
-export { parseToday } from "./today";
+export { parseConfig, CONFIG_PATTERNS } from "./config";
+export { parseToday, TODAY_PATTERNS } from "./today";

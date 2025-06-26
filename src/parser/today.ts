@@ -1,6 +1,6 @@
 import type { TodayData } from "~/types";
 
-const TODAY_PATTERNS = {
+export const TODAY_PATTERNS = {
   mealHeader: /^\[(?<mealName>.+)\]$/d,
   mealIngredient: /^(?<ingredientName>[^*]+) \* (?<grams>\d+(?:\.\d+)?)g$/d,
 };
