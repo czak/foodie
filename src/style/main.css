@@ -1,35 +1,35 @@
 /* ===== CSS Variables ===== */
 :root {
-  --color-text: #ece1d7;
-  --color-text-secondary: #c1a78e;
-  --color-text-dim: #867462;
-  --color-bg: #292522;
-  --color-bg-secondary: #34302c;
-  --color-accent: #ebc06d;
-  --color-border: #403a36;
-  --color-kcal: #85b695;
-  --color-protein: #a3a9ce;
-  --color-fat: #ebc06d;
-  --color-carbs: #d47766;
+  --color-text: #54433a;
+  --color-text-secondary: #7d6658;
+  --color-text-dim: #a98a78;
+  --color-bg: #f1f1f1;
+  --color-bg-secondary: #e9e1db;
+  --color-accent: #a06d00;
+  --color-border: #d9d3ce;
+  --color-kcal: #6e9b72;
+  --color-protein: #7892bd;
+  --color-fat: #e49b5d;
+  --color-carbs: #bc5c00;
   --color-label: #ffffff;
   --color-label-shadow: #000000;
 
   --radius: 4px;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --color-text: #54433a;
-    --color-text-secondary: #7d6658;
-    --color-text-dim: #a98a78;
-    --color-bg: #f1f1f1;
-    --color-bg-secondary: #e9e1db;
-    --color-accent: #a06d00;
-    --color-border: #d9d3ce;
-    --color-kcal: #6e9b72;
-    --color-protein: #7892bd;
-    --color-fat: #e49b5d;
-    --color-carbs: #bc5c00;
+    --color-text: #ece1d7;
+    --color-text-secondary: #c1a78e;
+    --color-text-dim: #867462;
+    --color-bg: #292522;
+    --color-bg-secondary: #34302c;
+    --color-accent: #ebc06d;
+    --color-border: #403a36;
+    --color-kcal: #85b695;
+    --color-protein: #a3a9ce;
+    --color-fat: #ebc06d;
+    --color-carbs: #d47766;
     --color-label: #ffffff;
     --color-label-shadow: #000000;
   }
