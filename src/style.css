@@ -80,7 +80,11 @@ body.resizing {
   user-select: none;
 }
 
-.theme-toggle {
+.controls {
+  display: flex;
+}
+
+.control-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +95,7 @@ body.resizing {
   cursor: pointer;
 }
 
-.theme-toggle:hover {
+.control-button:hover {
   background-color: var(--color-bg);
   color: var(--color-text);
 }
