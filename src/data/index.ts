@@ -32,7 +32,7 @@ avocado * 50g
 Protein smoothie * 350g
 `;
 
-function loadData(key: string): string | null {
+export function loadData(key: string): string | null {
   try {
     return localStorage.getItem(key);
   } catch {
