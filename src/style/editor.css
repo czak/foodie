@@ -1,26 +1,3 @@
-/* Syntax highlighting CSS variables */
-:root {
-  --highlight-header: #465aa4;
-  --highlight-assignment: #54433a;
-  --highlight-ingredient: #54433a;
-  --highlight-key: #a06d00;
-  --highlight-value: #3a684a;
-  --highlight-name: #904180;
-  --highlight-number: #3d6568;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --highlight-header: #a3a9ce;
-    --highlight-assignment: #ece1d7;
-    --highlight-ingredient: #ece1d7;
-    --highlight-key: #ebc06d;
-    --highlight-value: #85b695;
-    --highlight-name: #cf9bc2;
-    --highlight-number: #89b3b6;
-  }
-}
-
 .editor-wrapper {
   position: relative;
   flex: 1;
