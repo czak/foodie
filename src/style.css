@@ -168,7 +168,6 @@ body.resizing {
 
 .kcal-fill {
   stroke: var(--color-kcal);
-  transition: stroke-dashoffset 0.5s ease-out;
 }
 
 .kcal-label {
