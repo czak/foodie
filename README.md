@@ -2,7 +2,7 @@
 
 > A meal planner and calorie tracker for nerds
 
-A VSCode-inspired nutrition tracker. Write your meals in FOML (Food-oriented Markup Language), watch the progress bars go brrrr and reach your nutrition goals in no time.
+A VSCode-inspired, keyboard-first nutrition tracker. Write your meals in FOML (Food-oriented Markup Language), watch the progress bars go brrrr and reach your nutrition goals in no time.
 
 Live now at https://foodie.czak.pl. Go wild. Your data is safe* in your browser's `localStorage`.
 
@@ -38,6 +38,7 @@ npm run build
 
 I may get to these at some point:
 
+- [ ] Favicon
 - [ ] Improve validation (detect invalid recipe or meal ingredients)
 - [ ] Autocomplete ingredients
 - [ ] More color themes (maybe, dunno)
