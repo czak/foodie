@@ -1,6 +1,30 @@
+/* Syntax highlighting CSS variables */
+:root {
+  --highlight-header: #a3a9ce;
+  --highlight-assignment: #ece1d7;
+  --highlight-ingredient: #ece1d7;
+  --highlight-key: #ebc06d;
+  --highlight-value: #85b695;
+  --highlight-name: #cf9bc2;
+  --highlight-number: #89b3b6;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --highlight-header: #465aa4;
+    --highlight-assignment: #54433a;
+    --highlight-ingredient: #54433a;
+    --highlight-key: #a06d00;
+    --highlight-value: #3a684a;
+    --highlight-name: #904180;
+    --highlight-number: #3d6568;
+  }
+}
+
 .editor-wrapper {
   position: relative;
   flex: 1;
+  overflow: hidden;
 }
 
 .editor-highlight,
@@ -20,6 +44,8 @@
   line-height: 1.2;
   white-space: pre-wrap;
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: auto;
 }
 
 .editor-highlight {
@@ -39,4 +65,72 @@
 .editor-textarea::placeholder {
   color: var(--color-text-secondary);
   opacity: 0.5;
+}
+
+/* Syntax highlighting */
+.highlight-targetsHeader {
+  color: var(--highlight-header);
+}
+
+.highlight-productsHeader {
+  color: var(--highlight-header);
+}
+
+.highlight-recipeHeader {
+  color: var(--highlight-header);
+}
+
+.highlight-mealHeader {
+  color: var(--highlight-header);
+}
+
+.highlight-targetValue {
+  color: var(--highlight-assignment);
+}
+
+.highlight-productDefinition {
+  color: var(--highlight-assignment);
+}
+
+.highlight-recipeIngredient {
+  color: var(--highlight-ingredient);
+}
+
+.highlight-mealIngredient {
+  color: var(--highlight-ingredient);
+}
+
+.highlight-key {
+  color: var(--highlight-key);
+}
+
+.highlight-value {
+  color: var(--highlight-value);
+}
+
+.highlight-productName {
+  color: var(--highlight-name);
+}
+
+.highlight-recipeName {
+  color: var(--highlight-name);
+}
+
+.highlight-mealName {
+  color: var(--highlight-name);
+}
+
+.highlight-ingredientName {
+  color: var(--highlight-name);
+}
+
+.highlight-kcal,
+.highlight-protein,
+.highlight-fat,
+.highlight-carbs {
+  color: var(--highlight-number);
+}
+
+.highlight-grams {
+  color: var(--highlight-number);
 }
