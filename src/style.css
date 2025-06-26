@@ -255,6 +255,7 @@ body.resizing {
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .macro-breakdown {
