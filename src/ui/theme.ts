@@ -1,24 +1,24 @@
 import { getElement } from "~/dom";
 import { loadData, saveData, removeData } from "~/data";
 
-type Theme = "light" | "dark" | "auto";
+type Theme = "auto" | "light" | "dark";
 
 export function initThemeToggle(): void {
   const toggle = getElement<HTMLButtonElement>("#theme-toggle");
   const icons = {
-    light: getElement<SVGElement>("#sun-icon"),
-    dark: getElement<SVGElement>("#moon-icon"),
     auto: getElement<SVGElement>("#auto-icon"),
+    light: getElement<SVGElement>("#light-icon"),
+    dark: getElement<SVGElement>("#dark-icon"),
   };
 
   // FIXME: Check for valid value in storage
   let current: Theme = (loadData("foodie-theme") as Theme) || "auto";
 
-  // light -> dark -> auto -> light -> ...
+  // auto -> light -> dark -> auto -> light -> ...
   function next(current: Theme): Theme {
+    if (current === "auto") return "light";
     if (current === "light") return "dark";
-    if (current === "dark") return "auto";
-    return "light";
+    return "auto";
   }
 
   function apply(theme: Theme): void {
@@ -32,9 +32,9 @@ export function initThemeToggle(): void {
   }
 
   function updateIcon(theme: Theme): void {
+    icons.auto.style.display = "none";
     icons.light.style.display = "none";
     icons.dark.style.display = "none";
-    icons.auto.style.display = "none";
 
     icons[theme].style.display = "block";
   }
