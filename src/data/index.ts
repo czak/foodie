@@ -14,7 +14,7 @@ chicken breast = 165, 31, 3.6, 0
 greek yogurt = 97, 10, 5, 3.6
 protein powder = 380, 80, 5, 5
 
-# Create meal combos
+# Define combinations you eat often
 [recipes.Yogurt with apple]
 greek yogurt * 150g
 apple * 80g
@@ -25,7 +25,7 @@ apple * 120g
 protein powder * 30g
 `;
 
-const defaultToday = `# Plan your meals by weight
+const defaultToday = `# Plan your meals for the day
 [breakfast]
 Yogurt with apple * 345g
 
