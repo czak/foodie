@@ -20,7 +20,12 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
   // Check if it's a recipe
   if (configData.recipes[ingredient.name]) {
     let recipeTotals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+    let recipeGrams = 0;
+
     for (const recipeIngredient of configData.recipes[ingredient.name]) {
+      // NOTE: Adding weight even for invalid ingredients
+      recipeGrams += recipeIngredient.grams;
+
       const product = configData.products[recipeIngredient.name];
       if (product) {
         const multiplier = recipeIngredient.grams / 100;
@@ -30,11 +35,17 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
         recipeTotals.carbs += product.carbs * multiplier;
       }
     }
+
+    let weightMultiplier = 1;
+    if (recipeGrams > 0) {
+      weightMultiplier = ingredient.grams / recipeGrams;
+    }
+
     return {
-      kcal: recipeTotals.kcal * ingredient.grams,
-      protein: recipeTotals.protein * ingredient.grams,
-      fat: recipeTotals.fat * ingredient.grams,
-      carbs: recipeTotals.carbs * ingredient.grams,
+      kcal: recipeTotals.kcal * weightMultiplier,
+      protein: recipeTotals.protein * weightMultiplier,
+      fat: recipeTotals.fat * weightMultiplier,
+      carbs: recipeTotals.carbs * weightMultiplier,
     };
   }
 

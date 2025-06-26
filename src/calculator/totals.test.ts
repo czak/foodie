@@ -21,17 +21,45 @@ describe("calculateTotals", () => {
     const todayData = {
       meals: {
         Breakfast: [{ name: "greek yogurt", grams: 150 }],
-        Lunch: [{ name: "protein bowl", grams: 1 }],
+        Lunch: [{ name: "protein bowl", grams: 300 }],
       },
     };
 
     // 150g greek yogurt (150 kcal, 15g protein, 0g fat, 9g carbs) +
-    // protein bowl: 200g chicken breast (330 kcal, 62g protein, 7.2g fat, 0g carbs) + 100g rice (130 kcal, 2.7g protein, 0.3g fat, 28g carbs)
+    // 300g protein bowl: 200g chicken breast (330 kcal, 62g protein, 7.2g fat, 0g carbs) + 100g rice (130 kcal, 2.7g protein, 0.3g fat, 28g carbs)
     const result = calculateTotals(configData, todayData);
     expect(result.kcal).toBe(610);
     expect(result.protein).toBeCloseTo(79.7);
     expect(result.fat).toBeCloseTo(7.5);
     expect(result.carbs).toBe(37);
+  });
+
+  it("calculates proportional totals for recipes based on amount consumed", () => {
+    const configData = {
+      targets: { kcal: 2000, protein: 150, fat: 85, carbs: 250 },
+      products: {
+        "chicken breast": { kcal: 165, protein: 31, fat: 3.6, carbs: 0 },
+        rice: { kcal: 130, protein: 2.7, fat: 0.3, carbs: 28 },
+      },
+      recipes: {
+        "protein bowl": [
+          { name: "chicken breast", grams: 200 },
+          { name: "rice", grams: 100 },
+        ],
+      },
+    };
+    const todayData = {
+      meals: {
+        // NOTE: Half of "regular" protein bowl recipe consumed
+        Lunch: [{ name: "protein bowl", grams: 150 }],
+      },
+    };
+
+    const result = calculateTotals(configData, todayData);
+    expect(result.kcal).toBe(230);
+    expect(result.protein).toBeCloseTo(32.35);
+    expect(result.fat).toBeCloseTo(3.75);
+    expect(result.carbs).toBe(14);
   });
 
   it("returns zero totals for empty meals", () => {
@@ -137,7 +165,7 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Lunch: [{ name: "mixed bowl", grams: 1 }],
+        Lunch: [{ name: "mixed bowl", grams: 300 }],
       },
     };
 
@@ -162,12 +190,12 @@ describe("calculateTotals", () => {
           { name: "chicken breast", grams: 100 },
           { name: "rice", grams: 100 },
         ],
-        "invalid recipe": [{ name: "protein bowl", grams: 2 }],
+        "invalid recipe": [{ name: "protein bowl", grams: 100 }],
       },
     };
     const todayData = {
       meals: {
-        Dinner: [{ name: "invalid recipe", grams: 1 }],
+        Dinner: [{ name: "invalid recipe", grams: 100 }],
       },
     };
 
