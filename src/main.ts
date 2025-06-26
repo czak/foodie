@@ -15,11 +15,8 @@ configTextarea.value = initialConfig;
 todayTextarea.value = initialToday;
 
 const update = () => {
-  const configText = configTextarea.value;
-  const todayText = todayTextarea.value;
-
-  const configData = parseConfig(configText);
-  const todayData = parseToday(todayText);
+  const configData = parseConfig(configTextarea.value);
+  const todayData = parseToday(todayTextarea.value);
 
   const totals = calculateTotals(configData, todayData);
 
