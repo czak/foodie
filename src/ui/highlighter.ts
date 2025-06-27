@@ -67,7 +67,7 @@ export function highlightLine(line: string, patterns: Record<string, RegExp>, va
   return escapeHtml(line);
 }
 
-export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<string, RegExp>, validator: Validator) {
+export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<string, RegExp>, validator: Validator): () => void {
   // Create the highlight layer element in DOM
   const highlightLayer = document.createElement("pre");
   highlightLayer.className = "editor-highlight";
@@ -80,9 +80,6 @@ export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<
       .join("\n");
   };
 
-  // Highlight on input
-  textarea.addEventListener("input", highlight);
-
   // Synchronize scroll position with the highlight layer
   textarea.addEventListener("scroll", () => {
     highlightLayer.scrollTop = textarea.scrollTop;
@@ -94,4 +91,6 @@ export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<
 
   // Highlight layer is present, we can hide textarea text
   textarea.style.color = "transparent";
+
+  return highlight;
 }

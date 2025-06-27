@@ -26,19 +26,7 @@ const debouncedUpdate = debounce(() => {
   updateStatsPane(totals, configData.targets);
 }, 300);
 
-configTextarea.addEventListener("input", () => {
-  saveData("foodie-config", configTextarea.value);
-  configData = parseConfig(configTextarea.value);
-  debouncedUpdate();
-});
-
-todayTextarea.addEventListener("input", () => {
-  saveData("foodie-today", todayTextarea.value);
-  todayData = parseToday(todayTextarea.value);
-  debouncedUpdate();
-});
-
-initHighlighter(configTextarea, CONFIG_PATTERNS, (patternName, groups) => {
+const highlightConfig = initHighlighter(configTextarea, CONFIG_PATTERNS, (patternName, groups) => {
   // Only highlight recipe ingredients if they represent
   // an existing product
   if (patternName == "recipeIngredient") {
@@ -48,14 +36,30 @@ initHighlighter(configTextarea, CONFIG_PATTERNS, (patternName, groups) => {
   return true;
 });
 
-initHighlighter(todayTextarea, TODAY_PATTERNS, (patternName, groups) => {
+const highlightToday = initHighlighter(todayTextarea, TODAY_PATTERNS, (patternName, groups) => {
   // Only highlight meal ingredients if they represent
-  // an existing product OR recipe
+  // an existing product or recipe
   if (patternName == "mealIngredient") {
     if (!groups || !groups.ingredientName) return false;
     return groups.ingredientName in configData.products || groups.ingredientName in configData.recipes;
   }
   return true;
+});
+
+configTextarea.addEventListener("input", () => {
+  saveData("foodie-config", configTextarea.value);
+  configData = parseConfig(configTextarea.value);
+  // NOTE: Change in config requires re-highlighting both panes
+  highlightConfig();
+  highlightToday();
+  debouncedUpdate();
+});
+
+todayTextarea.addEventListener("input", () => {
+  saveData("foodie-today", todayTextarea.value);
+  todayData = parseToday(todayTextarea.value);
+  highlightToday();
+  debouncedUpdate();
 });
 
 initResizer();
