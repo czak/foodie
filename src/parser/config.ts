@@ -5,7 +5,7 @@ export const CONFIG_PATTERNS = {
   targetValue: /^\s*(?<key>kcal|protein|fat|carbs)\s* = \s*(?<value>\d+)\s*$/d,
 
   productsHeader: /^\[products\]$/d,
-  productDefinition: /^\s*(?<productName>.+?)\s* = (?<kcal>\d+(?:\.\d+)?), (?<protein>\d+(?:\.\d+)?), (?<fat>\d+(?:\.\d+)?), (?<carbs>\d+(?:\.\d+)?)$/d,
+  productDefinition: /^\s*(?<productName>.+?)\s* = \s*(?<kcal>\d+(?:\.\d+)?)\s*,\s*(?<protein>\d+(?:\.\d+)?)\s*,\s*(?<fat>\d+(?:\.\d+)?)\s*,\s*(?<carbs>\d+(?:\.\d+)?)\s*$/d,
 
   recipeHeader: /^\[recipes\.\s*(?<recipeName>.+?)\s*\]$/d,
   recipeIngredient: /^\s*(?<ingredientName>.+?)\s* \* (?<grams>\d+(?:\.\d+)?)g$/d,

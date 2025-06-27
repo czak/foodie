@@ -36,11 +36,11 @@ protein = 120`;
     });
   });
 
-  it("parses products section", () => {
+  it("parses products section, trimming whitespace", () => {
     const text = `[products]
-apple = 52, 0.3, 0.2, 0.2
-avocado = 160, 2, 14.7, 8
-chicken breast = 165, 31, 3.6, 0`;
+apple  = 52 , 0.3  , 0.2, 0.2 
+ avocado =  160,  2, 14.7 , 8
+chicken breast   =   165 , 31 , 3.6 , 0 `;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
