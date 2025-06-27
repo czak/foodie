@@ -38,6 +38,11 @@ avocado * 50g
 
 [dinner]
 Protein smoothie * 350g
+
+[snack]
+Trail mix * 50g
+
+# ^ ingredient not recognized, so not highlighted
 `;
 
 export const initialConfig = loadData("foodie-config") || defaultConfig;
