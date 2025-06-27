@@ -10,10 +10,10 @@ describe("parseToday", () => {
     });
   });
 
-  it("parses a valid meal", () => {
+  it("parses a valid meal, trimming whitespace", () => {
     const text = `[Breakfast]
-greek yogurt * 150g
-apple * 80g`;
+greek yogurt  *  150 g
+ apple   * 80g `;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
