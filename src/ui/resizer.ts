@@ -5,15 +5,17 @@ export function initResizer() {
   const separator = getElement<HTMLElement>("#separator");
   const leftPane = getElement<HTMLElement>("#left-pane");
   const rightPane = getElement<HTMLElement>("#right-pane");
+  const configTextarea = getElement<HTMLTextAreaElement>("#config-textarea");
+  const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
 
   let leftFlex = 0.5;
 
   separator.addEventListener("mousedown", (e) => {
     document.body.style.cursor = "ew-resize";
-    separator.classList.add("drag-hover");
-    const interferingElements = document.querySelectorAll("textarea, input");
-    interferingElements.forEach((el) => ((el as HTMLElement).style.pointerEvents = "none"));
     document.body.style.userSelect = "none";
+    separator.classList.add("dragging");
+    configTextarea.style.pointerEvents = "none";
+    todayTextarea.style.pointerEvents = "none";
 
     const startX = e.clientX;
     const startLeftWidth = leftPane.offsetWidth;
@@ -33,10 +35,10 @@ export function initResizer() {
 
     const onMouseUp = () => {
       document.body.style.cursor = "";
-      separator.classList.remove("drag-hover");
-      const interferingElements = document.querySelectorAll("textarea, input");
-      interferingElements.forEach((el) => ((el as HTMLElement).style.pointerEvents = "auto"));
       document.body.style.userSelect = "";
+      separator.classList.remove("dragging");
+      configTextarea.style.pointerEvents = "";
+      todayTextarea.style.pointerEvents = "";
 
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);

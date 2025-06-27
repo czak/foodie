@@ -150,7 +150,7 @@ body.resizing {
 }
 
 .separator:hover,
-.separator.drag-hover {
+.separator.dragging {
   background-color: var(--color-accent);
 }
 
