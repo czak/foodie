@@ -1,3 +1,5 @@
+import { loadData } from "~/storage";
+
 const defaultConfig = `# Set your daily goals
 [targets]
 kcal = 1850
@@ -36,30 +38,6 @@ avocado * 50g
 [dinner]
 Protein smoothie * 350g
 `;
-
-export function loadData(key: string): string | null {
-  try {
-    return localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
-export function saveData(key: string, data: string): void {
-  try {
-    localStorage.setItem(key, data);
-  } catch {
-    // We ain't got no localStorage
-  }
-}
-
-export function removeData(key: string) {
-  try {
-    localStorage.removeItem(key);
-  } catch {
-    // We still ain't got no localStorage
-  }
-}
 
 export const initialConfig = loadData("foodie-config") || defaultConfig;
 export const initialToday = loadData("foodie-today") || defaultToday;

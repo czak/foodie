@@ -1,5 +1,5 @@
 import { getElement } from "~/dom";
-import { loadData, saveData, removeData } from "~/data";
+import { loadData, saveData, removeData } from "~/storage";
 
 type Theme = "auto" | "light" | "dark";
 

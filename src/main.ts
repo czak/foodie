@@ -4,7 +4,8 @@ import "./style/editor.css";
 import { parseConfig, parseToday, CONFIG_PATTERNS, TODAY_PATTERNS } from "~/parser";
 import { calculateTotals } from "~/calculator";
 import { getElement, updateStatsPane } from "~/dom";
-import { initialConfig, initialToday, saveData } from "~/data";
+import { initialConfig, initialToday } from "~/data";
+import { saveData } from "~/storage";
 import { debounce } from "~/utils";
 import { initHighlighter, initResizer, initThemeToggle } from "~/ui";
 

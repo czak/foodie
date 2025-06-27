@@ -1,5 +1,5 @@
 import { getElement } from "~/dom";
-import { loadData, saveData } from "~/data";
+import { loadData, saveData } from "~/storage";
 
 export function initResizer() {
   const separator = getElement<HTMLElement>("#separator");
