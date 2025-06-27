@@ -52,18 +52,18 @@ chicken breast   =   165 , 31 , 3.6 , 0 `;
     });
   });
 
-  it("parses recipes section", () => {
+  it("parses recipes section, trimming whitespace", () => {
     const text = `[products]
 greek yogurt = 97, 10, 5, 3.6
 apple = 52, 0.3, 0.2, 0.2
 
 [recipes.Yogurt with apple]
-greek yogurt * 150g
-apple * 80g
+ greek yogurt  *  150 g
+  apple   * 80g
 
 [recipes.Protein smoothie]
-greek yogurt * 200g
-apple * 120g`;
+greek yogurt    *   200g 
+ apple  * 120 g`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {

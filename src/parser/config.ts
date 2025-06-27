@@ -8,7 +8,7 @@ export const CONFIG_PATTERNS = {
   productDefinition: /^\s*(?<productName>.+?)\s* = \s*(?<kcal>\d+(?:\.\d+)?)\s*,\s*(?<protein>\d+(?:\.\d+)?)\s*,\s*(?<fat>\d+(?:\.\d+)?)\s*,\s*(?<carbs>\d+(?:\.\d+)?)\s*$/d,
 
   recipeHeader: /^\[recipes\.\s*(?<recipeName>.+?)\s*\]$/d,
-  recipeIngredient: /^\s*(?<ingredientName>.+?)\s* \* (?<grams>\d+(?:\.\d+)?)g$/d,
+  recipeIngredient: /^\s*(?<ingredientName>.+?)\s* \* \s*(?<grams>\d+(?:\.\d+)?)\s*g\s*$/d,
 };
 
 interface ParseState {
