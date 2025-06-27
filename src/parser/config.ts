@@ -1,13 +1,13 @@
 import type { ConfigData } from "~/types";
 
 export const CONFIG_PATTERNS = {
-  targetsHeader: /^\[targets\]$/d,
+  targetsHeader: /^\s*\[targets\]\s*$/d,
   targetValue: /^\s*(?<key>kcal|protein|fat|carbs)\s* = \s*(?<value>\d+)\s*$/d,
 
-  productsHeader: /^\[products\]$/d,
+  productsHeader: /^\s*\[products\]\s*$/d,
   productDefinition: /^\s*(?<productName>.+?)\s* = \s*(?<kcal>\d+(?:\.\d+)?)\s*,\s*(?<protein>\d+(?:\.\d+)?)\s*,\s*(?<fat>\d+(?:\.\d+)?)\s*,\s*(?<carbs>\d+(?:\.\d+)?)\s*$/d,
 
-  recipeHeader: /^\[recipes\.\s*(?<recipeName>.+?)\s*\]$/d,
+  recipeHeader: /^\s*\[recipes\.\s*(?<recipeName>.+?)\s*\]\s*$/d,
   recipeIngredient: /^\s*(?<ingredientName>.+?)\s* \* \s*(?<grams>\d+(?:\.\d+)?)\s*g\s*$/d,
 };
 

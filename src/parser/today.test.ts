@@ -11,7 +11,7 @@ describe("parseToday", () => {
   });
 
   it("parses a valid meal, trimming whitespace", () => {
-    const text = `[Breakfast]
+    const text = `  [Breakfast]  
 greek yogurt  *  150 g
  apple   * 80g `;
     expect(parseToday(text)).toEqual({

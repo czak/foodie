@@ -13,7 +13,7 @@ describe("parseConfig", () => {
   });
 
   it("parses targets section, trimming whitespace", () => {
-    const text = `[targets]
+    const text = `  [targets]  
 kcal =   1850
  protein = 150
   fat = 85
@@ -37,7 +37,7 @@ protein = 120`;
   });
 
   it("parses products section, trimming whitespace", () => {
-    const text = `[products]
+    const text = `  [products]  
 apple  = 52 , 0.3  , 0.2, 0.2 
  avocado =  160,  2, 14.7 , 8
 chicken breast   =   165 , 31 , 3.6 , 0 `;
@@ -53,15 +53,15 @@ chicken breast   =   165 , 31 , 3.6 , 0 `;
   });
 
   it("parses recipes section, trimming whitespace", () => {
-    const text = `[products]
+    const text = `  [products]  
 greek yogurt = 97, 10, 5, 3.6
 apple = 52, 0.3, 0.2, 0.2
 
-[recipes.Yogurt with apple]
+  [recipes.Yogurt with apple]  
  greek yogurt  *  150 g
   apple   * 80g
 
-[recipes.Protein smoothie]
+ [recipes.Protein smoothie] 
 greek yogurt    *   200g 
  apple  * 120 g`;
     expect(parseConfig(text)).toEqual({
