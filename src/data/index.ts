@@ -21,10 +21,11 @@ protein powder = 380, 80, 5, 5
 greek yogurt * 150g
 apple * 80g
 
-[recipes.Protein smoothie]
-greek yogurt * 200g
-apple * 120g
-protein powder * 30g
+# Whitespace around names is ignored, it's up to you
+[recipes.Protein smoothie  ]
+greek yogurt    *  200g
+apple           *  120g
+protein powder  *   30g
 `;
 
 const defaultToday = `# Plan your meals for the day
