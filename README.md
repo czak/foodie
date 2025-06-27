@@ -1,4 +1,4 @@
-# Foodie
+# <img src="https://github.com/user-attachments/assets/50c6cda2-9c13-4e63-aa24-1a4f88197917" width="80"> Foodie
 
 > A meal planner and calorie tracker for nerds
 
