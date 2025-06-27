@@ -15,27 +15,28 @@ const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
 configTextarea.value = initialConfig;
 todayTextarea.value = initialToday;
 
-const update = () => {
-  const configData = parseConfig(configTextarea.value);
-  const todayData = parseToday(todayTextarea.value);
+// Initial parse & immediate update on load
+let configData = parseConfig(configTextarea.value);
+let todayData = parseToday(todayTextarea.value);
+let totals = calculateTotals(configData, todayData);
+updateStatsPane(totals, configData.targets);
 
+const debouncedUpdate = debounce(() => {
   const totals = calculateTotals(configData, todayData);
-
   updateStatsPane(totals, configData.targets);
-};
-
-const debouncedUpdate = debounce(update, 300);
+}, 300);
 
 configTextarea.addEventListener("input", () => {
   saveData("foodie-config", configTextarea.value);
-  debouncedUpdate();
-});
-todayTextarea.addEventListener("input", () => {
-  saveData("foodie-today", todayTextarea.value);
+  configData = parseConfig(configTextarea.value);
   debouncedUpdate();
 });
 
-update();
+todayTextarea.addEventListener("input", () => {
+  saveData("foodie-today", todayTextarea.value);
+  todayData = parseToday(todayTextarea.value);
+  debouncedUpdate();
+});
 
 initResizer();
 initHighlighter(configTextarea, CONFIG_PATTERNS);
