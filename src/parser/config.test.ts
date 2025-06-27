@@ -226,24 +226,24 @@ orange * 75g`;
     });
   });
 
-  it("does not trim whitespace in product and recipe names", () => {
+  it("trims whitespace in product, recipe, and ingredient names", () => {
     const text = `[products]
   apple   = 52, 0.3, 0.2, 0.2
  banana bread  = 89, 2.6, 0.4, 17
 
 [recipes. Fruit Mix ]
-  apple   * 100g
- banana bread  * 25g`;
+   apple   * 100g
+ banana bread   * 25g`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {
-        "  apple  ": { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
-        " banana bread ": { kcal: 89, protein: 2.6, fat: 0.4, carbs: 17 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+        "banana bread": { kcal: 89, protein: 2.6, fat: 0.4, carbs: 17 },
       },
       recipes: {
-        " Fruit Mix ": [
-          { name: "  apple  ", grams: 100 },
-          { name: " banana bread ", grams: 25 },
+        "Fruit Mix": [
+          { name: "apple", grams: 100 },
+          { name: "banana bread", grams: 25 },
         ],
       },
     });

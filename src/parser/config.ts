@@ -5,10 +5,10 @@ export const CONFIG_PATTERNS = {
   targetValue: /^(?<key>kcal|protein|fat|carbs) = (?<value>\d+)$/d,
 
   productsHeader: /^\[products\]$/d,
-  productDefinition: /^(?<productName>.+) = (?<kcal>\d+(?:\.\d+)?), (?<protein>\d+(?:\.\d+)?), (?<fat>\d+(?:\.\d+)?), (?<carbs>\d+(?:\.\d+)?)$/d,
+  productDefinition: /^\s*(?<productName>.+?)\s* = (?<kcal>\d+(?:\.\d+)?), (?<protein>\d+(?:\.\d+)?), (?<fat>\d+(?:\.\d+)?), (?<carbs>\d+(?:\.\d+)?)$/d,
 
-  recipeHeader: /^\[recipes\.(?<recipeName>.+)\]$/d,
-  recipeIngredient: /^(?<ingredientName>.+) \* (?<grams>\d+(?:\.\d+)?)g$/d,
+  recipeHeader: /^\[recipes\.\s*(?<recipeName>.+?)\s*\]$/d,
+  recipeIngredient: /^\s*(?<ingredientName>.+?)\s* \* (?<grams>\d+(?:\.\d+)?)g$/d,
 };
 
 interface ParseState {

@@ -116,15 +116,15 @@ chicken breast * 200g
     });
   });
 
-  it("does not trim whitespace in meal and item names", () => {
+  it("trims whitespace in meal and ingredient names", () => {
     const text = `[ Morning Snack ]
   greek yogurt   * 150g
  protein powder  * 30g`;
     expect(parseToday(text)).toEqual({
       meals: {
-        " Morning Snack ": [
-          { name: "  greek yogurt  ", grams: 150 },
-          { name: " protein powder ", grams: 30 },
+        "Morning Snack": [
+          { name: "greek yogurt", grams: 150 },
+          { name: "protein powder", grams: 30 },
         ],
       },
     });
