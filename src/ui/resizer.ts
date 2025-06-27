@@ -10,6 +10,9 @@ export function initResizer() {
 
   separator.addEventListener("mousedown", (e) => {
     document.body.style.cursor = "ew-resize";
+    separator.classList.add("drag-hover");
+    const interferingElements = document.querySelectorAll("textarea, input");
+    interferingElements.forEach((el) => ((el as HTMLElement).style.pointerEvents = "none"));
     document.body.style.userSelect = "none";
 
     const startX = e.clientX;
@@ -30,6 +33,9 @@ export function initResizer() {
 
     const onMouseUp = () => {
       document.body.style.cursor = "";
+      separator.classList.remove("drag-hover");
+      const interferingElements = document.querySelectorAll("textarea, input");
+      interferingElements.forEach((el) => ((el as HTMLElement).style.pointerEvents = "auto"));
       document.body.style.userSelect = "";
 
       window.removeEventListener("mousemove", onMouseMove);

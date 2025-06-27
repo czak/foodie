@@ -149,7 +149,8 @@ body.resizing {
   flex-shrink: 0;
 }
 
-.separator:hover {
+.separator:hover,
+.separator.drag-hover {
   background-color: var(--color-accent);
 }
 
