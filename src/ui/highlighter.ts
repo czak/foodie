@@ -8,7 +8,11 @@ function escapeHtml(s: string) {
     .replace(/'/g, "&#39;");
 }
 
-export function highlightLine(line: string, patterns: Record<string, RegExp>): string {
+// A match must pass validation to be highlighted,
+// otherwise it's resturned as plain text.
+export type Validator = (patternName: string, groups: Record<string, string> | undefined) => boolean;
+
+export function highlightLine(line: string, patterns: Record<string, RegExp>, validator: Validator): string {
   for (const [patternName, regex] of Object.entries(patterns)) {
     if (!regex.hasIndices) {
       throw new Error(`Pattern '${patternName}' must use the /d flag`);
@@ -18,6 +22,10 @@ export function highlightLine(line: string, patterns: Record<string, RegExp>): s
 
     if (!match) {
       continue;
+    }
+
+    if (!validator(patternName, match.groups)) {
+      return escapeHtml(line);
     }
 
     let html = "";
@@ -59,7 +67,7 @@ export function highlightLine(line: string, patterns: Record<string, RegExp>): s
   return escapeHtml(line);
 }
 
-export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<string, RegExp>) {
+export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<string, RegExp>, validator: Validator) {
   // Create the highlight layer element in DOM
   const highlightLayer = document.createElement("pre");
   highlightLayer.className = "editor-highlight";
@@ -68,7 +76,7 @@ export function initHighlighter(textarea: HTMLTextAreaElement, patterns: Record<
   const highlight = () => {
     highlightLayer.innerHTML = (textarea.value + "\n")
       .split("\n")
-      .map((line) => highlightLine(line, patterns))
+      .map((line) => highlightLine(line, patterns, validator))
       .join("\n");
   };
 

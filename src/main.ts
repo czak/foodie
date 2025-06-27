@@ -39,6 +39,6 @@ todayTextarea.addEventListener("input", () => {
 });
 
 initResizer();
-initHighlighter(configTextarea, CONFIG_PATTERNS);
-initHighlighter(todayTextarea, TODAY_PATTERNS);
+initHighlighter(configTextarea, CONFIG_PATTERNS, (_patternName, _groups) => true);
+initHighlighter(todayTextarea, TODAY_PATTERNS, (_patternName, _groups) => true);
 initThemeToggle();
