@@ -10,7 +10,7 @@ function escapeHtml(s: string) {
 
 // A match must pass validation to be highlighted,
 // otherwise it's resturned as plain text.
-export type Validator = (patternName: string, groups: Record<string, string> | undefined) => boolean;
+export type Validator = (patternName: string, groups: Record<string, string | undefined> | undefined) => boolean;
 
 export function highlightLine(line: string, patterns: Record<string, RegExp>, validator: Validator): string {
   for (const [patternName, regex] of Object.entries(patterns)) {

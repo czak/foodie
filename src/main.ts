@@ -38,7 +38,25 @@ todayTextarea.addEventListener("input", () => {
   debouncedUpdate();
 });
 
+initHighlighter(configTextarea, CONFIG_PATTERNS, (patternName, groups) => {
+  // Only highlight recipe ingredients if they represent
+  // an existing product
+  if (patternName == "recipeIngredient") {
+    if (!groups || !groups.ingredientName) return false;
+    return groups.ingredientName in configData.products;
+  }
+  return true;
+});
+
+initHighlighter(todayTextarea, TODAY_PATTERNS, (patternName, groups) => {
+  // Only highlight meal ingredients if they represent
+  // an existing product OR recipe
+  if (patternName == "mealIngredient") {
+    if (!groups || !groups.ingredientName) return false;
+    return groups.ingredientName in configData.products || groups.ingredientName in configData.recipes;
+  }
+  return true;
+});
+
 initResizer();
-initHighlighter(configTextarea, CONFIG_PATTERNS, (_patternName, _groups) => true);
-initHighlighter(todayTextarea, TODAY_PATTERNS, (_patternName, _groups) => true);
 initThemeToggle();
