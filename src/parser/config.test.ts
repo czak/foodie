@@ -12,12 +12,12 @@ describe("parseConfig", () => {
     });
   });
 
-  it("parses targets section", () => {
+  it("parses targets section, trimming whitespace", () => {
     const text = `[targets]
-kcal = 1850
-protein = 150
-fat = 85
-carbs = 250`;
+kcal =   1850
+ protein = 150
+  fat = 85
+carbs =  250 `;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 1850, protein: 150, fat: 85, carbs: 250 },
       products: {},
@@ -31,19 +31,6 @@ kcal = 2000
 protein = 120`;
     expect(parseConfig(text)).toEqual({
       targets: { kcal: 2000, protein: 120, fat: 0, carbs: 0 },
-      products: {},
-      recipes: {},
-    });
-  });
-
-  it("ignores target values with extra spaces", () => {
-    const text = `[targets]
-kcal = 1850
-protein  = 1900
-fat = 85
-carbs = 250`;
-    expect(parseConfig(text)).toEqual({
-      targets: { kcal: 1850, protein: 0, fat: 85, carbs: 250 },
       products: {},
       recipes: {},
     });
