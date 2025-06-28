@@ -3,21 +3,23 @@ import "./style/editor.css";
 
 import { parseConfig, parseToday, CONFIG_PATTERNS, TODAY_PATTERNS } from "~/parser";
 import { calculateTotals } from "~/calculator";
-import { getElement, updateStatsPane } from "~/dom";
+import { updateStatsPane } from "~/dom";
 import { initialConfig, initialToday } from "~/data";
 import { saveData } from "~/storage";
 import { debounce } from "~/utils";
-import { initHighlighter, initResizer, initThemeToggle } from "~/ui";
+import { initResizer, initThemeToggle } from "~/ui";
+import { createEditor } from "~/editor";
+import { createHighlightLayer } from "~/editor/layers/highlight";
 
-const configTextarea = getElement<HTMLTextAreaElement>("#config-textarea");
-const todayTextarea = getElement<HTMLTextAreaElement>("#today-textarea");
+const configEditor = createEditor("#config-editor");
+const todayEditor = createEditor("#today-editor");
 
-configTextarea.value = initialConfig;
-todayTextarea.value = initialToday;
+configEditor.setValue(initialConfig);
+todayEditor.setValue(initialToday);
 
 // Initial parse & immediate update on load
-let configData = parseConfig(configTextarea.value);
-let todayData = parseToday(todayTextarea.value);
+let configData = parseConfig(configEditor.getValue());
+let todayData = parseToday(todayEditor.getValue());
 let totals = calculateTotals(configData, todayData);
 updateStatsPane(totals, configData.targets);
 
@@ -26,7 +28,7 @@ const debouncedUpdate = debounce(() => {
   updateStatsPane(totals, configData.targets);
 }, 300);
 
-const highlightConfig = initHighlighter(configTextarea, CONFIG_PATTERNS, (patternName, groups) => {
+const configHighlightLayer = createHighlightLayer(CONFIG_PATTERNS, (patternName, groups) => {
   // Only highlight recipe ingredients if they represent
   // an existing product
   if (patternName == "recipeIngredient") {
@@ -36,7 +38,7 @@ const highlightConfig = initHighlighter(configTextarea, CONFIG_PATTERNS, (patter
   return true;
 });
 
-const highlightToday = initHighlighter(todayTextarea, TODAY_PATTERNS, (patternName, groups) => {
+const todayHighlightLayer = createHighlightLayer(TODAY_PATTERNS, (patternName, groups) => {
   // Only highlight meal ingredients if they represent
   // an existing product or recipe
   if (patternName == "mealIngredient") {
@@ -46,19 +48,20 @@ const highlightToday = initHighlighter(todayTextarea, TODAY_PATTERNS, (patternNa
   return true;
 });
 
-configTextarea.addEventListener("input", () => {
-  saveData("foodie-config", configTextarea.value);
-  configData = parseConfig(configTextarea.value);
+configEditor.addLayer(configHighlightLayer);
+todayEditor.addLayer(todayHighlightLayer);
+
+configEditor.addValueListener((value) => {
+  saveData("foodie-config", value);
+  configData = parseConfig(value);
   // NOTE: Change in config requires re-highlighting both panes
-  highlightConfig();
-  highlightToday();
+  todayEditor.refresh();
   debouncedUpdate();
 });
 
-todayTextarea.addEventListener("input", () => {
-  saveData("foodie-today", todayTextarea.value);
-  todayData = parseToday(todayTextarea.value);
-  highlightToday();
+todayEditor.addValueListener((value) => {
+  saveData("foodie-today", value);
+  todayData = parseToday(value);
   debouncedUpdate();
 });
 
