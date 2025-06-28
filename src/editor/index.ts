@@ -51,6 +51,7 @@ export function createEditor(selector: string): Editor {
     addLayer(layer: Layer) {
       container.insertBefore(layer.element, textarea);
       valueListeners.push(layer.onValueChange);
+      scrollListeners.push(layer.onScroll);
       layer.onValueChange(textarea.value);
       if (layer.overlay) {
         textarea.style.color = "transparent";
