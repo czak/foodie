@@ -21,6 +21,7 @@
   --highlight-value: #3a684a;
   --highlight-name: #904180;
   --highlight-number: #3d6568;
+  --highlight-unit: #bf0021;
 
   --radius: 4px;
 }
@@ -48,6 +49,7 @@
     --highlight-value: #85b695;
     --highlight-name: #cf9bc2;
     --highlight-number: #89b3b6;
+    --highlight-unit: #d47766;
   }
 }
 
@@ -73,6 +75,7 @@
   --highlight-value: #85b695;
   --highlight-name: #cf9bc2;
   --highlight-number: #89b3b6;
+  --highlight-unit: #d47766;
 }
 
 /* ===== Base Styles ===== */
