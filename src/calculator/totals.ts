@@ -23,12 +23,16 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
     let recipeGrams = 0;
 
     for (const recipeIngredient of configData.recipes[ingredient.name]) {
+      const recipeIngredientGrams = recipeIngredient.unit === 'g' 
+        ? recipeIngredient.quantity 
+        : recipeIngredient.quantity * 100; // 'x' unit means multiplier of 100g per unit
+
       // NOTE: Adding weight even for invalid ingredients
-      recipeGrams += recipeIngredient.grams;
+      recipeGrams += recipeIngredientGrams;
 
       const product = configData.products[recipeIngredient.name];
       if (product) {
-        const multiplier = recipeIngredient.grams / 100;
+        const multiplier = recipeIngredientGrams / 100;
         recipeTotals.kcal += product.kcal * multiplier;
         recipeTotals.protein += product.protein * multiplier;
         recipeTotals.fat += product.fat * multiplier;
@@ -36,23 +40,33 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
       }
     }
 
-    let weightMultiplier = 1;
-    if (recipeGrams > 0) {
-      weightMultiplier = ingredient.grams / recipeGrams;
+    let finalMultiplier = 1;
+    if (ingredient.unit === 'g') {
+      // Weight-based: scale by weight ratio
+      if (recipeGrams > 0) {
+        finalMultiplier = ingredient.quantity / recipeGrams;
+      }
+    } else {
+      // Multiplier-based: scale by multiplier directly
+      finalMultiplier = ingredient.quantity;
     }
 
     return {
-      kcal: recipeTotals.kcal * weightMultiplier,
-      protein: recipeTotals.protein * weightMultiplier,
-      fat: recipeTotals.fat * weightMultiplier,
-      carbs: recipeTotals.carbs * weightMultiplier,
+      kcal: recipeTotals.kcal * finalMultiplier,
+      protein: recipeTotals.protein * finalMultiplier,
+      fat: recipeTotals.fat * finalMultiplier,
+      carbs: recipeTotals.carbs * finalMultiplier,
     };
   }
 
   // Check if it's a product
   const product = configData.products[ingredient.name];
   if (product) {
-    const multiplier = ingredient.grams / 100; // assuming product values are per 100g
+    const effectiveGrams = ingredient.unit === 'g' 
+      ? ingredient.quantity 
+      : ingredient.quantity * 100; // 'x' unit means multiplier of 100g per unit
+    
+    const multiplier = effectiveGrams / 100; // assuming product values are per 100g
     return {
       kcal: product.kcal * multiplier,
       protein: product.protein * multiplier,
