@@ -29,15 +29,17 @@ protein powder  *   30g
 `;
 
 const defaultToday = `# Plan your meals for the day
+# Use * 150g for weight or * 1x for full portions
 [breakfast]
-Yogurt with apple * 345g
+Yogurt with apple * 1x
+greek yogurt * 50g
 
 [lunch]
 chicken breast * 150g
 avocado * 50g
 
 [dinner]
-Protein smoothie * 350g
+Protein smoothie * 1x
 
 [snack]
 Trail mix * 50g
