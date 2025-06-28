@@ -7,7 +7,8 @@ export interface NutritionValues {
 
 export interface Ingredient {
   name: string;
-  grams: number;
+  quantity: number;
+  unit: 'g' | 'x';
 }
 
 export interface ConfigData {
