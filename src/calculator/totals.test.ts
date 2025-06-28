@@ -13,15 +13,15 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "protein bowl": [
-          { name: "chicken breast", quantity: 200, unit: "g" },
-          { name: "rice", quantity: 100, unit: "g" },
+          { name: "chicken breast", quantity: 200, unit: "g" as const },
+          { name: "rice", quantity: 100, unit: "g" as const },
         ],
       },
     };
     const todayData = {
       meals: {
-        Breakfast: [{ name: "greek yogurt", quantity: 150, unit: "g" }],
-        Lunch: [{ name: "protein bowl", quantity: 300, unit: "g" }],
+        Breakfast: [{ name: "greek yogurt", quantity: 150, unit: "g" as const }],
+        Lunch: [{ name: "protein bowl", quantity: 300, unit: "g" as const }],
       },
     };
 
@@ -43,15 +43,15 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "protein bowl": [
-          { name: "chicken breast", quantity: 200, unit: "g" },
-          { name: "rice", quantity: 100, unit: "g" },
+          { name: "chicken breast", quantity: 200, unit: "g" as const },
+          { name: "rice", quantity: 100, unit: "g" as const },
         ],
       },
     };
     const todayData = {
       meals: {
         // NOTE: Half of "regular" protein bowl recipe consumed
-        Lunch: [{ name: "protein bowl", quantity: 150, unit: "g" }],
+        Lunch: [{ name: "protein bowl", quantity: 150, unit: "g" as const }],
       },
     };
 
@@ -91,8 +91,8 @@ describe("calculateTotals", () => {
     const todayData = {
       meals: {
         Breakfast: [
-          { name: "greek yogurt", quantity: 100, unit: "g" },
-          { name: "unknown item", quantity: 200, unit: "g" },
+          { name: "greek yogurt", quantity: 100, unit: "g" as const },
+          { name: "unknown item", quantity: 200, unit: "g" as const },
         ],
       },
     };
@@ -116,7 +116,7 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Breakfast: [{ name: "greek yogurt", quantity: 0, unit: "g" }],
+        Breakfast: [{ name: "greek yogurt", quantity: 0, unit: "g" as const }],
       },
     };
 
@@ -138,7 +138,7 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Breakfast: [{ name: "greek yogurt", quantity: 50.5, unit: "g" }],
+        Breakfast: [{ name: "greek yogurt", quantity: 50.5, unit: "g" as const }],
       },
     };
 
@@ -158,14 +158,14 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "mixed bowl": [
-          { name: "chicken breast", quantity: 100, unit: "g" },
-          { name: "unknown ingredient", quantity: 200, unit: "g" },
+          { name: "chicken breast", quantity: 100, unit: "g" as const },
+          { name: "unknown ingredient", quantity: 200, unit: "g" as const },
         ],
       },
     };
     const todayData = {
       meals: {
-        Lunch: [{ name: "mixed bowl", quantity: 300, unit: "g" }],
+        Lunch: [{ name: "mixed bowl", quantity: 300, unit: "g" as const }],
       },
     };
 
@@ -187,15 +187,15 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "protein bowl": [
-          { name: "chicken breast", quantity: 100, unit: "g" },
-          { name: "rice", quantity: 100, unit: "g" },
+          { name: "chicken breast", quantity: 100, unit: "g" as const },
+          { name: "rice", quantity: 100, unit: "g" as const },
         ],
-        "invalid recipe": [{ name: "protein bowl", quantity: 100, unit: "g" }],
+        "invalid recipe": [{ name: "protein bowl", quantity: 100, unit: "g" as const }],
       },
     };
     const todayData = {
       meals: {
-        Dinner: [{ name: "invalid recipe", quantity: 100, unit: "g" }],
+        Dinner: [{ name: "invalid recipe", quantity: 100, unit: "g" as const }],
       },
     };
 
@@ -218,8 +218,8 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Breakfast: [{ name: "greek yogurt", quantity: 100, unit: "g" }],
-        Snack: [{ name: "greek yogurt", quantity: 50, unit: "g" }],
+        Breakfast: [{ name: "greek yogurt", quantity: 100, unit: "g" as const }],
+        Snack: [{ name: "greek yogurt", quantity: 50, unit: "g" as const }],
       },
     };
 
@@ -242,7 +242,7 @@ describe("calculateTotals", () => {
     };
     const todayData = {
       meals: {
-        Breakfast: [{ name: "greek yogurt", quantity: 1, unit: "x" }],
+        Breakfast: [{ name: "greek yogurt", quantity: 1, unit: "x" as const }],
       },
     };
 
@@ -264,14 +264,14 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "protein bowl": [
-          { name: "chicken breast", quantity: 200, unit: "g" },
-          { name: "rice", quantity: 100, unit: "g" },
+          { name: "chicken breast", quantity: 200, unit: "g" as const },
+          { name: "rice", quantity: 100, unit: "g" as const },
         ],
       },
     };
     const todayData = {
       meals: {
-        Lunch: [{ name: "protein bowl", quantity: 1, unit: "x" }],
+        Lunch: [{ name: "protein bowl", quantity: 1, unit: "x" as const }],
       },
     };
 
@@ -295,14 +295,14 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "protein bowl": [
-          { name: "chicken breast", quantity: 200, unit: "g" },
-          { name: "rice", quantity: 100, unit: "g" },
+          { name: "chicken breast", quantity: 200, unit: "g" as const },
+          { name: "rice", quantity: 100, unit: "g" as const },
         ],
       },
     };
     const todayData = {
       meals: {
-        Lunch: [{ name: "protein bowl", quantity: 0.5, unit: "x" }],
+        Lunch: [{ name: "protein bowl", quantity: 0.5, unit: "x" as const }],
       },
     };
 
@@ -325,14 +325,14 @@ describe("calculateTotals", () => {
         apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 14 },
       },
       recipes: {
-        "fruit bowl": [{ name: "apple", quantity: 150, unit: "g" }],
+        "fruit bowl": [{ name: "apple", quantity: 150, unit: "g" as const }],
       },
     };
     const todayData = {
       meals: {
         Breakfast: [
-          { name: "greek yogurt", quantity: 150, unit: "g" },
-          { name: "fruit bowl", quantity: 1, unit: "x" },
+          { name: "greek yogurt", quantity: 150, unit: "g" as const },
+          { name: "fruit bowl", quantity: 1, unit: "x" as const },
         ],
       },
     };
@@ -356,14 +356,14 @@ describe("calculateTotals", () => {
       },
       recipes: {
         "mixed bowl": [
-          { name: "greek yogurt", quantity: 150, unit: "g" },
-          { name: "apple", quantity: 2, unit: "x" },
+          { name: "greek yogurt", quantity: 150, unit: "g" as const },
+          { name: "apple", quantity: 2, unit: "x" as const },
         ],
       },
     };
     const todayData = {
       meals: {
-        Breakfast: [{ name: "mixed bowl", quantity: 1, unit: "x" }],
+        Breakfast: [{ name: "mixed bowl", quantity: 1, unit: "x" as const }],
       },
     };
 
