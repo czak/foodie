@@ -168,9 +168,7 @@ greek yogurt * 150g
 banana * 100`;
     expect(parseToday(text)).toEqual({
       meals: {
-        Breakfast: [
-          { name: "greek yogurt", quantity: 150, unit: "g" },
-        ],
+        Breakfast: [{ name: "greek yogurt", quantity: 150, unit: "g" }],
       },
     });
   });
@@ -226,9 +224,7 @@ Chicken salad * 2x`;
           { name: "Oatmeal with fruit", quantity: 1, unit: "x" },
           { name: "Protein smoothie", quantity: 0.5, unit: "x" },
         ],
-        Lunch: [
-          { name: "Chicken salad", quantity: 2, unit: "x" },
-        ],
+        Lunch: [{ name: "Chicken salad", quantity: 2, unit: "x" }],
       },
     });
   });

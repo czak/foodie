@@ -265,9 +265,7 @@ tomato * 40g`;
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {},
       recipes: {
-        "Test recipe": [
-          { name: "tomato", quantity: 40, unit: "g" },
-        ],
+        "Test recipe": [{ name: "tomato", quantity: 40, unit: "g" }],
       },
     });
   });

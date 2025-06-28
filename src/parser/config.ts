@@ -96,7 +96,7 @@ function tryParseRecipeIngredient(line: string, config: ConfigData, state: Parse
     config.recipes[state.currentRecipeName].push({
       name: ingredientName,
       quantity: parseFloat(quantity),
-      unit: unit as 'g' | 'x',
+      unit: unit as "g" | "x",
     });
     return true;
   }

@@ -8,7 +8,7 @@ export interface NutritionValues {
 export interface Ingredient {
   name: string;
   quantity: number;
-  unit: 'g' | 'x';
+  unit: "g" | "x";
 }
 
 export interface ConfigData {

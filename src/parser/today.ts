@@ -38,7 +38,7 @@ function tryParseMealIngredient(line: string, data: TodayData, state: ParseState
     data.meals[state.currentMealName].push({
       name: ingredientName,
       quantity: parseFloat(quantity),
-      unit: unit as 'g' | 'x',
+      unit: unit as "g" | "x",
     });
     return true;
   }

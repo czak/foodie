@@ -23,9 +23,7 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
     let recipeGrams = 0;
 
     for (const recipeIngredient of configData.recipes[ingredient.name]) {
-      const recipeIngredientGrams = recipeIngredient.unit === 'g' 
-        ? recipeIngredient.quantity 
-        : recipeIngredient.quantity * 100; // 'x' unit means multiplier of 100g per unit
+      const recipeIngredientGrams = recipeIngredient.unit === "g" ? recipeIngredient.quantity : recipeIngredient.quantity * 100; // 'x' unit means multiplier of 100g per unit
 
       // NOTE: Adding weight even for invalid ingredients
       recipeGrams += recipeIngredientGrams;
@@ -41,7 +39,7 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
     }
 
     let finalMultiplier = 1;
-    if (ingredient.unit === 'g') {
+    if (ingredient.unit === "g") {
       // Weight-based: scale by weight ratio
       if (recipeGrams > 0) {
         finalMultiplier = ingredient.quantity / recipeGrams;
@@ -62,10 +60,8 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
   // Check if it's a product
   const product = configData.products[ingredient.name];
   if (product) {
-    const effectiveGrams = ingredient.unit === 'g' 
-      ? ingredient.quantity 
-      : ingredient.quantity * 100; // 'x' unit means multiplier of 100g per unit
-    
+    const effectiveGrams = ingredient.unit === "g" ? ingredient.quantity : ingredient.quantity * 100; // 'x' unit means multiplier of 100g per unit
+
     const multiplier = effectiveGrams / 100; // assuming product values are per 100g
     return {
       kcal: product.kcal * multiplier,
