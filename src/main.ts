@@ -28,6 +28,23 @@ const debouncedUpdate = debounce(() => {
   updateStatsPane(totals, configData.targets);
 }, 300);
 
+// These need to be added before the highlight layers
+// because highlighting depends on up-to-date parsed configData
+// for the validators.
+configEditor.addValueListener((value) => {
+  saveData("foodie-config", value);
+  configData = parseConfig(value);
+  // NOTE: Change in config requires re-highlighting both panes
+  todayEditor.refresh();
+  debouncedUpdate();
+});
+
+todayEditor.addValueListener((value) => {
+  saveData("foodie-today", value);
+  todayData = parseToday(value);
+  debouncedUpdate();
+});
+
 const configHighlightLayer = createHighlightLayer(CONFIG_PATTERNS, (patternName, groups) => {
   // Only highlight recipe ingredients if they represent
   // an existing product
@@ -50,20 +67,6 @@ const todayHighlightLayer = createHighlightLayer(TODAY_PATTERNS, (patternName, g
 
 configEditor.addLayer(configHighlightLayer);
 todayEditor.addLayer(todayHighlightLayer);
-
-configEditor.addValueListener((value) => {
-  saveData("foodie-config", value);
-  configData = parseConfig(value);
-  // NOTE: Change in config requires re-highlighting both panes
-  todayEditor.refresh();
-  debouncedUpdate();
-});
-
-todayEditor.addValueListener((value) => {
-  saveData("foodie-today", value);
-  todayData = parseToday(value);
-  debouncedUpdate();
-});
 
 initResizer();
 initThemeToggle();
