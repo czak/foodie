@@ -72,12 +72,12 @@ greek yogurt    *   200g
       },
       recipes: {
         "Yogurt with apple": [
-          { name: "greek yogurt", grams: 150 },
-          { name: "apple", grams: 80 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "apple", quantity: 80, unit: "g" },
         ],
         "Protein smoothie": [
-          { name: "greek yogurt", grams: 200 },
-          { name: "apple", grams: 120 },
+          { name: "greek yogurt", quantity: 200, unit: "g" },
+          { name: "apple", quantity: 120, unit: "g" },
         ],
       },
     });
@@ -98,7 +98,7 @@ apple = 52, 0.3, 0.2, 0.2`;
         apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
       },
       recipes: {
-        "Quick snack": [{ name: "apple", grams: 100 }],
+        "Quick snack": [{ name: "apple", quantity: 100, unit: "g" }],
       },
     });
   });
@@ -161,7 +161,7 @@ test product * 75.5g`;
         "test product": { kcal: 52.5, protein: 0.3, fat: 0.2, carbs: 0.15 },
       },
       recipes: {
-        "Test recipe": [{ name: "test product", grams: 75.5 }],
+        "Test recipe": [{ name: "test product", quantity: 75.5, unit: "g" }],
       },
     });
   });
@@ -205,9 +205,9 @@ orange * 75g`;
       },
       recipes: {
         "Test recipe": [
-          { name: "apple", grams: 100 },
-          { name: "banana", grams: 50 },
-          { name: "orange", grams: 75 },
+          { name: "apple", quantity: 100, unit: "g" },
+          { name: "banana", quantity: 50, unit: "g" },
+          { name: "orange", quantity: 75, unit: "g" },
         ],
       },
     });
@@ -229,8 +229,8 @@ orange * 75g`;
       },
       recipes: {
         "Fruit Mix": [
-          { name: "apple", grams: 100 },
-          { name: "banana bread", grams: 25 },
+          { name: "apple", quantity: 100, unit: "g" },
+          { name: "banana bread", quantity: 25, unit: "g" },
         ],
       },
     });
@@ -252,12 +252,12 @@ banana * 50g`;
       targets: { kcal: 0, protein: 120, fat: 0, carbs: 0 },
       products: {},
       recipes: {
-        "Test recipe": [{ name: "banana", grams: 50 }],
+        "Test recipe": [{ name: "banana", quantity: 50, unit: "g" }],
       },
     });
   });
 
-  it("ignores ingredient lines without g unit", () => {
+  it("ignores lines without valid unit (g or x)", () => {
     const text = `[recipes.Test recipe]
 banana * 50
 tomato * 40g`;
@@ -265,7 +265,55 @@ tomato * 40g`;
       targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
       products: {},
       recipes: {
-        "Test recipe": [{ name: "tomato", grams: 40 }],
+        "Test recipe": [
+          { name: "tomato", quantity: 40, unit: "g" },
+        ],
+      },
+    });
+  });
+
+  it("parses multiplier syntax for recipe ingredients", () => {
+    const text = `[products]
+greek yogurt = 97, 10, 5, 3.6
+apple = 52, 0.3, 0.2, 0.2
+
+[recipes.Multiplier recipe]
+greek yogurt * 1x
+apple * 2.5x`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
+      products: {
+        "greek yogurt": { kcal: 97, protein: 10, fat: 5, carbs: 3.6 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+      },
+      recipes: {
+        "Multiplier recipe": [
+          { name: "greek yogurt", quantity: 1, unit: "x" },
+          { name: "apple", quantity: 2.5, unit: "x" },
+        ],
+      },
+    });
+  });
+
+  it("handles mixed weight and multiplier syntax in recipe", () => {
+    const text = `[products]
+greek yogurt = 97, 10, 5, 3.6
+apple = 52, 0.3, 0.2, 0.2
+
+[recipes.Mixed recipe]
+greek yogurt * 150g
+apple * 2x`;
+    expect(parseConfig(text)).toEqual({
+      targets: { kcal: 0, protein: 0, fat: 0, carbs: 0 },
+      products: {
+        "greek yogurt": { kcal: 97, protein: 10, fat: 5, carbs: 3.6 },
+        apple: { kcal: 52, protein: 0.3, fat: 0.2, carbs: 0.2 },
+      },
+      recipes: {
+        "Mixed recipe": [
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "apple", quantity: 2, unit: "x" },
+        ],
       },
     });
   });

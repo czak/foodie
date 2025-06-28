@@ -17,8 +17,8 @@ greek yogurt  *  150 g
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { name: "greek yogurt", grams: 150 },
-          { name: "apple", grams: 80 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "apple", quantity: 80, unit: "g" },
         ],
       },
     });
@@ -39,16 +39,16 @@ broccoli * 150g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { name: "greek yogurt", grams: 150 },
-          { name: "apple", grams: 80 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "apple", quantity: 80, unit: "g" },
         ],
         Lunch: [
-          { name: "chicken breast", grams: 200 },
-          { name: "rice", grams: 100 },
+          { name: "chicken breast", quantity: 200, unit: "g" },
+          { name: "rice", quantity: 100, unit: "g" },
         ],
         Dinner: [
-          { name: "salmon", grams: 180 },
-          { name: "broccoli", grams: 150 },
+          { name: "salmon", quantity: 180, unit: "g" },
+          { name: "broccoli", quantity: 150, unit: "g" },
         ],
       },
     });
@@ -61,8 +61,8 @@ protein powder * 30.25g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Snack: [
-          { name: "almonds", grams: 25.5 },
-          { name: "protein powder", grams: 30.25 },
+          { name: "almonds", quantity: 25.5, unit: "g" },
+          { name: "protein powder", quantity: 30.25, unit: "g" },
         ],
       },
     });
@@ -81,10 +81,10 @@ chicken breast * 200g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { name: "greek yogurt", grams: 150 },
-          { name: "apple", grams: 80 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "apple", quantity: 80, unit: "g" },
         ],
-        Lunch: [{ name: "chicken breast", grams: 200 }],
+        Lunch: [{ name: "chicken breast", quantity: 200, unit: "g" }],
       },
     });
   });
@@ -95,7 +95,7 @@ chicken breast * 200g`;
 greek yogurt * 150g`;
     expect(parseToday(text)).toEqual({
       meals: {
-        Breakfast: [{ name: "greek yogurt", grams: 150 }],
+        Breakfast: [{ name: "greek yogurt", quantity: 150, unit: "g" }],
       },
     });
   });
@@ -110,7 +110,7 @@ chicken breast * 200g
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [],
-        Lunch: [{ name: "chicken breast", grams: 200 }],
+        Lunch: [{ name: "chicken breast", quantity: 200, unit: "g" }],
         Dinner: [],
       },
     });
@@ -123,8 +123,8 @@ chicken breast * 200g
     expect(parseToday(text)).toEqual({
       meals: {
         "Morning Snack": [
-          { name: "greek yogurt", grams: 150 },
-          { name: "protein powder", grams: 30 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "protein powder", quantity: 30, unit: "g" },
         ],
       },
     });
@@ -140,8 +140,8 @@ protein powder * 25g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { name: "greek yogurt", grams: 150 },
-          { name: "protein powder", grams: 25 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "protein powder", quantity: 25, unit: "g" },
         ],
       },
     });
@@ -155,20 +155,22 @@ banana * 100g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { name: "greek yogurt", grams: 150 },
-          { name: "banana", grams: 100 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "banana", quantity: 100, unit: "g" },
         ],
       },
     });
   });
 
-  it("ignores lines without the g unit", () => {
+  it("ignores lines without valid unit (g or x)", () => {
     const text = `[Breakfast]
 greek yogurt * 150g
 banana * 100`;
     expect(parseToday(text)).toEqual({
       meals: {
-        Breakfast: [{ name: "greek yogurt", grams: 150 }],
+        Breakfast: [
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+        ],
       },
     });
   });
@@ -184,9 +186,9 @@ greek yogurt * 150g
 chicken breast * 200g`;
     expect(parseToday(text)).toEqual({
       meals: {
-        Dinner: [{ name: "salmon", grams: 180 }],
-        Breakfast: [{ name: "greek yogurt", grams: 150 }],
-        Lunch: [{ name: "chicken breast", grams: 200 }],
+        Dinner: [{ name: "salmon", quantity: 180, unit: "g" }],
+        Breakfast: [{ name: "greek yogurt", quantity: 150, unit: "g" }],
+        Lunch: [{ name: "chicken breast", quantity: 200, unit: "g" }],
       },
     });
   });
@@ -203,10 +205,48 @@ apple * 80g`;
     expect(parseToday(text)).toEqual({
       meals: {
         Breakfast: [
-          { name: "greek yogurt", grams: 150 },
-          { name: "apple", grams: 80 },
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "apple", quantity: 80, unit: "g" },
         ],
-        Lunch: [{ name: "chicken breast", grams: 200 }],
+        Lunch: [{ name: "chicken breast", quantity: 200, unit: "g" }],
+      },
+    });
+  });
+
+  it("parses pure multiplier syntax for meal ingredients", () => {
+    const text = `[Breakfast]
+Oatmeal with fruit * 1x
+Protein smoothie * 0.5x
+
+[Lunch]
+Chicken salad * 2x`;
+    expect(parseToday(text)).toEqual({
+      meals: {
+        Breakfast: [
+          { name: "Oatmeal with fruit", quantity: 1, unit: "x" },
+          { name: "Protein smoothie", quantity: 0.5, unit: "x" },
+        ],
+        Lunch: [
+          { name: "Chicken salad", quantity: 2, unit: "x" },
+        ],
+      },
+    });
+  });
+
+  it("handles mixed weight and multiplier syntax in meals", () => {
+    const text = `[Breakfast]
+greek yogurt * 150g
+Oatmeal with fruit * 1x
+apple * 80g
+Protein smoothie * 0.5x`;
+    expect(parseToday(text)).toEqual({
+      meals: {
+        Breakfast: [
+          { name: "greek yogurt", quantity: 150, unit: "g" },
+          { name: "Oatmeal with fruit", quantity: 1, unit: "x" },
+          { name: "apple", quantity: 80, unit: "g" },
+          { name: "Protein smoothie", quantity: 0.5, unit: "x" },
+        ],
       },
     });
   });

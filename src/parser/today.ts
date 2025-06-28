@@ -2,7 +2,7 @@ import type { TodayData } from "~/types";
 
 export const TODAY_PATTERNS = {
   mealHeader: /^\s*\[\s*(?<mealName>.+?)\s*\]\s*$/d,
-  mealIngredient: /^\s*(?<ingredientName>[^*]+?)\s* \* \s*(?<grams>\d+(?:\.\d+)?)\s*g\s*$/d,
+  mealIngredient: /^\s*(?<ingredientName>[^*]+?)\s* \* \s*(?<quantity>\d+(?:\.\d+)?)\s*(?<unit>[gx])\s*$/d,
 };
 
 interface ParseState {
@@ -34,10 +34,11 @@ function tryParseMealIngredient(line: string, data: TodayData, state: ParseState
 
   const match = TODAY_PATTERNS.mealIngredient.exec(line);
   if (match) {
-    const { ingredientName, grams } = match.groups!;
+    const { ingredientName, quantity, unit } = match.groups!;
     data.meals[state.currentMealName].push({
       name: ingredientName,
-      grams: parseFloat(grams),
+      quantity: parseFloat(quantity),
+      unit: unit as 'g' | 'x',
     });
     return true;
   }
