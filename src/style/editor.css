@@ -108,20 +108,36 @@
 
 .subtotal-block {
   color: var(--color-text-dim);
+  position: absolute;
+  right: 15px;
+}
+
+.subtotal-kcal,
+.subtotal-protein,
+.subtotal-fat,
+.subtotal-carbs {
+  color: white;
+  text-shadow:
+    0px 0px 2px var(--color-label-shadow),
+    1px 1px 1px var(--color-label-shadow);
+  padding: 0 8px;
+  border-right: 1px solid var(--color-bg);
 }
 
 .subtotal-kcal {
-  color: var(--color-kcal);
+  background-color: rgb(from var(--color-kcal) r g b / 0.4);
+  border-radius: 4px 0 0 4px;
 }
 
 .subtotal-protein {
-  color: var(--color-protein);
+  background-color: rgb(from var(--color-protein) r g b / 0.4);
 }
 
 .subtotal-fat {
-  color: var(--color-fat);
+  background-color: rgb(from var(--color-fat) r g b / 0.4);
 }
 
 .subtotal-carbs {
-  color: var(--color-carbs);
+  background-color: rgb(from var(--color-carbs) r g b / 0.4);
+  border-radius: 0 4px 4px 0;
 }

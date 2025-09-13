@@ -32,7 +32,7 @@ describe("overlayLine", () => {
     const line = "[Breakfast]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
     expect(result).toBe(
-      '<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-block"><span class="subtotal-kcal">454</span>, <span class="subtotal-protein">34</span>, <span class="subtotal-fat">12</span>, <span class="subtotal-carbs">52</span></span>',
+      '<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-block"><span class="subtotal-kcal">454</span><span class="subtotal-protein">34</span><span class="subtotal-fat">12</span><span class="subtotal-carbs">52</span></span>',
     );
   });
 
@@ -40,7 +40,7 @@ describe("overlayLine", () => {
     const line = "[recipes.Yogurt with apple]";
     const result = overlayLine(line, mockExtractRecipe, mockCalculateTotals);
     expect(result).toBe(
-      '<span class="subtotal-transparent">[recipes.Yogurt with apple]</span> <span class="subtotal-block"><span class="subtotal-kcal">145</span>, <span class="subtotal-protein">11</span>, <span class="subtotal-fat">4</span>, <span class="subtotal-carbs">9</span></span>',
+      '<span class="subtotal-transparent">[recipes.Yogurt with apple]</span> <span class="subtotal-block"><span class="subtotal-kcal">145</span><span class="subtotal-protein">11</span><span class="subtotal-fat">4</span><span class="subtotal-carbs">9</span></span>',
     );
   });
 
@@ -66,7 +66,7 @@ describe("overlayLine", () => {
     const line = "[UnknownMeal]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
     expect(result).toBe(
-      '<span class="subtotal-transparent">[UnknownMeal]</span> <span class="subtotal-block"><span class="subtotal-kcal">0</span>, <span class="subtotal-protein">0</span>, <span class="subtotal-fat">0</span>, <span class="subtotal-carbs">0</span></span>',
+      '<span class="subtotal-transparent">[UnknownMeal]</span> <span class="subtotal-block"><span class="subtotal-kcal">0</span><span class="subtotal-protein">0</span><span class="subtotal-fat">0</span><span class="subtotal-carbs">0</span></span>',
     );
   });
 
@@ -74,7 +74,7 @@ describe("overlayLine", () => {
     const line = "[recipes.UnknownRecipe]";
     const result = overlayLine(line, mockExtractRecipe, mockCalculateTotals);
     expect(result).toBe(
-      '<span class="subtotal-transparent">[recipes.UnknownRecipe]</span> <span class="subtotal-block"><span class="subtotal-kcal">0</span>, <span class="subtotal-protein">0</span>, <span class="subtotal-fat">0</span>, <span class="subtotal-carbs">0</span></span>',
+      '<span class="subtotal-transparent">[recipes.UnknownRecipe]</span> <span class="subtotal-block"><span class="subtotal-kcal">0</span><span class="subtotal-protein">0</span><span class="subtotal-fat">0</span><span class="subtotal-carbs">0</span></span>',
     );
   });
 
@@ -82,7 +82,7 @@ describe("overlayLine", () => {
     const line = "[Lunch]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
     expect(result).toBe(
-      '<span class="subtotal-transparent">[Lunch]</span> <span class="subtotal-block"><span class="subtotal-kcal">623</span>, <span class="subtotal-protein">45</span>, <span class="subtotal-fat">19</span>, <span class="subtotal-carbs">66</span></span>',
+      '<span class="subtotal-transparent">[Lunch]</span> <span class="subtotal-block"><span class="subtotal-kcal">623</span><span class="subtotal-protein">45</span><span class="subtotal-fat">19</span><span class="subtotal-carbs">66</span></span>',
     );
   });
 
@@ -90,7 +90,7 @@ describe("overlayLine", () => {
     const line = "[Breakfast]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
     expect(result).toBe(
-      '<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-block"><span class="subtotal-kcal">454</span>, <span class="subtotal-protein">34</span>, <span class="subtotal-fat">12</span>, <span class="subtotal-carbs">52</span></span>',
+      '<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-block"><span class="subtotal-kcal">454</span><span class="subtotal-protein">34</span><span class="subtotal-fat">12</span><span class="subtotal-carbs">52</span></span>',
     );
   });
 
