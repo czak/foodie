@@ -12,15 +12,12 @@ import { createEditor } from "~/editor";
 import { createHighlightLayer } from "~/editor/layers/highlight";
 import { createSubtotalLayer } from "~/editor/layers/subtotal";
 
-const configEditor = createEditor("#config-editor");
-const todayEditor = createEditor("#today-editor");
-
-configEditor.setValue(initialConfig);
-todayEditor.setValue(initialToday);
+const configEditor = createEditor("#config-editor", initialConfig);
+const todayEditor = createEditor("#today-editor", initialToday);
 
 // Initial parse & immediate update on load
-let configData = parseConfig(configEditor.getValue());
-let todayData = parseToday(todayEditor.getValue());
+let configData = parseConfig(initialConfig);
+let todayData = parseToday(initialToday);
 let totals = calculateTotals(configData, todayData);
 updateStatsPane(totals, configData.targets);
 
