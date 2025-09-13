@@ -145,6 +145,12 @@ body.resizing {
   color: var(--color-text);
 }
 
+.control-button:focus {
+  outline: none;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
 .separator {
   width: 4px;
   background-color: var(--color-border);
