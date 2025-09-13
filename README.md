@@ -6,7 +6,7 @@ A VSCode-inspired, keyboard-first nutrition tracker. Write your meals in FOML (F
 
 Live now at https://foodie.czak.pl. Go wild. Your data is safe* in your browser's `localStorage`.
 
-![foodie](https://github.com/user-attachments/assets/154d0b21-6189-468f-83db-99d3afe1e151)
+![foodie](https://github.com/user-attachments/assets/0f323d95-b248-400f-932f-064c4c079e6d)
 
 
 ## Local setup
