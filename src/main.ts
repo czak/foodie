@@ -2,7 +2,7 @@ import "./style/main.css";
 import "./style/editor.css";
 
 import { parseConfig, parseToday, CONFIG_PATTERNS, TODAY_PATTERNS } from "~/parser";
-import { calculateTotals } from "~/calculator";
+import { calculateTotals, calculateMealTotals, calculateRecipeTotals } from "~/calculator";
 import { updateStatsPane } from "~/dom";
 import { initialConfig, initialToday } from "~/data";
 import { saveData } from "~/storage";
@@ -10,6 +10,7 @@ import { debounce } from "~/utils";
 import { initResizer, initThemeToggle } from "~/ui";
 import { createEditor } from "~/editor";
 import { createHighlightLayer } from "~/editor/layers/highlight";
+import { createSubtotalLayer } from "~/editor/layers/subtotal";
 
 const configEditor = createEditor("#config-editor");
 const todayEditor = createEditor("#today-editor");
@@ -34,7 +35,7 @@ const debouncedUpdate = debounce(() => {
 configEditor.addValueListener((value) => {
   saveData("foodie-config", value);
   configData = parseConfig(value);
-  // NOTE: Change in config requires re-highlighting both panes
+  // NOTE: Change in config requires re-highlighting and re-calculating subtotals for both panes
   todayEditor.refresh();
   debouncedUpdate();
 });
@@ -67,6 +68,19 @@ const todayHighlightLayer = createHighlightLayer(TODAY_PATTERNS, (patternName, g
 
 configEditor.addLayer(configHighlightLayer);
 todayEditor.addLayer(todayHighlightLayer);
+
+const configSubtotalLayer = createSubtotalLayer(
+  (line) => CONFIG_PATTERNS.recipeHeader.exec(line)?.groups?.recipeName,
+  (name) => calculateRecipeTotals(name, configData),
+);
+
+const todaySubtotalLayer = createSubtotalLayer(
+  (line) => TODAY_PATTERNS.mealHeader.exec(line)?.groups?.mealName,
+  (name) => calculateMealTotals(name, configData, todayData),
+);
+
+configEditor.addLayer(configSubtotalLayer);
+todayEditor.addLayer(todaySubtotalLayer);
 
 initResizer();
 initThemeToggle();

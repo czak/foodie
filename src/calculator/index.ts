@@ -1,1 +1,1 @@
-export { calculateTotals } from "./totals";
+export { calculateTotals, calculateMealTotals, calculateRecipeTotals } from "./totals";

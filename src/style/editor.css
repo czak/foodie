@@ -5,6 +5,7 @@
 }
 
 .editor-highlight,
+.editor-subtotal,
 .editor-textarea {
   position: absolute;
   top: 0;
@@ -28,6 +29,13 @@
 .editor-highlight {
   background-color: transparent;
   color: var(--color-text-dim);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.editor-subtotal {
+  background-color: transparent;
+  color: var(--color-text-secondary);
   pointer-events: none;
   z-index: 1;
 }
@@ -90,4 +98,13 @@
 
 .highlight-unit {
   color: var(--highlight-unit);
+}
+
+/* Subtotal layer */
+.subtotal-transparent {
+  opacity: 0;
+}
+
+.subtotal-numbers {
+  color: var(--color-text-secondary);
 }

@@ -74,3 +74,39 @@ function calculateIngredientTotals(ingredient: Ingredient, configData: ConfigDat
   // Unknown ingredient
   return { kcal: 0, protein: 0, fat: 0, carbs: 0 };
 }
+
+export function calculateMealTotals(mealName: string, configData: ConfigData, todayData: TodayData): NutritionValues {
+  const meal = todayData.meals[mealName];
+  if (!meal) {
+    return { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+  }
+
+  let totals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+  for (const ingredient of meal) {
+    const ingredientTotals = calculateIngredientTotals(ingredient, configData);
+    totals.kcal += ingredientTotals.kcal;
+    totals.protein += ingredientTotals.protein;
+    totals.fat += ingredientTotals.fat;
+    totals.carbs += ingredientTotals.carbs;
+  }
+
+  return totals;
+}
+
+export function calculateRecipeTotals(recipeName: string, configData: ConfigData): NutritionValues {
+  const recipe = configData.recipes[recipeName];
+  if (!recipe) {
+    return { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+  }
+
+  let totals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+  for (const ingredient of recipe) {
+    const ingredientTotals = calculateIngredientTotals(ingredient, configData);
+    totals.kcal += ingredientTotals.kcal;
+    totals.protein += ingredientTotals.protein;
+    totals.fat += ingredientTotals.fat;
+    totals.carbs += ingredientTotals.carbs;
+  }
+
+  return totals;
+}
