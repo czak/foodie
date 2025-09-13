@@ -38,6 +38,7 @@
   color: var(--color-text-secondary);
   pointer-events: none;
   z-index: 1;
+  text-align: right;
 }
 
 .editor-textarea {
@@ -105,6 +106,22 @@
   opacity: 0;
 }
 
-.subtotal-numbers {
-  color: var(--color-text-secondary);
+.subtotal-block {
+  color: var(--color-text-dim);
+}
+
+.subtotal-kcal {
+  color: var(--color-kcal);
+}
+
+.subtotal-protein {
+  color: var(--color-protein);
+}
+
+.subtotal-fat {
+  color: var(--color-fat);
+}
+
+.subtotal-carbs {
+  color: var(--color-carbs);
 }

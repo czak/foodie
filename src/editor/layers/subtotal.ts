@@ -13,8 +13,12 @@ export function overlayLine(line: string, extractName: (line: string) => string 
   }
 
   const totals = calculateTotals(groupName);
-  const subtotalNumbers = `${Math.round(totals.kcal)}, ${Math.round(totals.protein)}, ${Math.round(totals.fat)}, ${Math.round(totals.carbs)}`;
-  return `<span class="subtotal-transparent">${escapedLine}</span> <span class="subtotal-numbers">${subtotalNumbers}</span>`;
+  const kcal = Math.round(totals.kcal);
+  const protein = Math.round(totals.protein);
+  const fat = Math.round(totals.fat);
+  const carbs = Math.round(totals.carbs);
+  const subtotalNumbers = `<span class="subtotal-block"><span class="subtotal-kcal">${kcal}</span>, <span class="subtotal-protein">${protein}</span>, <span class="subtotal-fat">${fat}</span>, <span class="subtotal-carbs">${carbs}</span></span>`;
+  return `<span class="subtotal-transparent">${escapedLine}</span> ${subtotalNumbers}`;
 }
 
 export function createSubtotalLayer(extractName: (line: string) => string | undefined, calculateTotals: (groupName: string) => NutritionValues) {

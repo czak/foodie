@@ -31,13 +31,17 @@ describe("overlayLine", () => {
   it("returns formatted totals for meal header", () => {
     const line = "[Breakfast]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
-    expect(result).toBe('<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-numbers">454, 34, 12, 52</span>');
+    expect(result).toBe(
+      '<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-block"><span class="subtotal-kcal">454</span>, <span class="subtotal-protein">34</span>, <span class="subtotal-fat">12</span>, <span class="subtotal-carbs">52</span></span>',
+    );
   });
 
   it("returns formatted totals for recipe header", () => {
     const line = "[recipes.Yogurt with apple]";
     const result = overlayLine(line, mockExtractRecipe, mockCalculateTotals);
-    expect(result).toBe('<span class="subtotal-transparent">[recipes.Yogurt with apple]</span> <span class="subtotal-numbers">145, 11, 4, 9</span>');
+    expect(result).toBe(
+      '<span class="subtotal-transparent">[recipes.Yogurt with apple]</span> <span class="subtotal-block"><span class="subtotal-kcal">145</span>, <span class="subtotal-protein">11</span>, <span class="subtotal-fat">4</span>, <span class="subtotal-carbs">9</span></span>',
+    );
   });
 
   it("returns transparent span for non-header lines", () => {
@@ -61,25 +65,33 @@ describe("overlayLine", () => {
   it("handles unknown meal names", () => {
     const line = "[UnknownMeal]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
-    expect(result).toBe('<span class="subtotal-transparent">[UnknownMeal]</span> <span class="subtotal-numbers">0, 0, 0, 0</span>');
+    expect(result).toBe(
+      '<span class="subtotal-transparent">[UnknownMeal]</span> <span class="subtotal-block"><span class="subtotal-kcal">0</span>, <span class="subtotal-protein">0</span>, <span class="subtotal-fat">0</span>, <span class="subtotal-carbs">0</span></span>',
+    );
   });
 
   it("handles unknown recipe names", () => {
     const line = "[recipes.UnknownRecipe]";
     const result = overlayLine(line, mockExtractRecipe, mockCalculateTotals);
-    expect(result).toBe('<span class="subtotal-transparent">[recipes.UnknownRecipe]</span> <span class="subtotal-numbers">0, 0, 0, 0</span>');
+    expect(result).toBe(
+      '<span class="subtotal-transparent">[recipes.UnknownRecipe]</span> <span class="subtotal-block"><span class="subtotal-kcal">0</span>, <span class="subtotal-protein">0</span>, <span class="subtotal-fat">0</span>, <span class="subtotal-carbs">0</span></span>',
+    );
   });
 
   it("rounds decimal numbers to integers", () => {
     const line = "[Lunch]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
-    expect(result).toBe('<span class="subtotal-transparent">[Lunch]</span> <span class="subtotal-numbers">623, 45, 19, 66</span>');
+    expect(result).toBe(
+      '<span class="subtotal-transparent">[Lunch]</span> <span class="subtotal-block"><span class="subtotal-kcal">623</span>, <span class="subtotal-protein">45</span>, <span class="subtotal-fat">19</span>, <span class="subtotal-carbs">66</span></span>',
+    );
   });
 
   it("formats integer numbers correctly", () => {
     const line = "[Breakfast]";
     const result = overlayLine(line, mockExtractMeal, mockCalculateTotals);
-    expect(result).toBe('<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-numbers">454, 34, 12, 52</span>');
+    expect(result).toBe(
+      '<span class="subtotal-transparent">[Breakfast]</span> <span class="subtotal-block"><span class="subtotal-kcal">454</span>, <span class="subtotal-protein">34</span>, <span class="subtotal-fat">12</span>, <span class="subtotal-carbs">52</span></span>',
+    );
   });
 
   it("does not match partial header patterns", () => {
