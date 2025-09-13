@@ -66,18 +66,18 @@ const todayHighlightLayer = createHighlightLayer(TODAY_PATTERNS, (patternName, g
 configEditor.addLayer(configHighlightLayer);
 todayEditor.addLayer(todayHighlightLayer);
 
-const configSubtotalLayer = createSubtotalLayer(
+const recipeSubtotalLayer = createSubtotalLayer(
   (line) => CONFIG_PATTERNS.recipeHeader.exec(line)?.groups?.recipeName,
   (name) => calculateRecipeTotals(name, configData),
 );
 
-const todaySubtotalLayer = createSubtotalLayer(
+const mealSubtotalLayer = createSubtotalLayer(
   (line) => TODAY_PATTERNS.mealHeader.exec(line)?.groups?.mealName,
   (name) => calculateMealTotals(name, configData, todayData),
 );
 
-configEditor.addLayer(configSubtotalLayer);
-todayEditor.addLayer(todaySubtotalLayer);
+configEditor.addLayer(recipeSubtotalLayer);
+todayEditor.addLayer(mealSubtotalLayer);
 
 // Initial scroll sync to prevent scroll mismatch on refresh (Firefox specific?)
 configEditor.syncScroll();
