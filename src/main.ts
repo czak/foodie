@@ -82,5 +82,9 @@ const todaySubtotalLayer = createSubtotalLayer(
 configEditor.addLayer(configSubtotalLayer);
 todayEditor.addLayer(todaySubtotalLayer);
 
+// Initial scroll sync to prevent scroll mismatch on refresh (Firefox specific?)
+configEditor.syncScroll();
+todayEditor.syncScroll();
+
 initResizer();
 initThemeToggle();

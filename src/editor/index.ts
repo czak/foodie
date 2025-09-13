@@ -15,6 +15,7 @@ export interface Editor {
   addValueListener(callback: (value: string) => void): void;
   addLayer(layer: Layer): void;
   refresh(): void;
+  syncScroll(): void;
 }
 
 export function createEditor(selector: string): Editor {
@@ -60,6 +61,10 @@ export function createEditor(selector: string): Editor {
 
     refresh() {
       valueListeners.forEach((listener) => listener(textarea.value));
+    },
+
+    syncScroll() {
+      scrollListeners.forEach((listener) => listener(textarea.scrollTop, textarea.scrollLeft));
     },
   };
 }
