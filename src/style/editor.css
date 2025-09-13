@@ -123,7 +123,7 @@
   padding: 0 8px;
   border-right: 1px solid var(--color-bg);
   font-size: 0.7em;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .subtotal-kcal {
