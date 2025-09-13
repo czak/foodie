@@ -1,3 +1,7 @@
+* {
+  scrollbar-color: var(--color-border) transparent;
+}
+
 .editor-wrapper {
   position: relative;
   flex: 1;
