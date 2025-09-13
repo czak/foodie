@@ -7,7 +7,7 @@ import { updateStatsPane } from "~/dom";
 import { initialConfig, initialToday } from "~/data";
 import { saveData } from "~/storage";
 import { debounce } from "~/utils";
-import { initResizer, initThemeToggle } from "~/ui";
+import { initResizer, initThemeToggle, initConfigDownload } from "~/ui";
 import { createEditor } from "~/editor";
 import { createHighlightLayer } from "~/editor/layers/highlight";
 import { createSubtotalLayer } from "~/editor/layers/subtotal";
@@ -85,3 +85,4 @@ todayEditor.syncScroll();
 
 initResizer();
 initThemeToggle();
+initConfigDownload();
