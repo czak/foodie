@@ -38,8 +38,8 @@ npm run build
 
 I may get to these at some point:
 
-- [ ] Favicon
-- [ ] Improve validation (detect invalid recipe or meal ingredients)
+- [x] Favicon
+- [x] Improve validation (detect invalid recipe or meal ingredients)
 - [ ] Autocomplete ingredients
 - [ ] More color themes (maybe, dunno)
 - [ ] Plan more days, maybe have some log, history etc - I doubt it, let's consider these streeeeetch goals
